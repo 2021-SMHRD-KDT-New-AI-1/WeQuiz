@@ -6,4 +6,267 @@
     android:layout_height="match_parent"
     tools:context=".SignActivity">
 
+    <ImageView
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/join_logo" />
+
+    <TextView
+
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="15dp"
+        android:fontFamily="@font/dream6"
+        android:text="아이디"
+
+        android:textColor="#000000"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/editText6"
+        app:layout_constraintHorizontal_bias="0.612"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="175dp" />
+
+    <EditText
+
+
+        android:id="@+id/editText6"
+        android:layout_width="190dp"
+        android:layout_height="36dp"
+        android:layout_marginTop="164dp"
+        android:layout_marginEnd="104dp"
+        android:ems="10"
+        android:fontFamily="@font/dream6"
+        android:hint="아이디를 입력해주세요"
+        android:inputType="textPersonName"
+        android:textSize="10sp"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+
+        android:layout_width="60dp"
+        android:layout_height="33dp"
+        android:layout_marginEnd="28dp"
+        android:background="@drawable/button_color"
+        android:fontFamily="@font/dream5"
+        android:letterSpacing="-0.05"
+        android:paddingLeft="0dp"
+        android:paddingTop="0dp"
+        android:paddingRight="0dp"
+        android:paddingBottom="0dp"
+        android:text="중복확인"
+        android:textSize="12sp"
+
+        app:layout_constraintEnd_toEndOf="parent"
+
+
+        app:layout_constraintStart_toEndOf="@+id/editText6"
+        tools:layout_editor_absoluteY="167dp" />
+
+    <TextView
+
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+
+        android:text="비밀번호"
+        android:textColor="#000000"
+
+        android:textSize="12sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/editText7"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/textView3"
+        tools:layout_editor_absoluteY="225dp" />
+
+    <EditText
+
+
+        android:id="@+id/editText7"
+        android:layout_width="260dp"
+        android:layout_height="36dp"
+        android:layout_marginTop="15dp"
+
+        android:ems="10"
+        android:hint="비밀번호를 입력해주세요"
+
+        android:inputType="textPersonName"
+        android:textSize="10sp"
+        app:layout_constraintStart_toStartOf="@+id/editText6"
+        app:layout_constraintTop_toBottomOf="@+id/editText6" />
+
+    <TextView
+
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:text="비밀번호 확인"
+        android:textColor="#000000"
+
+
+        android:textSize="12sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/editText8"
+        app:layout_constraintStart_toStartOf="@+id/textView4"
+        tools:layout_editor_absoluteY="277dp" />
+
+    <EditText
+
+
+        android:id="@+id/editText8"
+        android:layout_width="260dp"
+        android:layout_height="36dp"
+        android:layout_marginTop="15dp"
+
+        android:ems="10"
+        android:hint="비밀번호를 한 번 더 입력해주세요"
+
+        android:inputType="textPersonName"
+        android:textSize="10sp"
+        app:layout_constraintStart_toStartOf="@+id/editText7"
+        app:layout_constraintTop_toBottomOf="@+id/editText7" />
+
+    <TextView
+
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:text="닉네임"
+        android:textColor="#000000"
+
+        android:textSize="12sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/editText9"
+        app:layout_constraintStart_toStartOf="@+id/textView5"
+        tools:layout_editor_absoluteY="330dp" />
+
+    <EditText
+
+        android:id="@+id/editText9"
+        android:layout_width="260dp"
+        android:layout_height="36dp"
+        android:layout_marginTop="15dp"
+        android:ems="10"
+        android:hint="닉네임을 입력해주세요"
+
+        android:inputType="textPersonName"
+        android:textSize="10sp"
+        app:layout_constraintStart_toStartOf="@+id/editText8"
+        app:layout_constraintTop_toBottomOf="@+id/editText8" />
+
+    <TextView
+
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:text="생년월일"
+        android:textColor="#000000"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/textView2"
+        app:layout_constraintStart_toStartOf="@+id/textView6"
+        tools:layout_editor_absoluteY="390dp" />
+
+    <Button
+
+        android:layout_width="50dp"
+        android:layout_height="33dp"
+        android:background="@drawable/button_color"
+        android:letterSpacing="-0.05"
+        android:onClick="OnClickHandler"
+        android:paddingLeft="0dp"
+        android:paddingTop="0dp"
+        android:paddingRight="0dp"
+        android:paddingBottom="0dp"
+        android:text="선택"
+        android:textSize="12sp"
+        app:iconPadding="0dp"
+        tools:layout_editor_absoluteX="315dp"
+        tools:layout_editor_absoluteY="381dp" />
+
+    <TextView
+
+        android:id="@+id/textView2"
+        android:layout_width="195dp"
+        android:layout_height="33dp"
+        android:gravity="center"
+        android:text="날짜 정보"
+        app:layout_constraintStart_toStartOf="@+id/editText9"
+        tools:layout_editor_absoluteY="381dp" />
+
+    <TextView
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="30dp"
+        android:text="성별"
+        android:textColor="#000000"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/radioGroup"
+        app:layout_constraintStart_toStartOf="@+id/textView7"
+        tools:layout_editor_absoluteY="452dp" />
+
+    <RadioGroup
+
+        android:id="@+id/radioGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="@+id/textView2"
+        tools:layout_editor_absoluteY="433dp">
+
+        <RadioButton
+
+            android:layout_width="61dp"
+            android:layout_height="23dp"
+            android:layout_marginTop="22dp"
+            android:layout_marginEnd="24dp"
+            android:text="여자" />
+
+        <RadioButton
+
+            android:layout_width="61dp"
+            android:layout_height="23dp"
+            android:layout_marginTop="22dp"
+            android:layout_marginEnd="120dp"
+            android:text="남자" />
+
+    </RadioGroup>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="591dp" />
+
+    <Button
+
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/gradation_color"
+        android:fontFamily="@font/dream6"
+        android:text="가입하기"
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline2" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
