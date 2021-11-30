@@ -10,6 +10,33 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.WeQuiz">
         <activity
+            android:name=".CameraActivity"
+            android:exported="true" />
+        <activity
+            android:name=".MyMissionActivity"
+            android:exported="true" />
+        <activity
+            android:name=".MissionListActivity"
+            android:exported="true" />
+        <activity
+            android:name=".MissionChoiceActivity"
+            android:exported="true" />
+        <activity
+            android:name=".QuizLoadingActivity"
+            android:exported="true" />
+        <activity
+            android:name=".SignSuccActivity"
+            android:exported="true" />
+        <activity
+            android:name=".SignActivity"
+            android:exported="true" />
+        <activity
+            android:name=".LoginActivity"
+            android:exported="true" />
+        <activity
+            android:name=".SplashActivity"
+            android:exported="true" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
