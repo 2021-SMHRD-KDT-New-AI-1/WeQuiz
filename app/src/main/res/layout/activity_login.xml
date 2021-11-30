@@ -4,6 +4,59 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#E5FBE9"
     tools:context=".LoginActivity">
+
+    <EditText
+
+        android:id="@+id/editText"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="220dp"
+        android:background="@drawable/round_login"
+        android:elevation="10dp"
+        android:ems="10"
+        android:fontFamily="@font/dream4"
+        android:hint="아이디나 비밀번호를 입력하세요."
+        android:inputType="textPersonName"
+        android:paddingStart="15dp"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+
+        android:id="@+id/editText2"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/round_login"
+        android:elevation="10dp"
+        android:ems="10"
+        android:fontFamily="@font/dream4"
+        android:hint="비밀번호를 입력하세요."
+        android:inputType="textPassword"
+        android:paddingStart="15dp"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText" />
+
+    <Button
+
+        android:layout_width="wrap_content"
+        android:layout_height="45dp"
+        android:elevation="0dp"
+        android:text="로그인"
+        app:cornerRadius="14dp"
+        android:background="@drawable/button_color"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
