@@ -3,6 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/SMHRD/AndroidStudioProjects/WeQuiz/app/src/main/res/layout/activity_camera.xml" value="0.2259963768115942" />
+        <entry key="..\:/Users/SMHRD/AndroidStudioProjects/WeQuiz/app/src/main/res/layout/activity_mission_choice.xml" value="0.33" />
+        <entry key="..\:/Users/SMHRD/AndroidStudioProjects/WeQuiz/app/src/main/res/layout/activity_mission_list.xml" value="0.33" />
         <entry key="..\:/Users/smhrd/Desktop/AndroidStudy/WeQuiz/app/src/main/res/layout/activity_mission_list.xml" value="0.12314814814814815" />
       </map>
     </option>
