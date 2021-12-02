@@ -9,8 +9,15 @@
         <entry key="..\:/Users/SM210703/Desktop/AndroidStudy/WeQuiz/app/src/main/res/layout/activity_splash.xml" value="0.33" />
         <entry key="..\:/Users/smhrd/Desktop/AndroidStudy/WeQuiz/app/src/main/res/drawable/round_login.xml" value="0.38229166666666664" />
         <entry key="..\:/Users/smhrd/Desktop/AndroidStudy/WeQuiz/app/src/main/res/layout/activity_camera.xml" value="0.2957427536231884" />
-        <entry key="..\:/Users/smhrd/Desktop/AndroidStudy/WeQuiz/app/src/main/res/layout/activity_login.xml" value="0.75" />
+        <entry key="..\:/Users/smhrd/Desktop/AndroidStudy/WeQuiz/app/src/main/res/layout/activity_login.xml" value="0.33" />
+        <entry key="..\:/Users/smhrd/Desktop/AndroidStudy/WeQuiz/app/src/main/res/layout/activity_main.xml" value="0.2957427536231884" />
+        <entry key="..\:/Users/smhrd/Desktop/AndroidStudy/WeQuiz/app/src/main/res/layout/activity_mission_choice.xml" value="0.2957427536231884" />
+        <entry key="..\:/Users/smhrd/Desktop/AndroidStudy/WeQuiz/app/src/main/res/layout/activity_mission_list.xml" value="0.2957427536231884" />
         <entry key="..\:/Users/smhrd/Desktop/AndroidStudy/WeQuiz/app/src/main/res/layout/activity_my_mission.xml" value="0.33" />
+        <entry key="..\:/Users/smhrd/Desktop/AndroidStudy/WeQuiz/app/src/main/res/layout/activity_quiz_loading.xml" value="0.2957427536231884" />
+        <entry key="..\:/Users/smhrd/Desktop/AndroidStudy/WeQuiz/app/src/main/res/layout/activity_sign.xml" value="0.2957427536231884" />
+        <entry key="..\:/Users/smhrd/Desktop/AndroidStudy/WeQuiz/app/src/main/res/layout/activity_sign_succ.xml" value="0.2957427536231884" />
+        <entry key="..\:/Users/smhrd/Desktop/AndroidStudy/WeQuiz/app/src/main/res/layout/activity_splash.xml" value="0.2957427536231884" />
       </map>
     </option>
   </component>

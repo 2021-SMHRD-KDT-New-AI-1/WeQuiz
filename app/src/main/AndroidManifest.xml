@@ -11,10 +11,12 @@
         android:theme="@style/Theme.WeQuiz">
         <activity
             android:name=".CameraActivity"
-            android:exported="true" />
+            android:exported="true"/>
         <activity
             android:name=".MyMissionActivity"
-            android:exported="true" />
+            android:exported="true">
+
+        </activity>
         <activity
             android:name=".MissionListActivity"
             android:exported="true" />
