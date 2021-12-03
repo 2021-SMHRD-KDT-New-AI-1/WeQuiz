@@ -115,8 +115,9 @@
         android:layout_marginTop="15dp"
 
         android:ems="10"
-        android:hint="비밀번호를 입력해주세요"
+        android:fontFamily="@font/dream3"
 
+        android:hint="비밀번호를 입력해주세요"
         android:inputType="textPersonName"
         android:textSize="10sp"
         app:layout_constraintStart_toStartOf="@+id/editText6"
@@ -149,8 +150,9 @@
         android:layout_marginTop="15dp"
 
         android:ems="10"
-        android:hint="비밀번호를 한 번 더 입력해주세요"
+        android:fontFamily="@font/dream3"
 
+        android:hint="비밀번호를 한 번 더 입력해주세요"
         android:inputType="textPersonName"
         android:textSize="10sp"
         app:layout_constraintStart_toStartOf="@+id/editText7"
@@ -178,8 +180,9 @@
         android:layout_height="36dp"
         android:layout_marginTop="15dp"
         android:ems="10"
-        android:hint="닉네임을 입력해주세요"
+        android:fontFamily="@font/dream3"
 
+        android:hint="닉네임을 입력해주세요"
         android:inputType="textPersonName"
         android:textSize="10sp"
         app:layout_constraintStart_toStartOf="@+id/editText8"
@@ -202,12 +205,13 @@
 
     <Button
 
+        android:id="@+id/button7"
         android:layout_width="50dp"
         android:layout_height="23dp"
         android:background="@drawable/button_color"
         android:fontFamily="@font/dream4"
-        android:letterSpacing="-0.05"
 
+        android:letterSpacing="-0.05"
         android:paddingLeft="0dp"
         android:paddingTop="0dp"
         android:paddingRight="0dp"
@@ -226,8 +230,14 @@
         android:id="@+id/textView2"
         android:layout_width="190dp"
         android:layout_height="33dp"
+        android:layout_marginTop="15dp"
+        android:fontFamily="@font/dream3"
         android:gravity="center"
+        android:paddingLeft="5dp"
+        android:paddingTop="10dp"
         android:text="날짜 정보"
+        android:textAlignment="viewStart"
+        android:textSize="10sp"
         app:layout_constraintStart_toStartOf="@+id/editText9"
         app:layout_constraintTop_toBottomOf="@+id/editText9" />
 
@@ -258,7 +268,9 @@
             android:layout_height="23dp"
             android:layout_marginTop="22dp"
             android:layout_marginEnd="24dp"
-            android:text="여자" />
+            android:fontFamily="@font/dream3"
+            android:text="여자"
+            android:textSize="10sp" />
 
         <RadioButton
 
@@ -266,7 +278,9 @@
             android:layout_height="23dp"
             android:layout_marginTop="22dp"
             android:layout_marginEnd="120dp"
-            android:text="남자" />
+            android:fontFamily="@font/dream3"
+            android:text="남자"
+            android:textSize="10sp" />
 
     </RadioGroup>
 
@@ -297,6 +311,15 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_begin="28dp" />
+
+    <View
+        android:id="@+id/view2"
+        android:layout_width="0dp"
+        android:layout_height="0.9dp"
+        android:background="#787878"
+        app:layout_constraintEnd_toStartOf="@+id/button7"
+        app:layout_constraintStart_toStartOf="@+id/textView2"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
