@@ -39,9 +39,6 @@
             android:name=".MissionListActivity"
             android:exported="true" />
         <activity
-            android:name=".MissionChoiceActivity"
-            android:exported="true" />
-        <activity
             android:name=".QuizLoadingActivity"
             android:exported="true" />
         <activity
