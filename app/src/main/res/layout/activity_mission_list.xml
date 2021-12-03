@@ -1,206 +1,258 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#00BCD4"
-    tools:context=".MissionListActivity">
 
-    <ImageView
-        android:id="@+id/imageView2"
+<ScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="SpeakableTextPresentCheck"
+    tools:layout_editor_absoluteX="1dp"
+    tools:layout_editor_absoluteY="1dp"
+    android:fillViewport="true"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scaleType="centerCrop"
-        app:srcCompat="@drawable/quiz_back"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp" />
+        tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="40dp"
-        android:fontFamily="@font/dream6"
-        android:letterSpacing="-0.03"
-        android:text="광주"
-        android:textColor="#FFFFFF"
-        android:textSize="27sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <ImageView
+            android:id="@+id/imageView20"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="250dp"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView18"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/mission_list_back" />
 
+        <ImageView
+            android:id="@+id/imageView14"
+            android:layout_width="370dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.487"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView19"
+            app:srcCompat="@drawable/missionbox1" />
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/dream4"
-        android:letterSpacing="-0.03"
-        android:text="님의 미션"
-        android:textColor="#FFFFFF"
-        android:textSize="22sp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView"
-        app:layout_constraintStart_toEndOf="@+id/textView" />
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:layout_editor_absoluteX="26dp"
+            tools:layout_editor_absoluteY="500dp" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_begin="20dp" />
+        <ImageView
+            android:id="@+id/imageView15"
+            android:layout_width="370dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/missionbox2"
+            app:layout_constraintEnd_toEndOf="@+id/imageView14"
+            app:layout_constraintStart_toStartOf="@+id/imageView14"
+            app:layout_constraintTop_toBottomOf="@+id/textView22" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline3"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_end="50dp" />
+        <Button
+            android:id="@+id/button12"
+            android:layout_width="100dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/round_submit"
+            android:fontFamily="@font/dream4"
+            android:text="미션 수행하기"
+            android:textColor="@color/white"
+            android:textSize="12dp"
+            app:layout_constraintStart_toStartOf="@+id/textView22"
+            app:layout_constraintTop_toBottomOf="@+id/textView22" />
 
-    <TextView
-        android:id="@+id/textView10"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="90dp"
-        android:layout_marginStart="50dp"
-        android:fontFamily="@font/dream4"
-        android:text="펭귄마을에서 펭귄 찍기"
-        android:textColor="@color/black"
-        android:textSize="15dp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        <Button
+            android:id="@+id/button5"
+            android:layout_width="100dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/round_submit"
+            android:fontFamily="@font/dream4"
+            android:text="미션 수행하기"
+            android:textColor="@color/white"
+            android:textSize="12dp"
+            app:layout_constraintStart_toStartOf="@+id/textView13"
+            app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
-    <TextView
-        android:id="@+id/textView11"
-        android:layout_width="255dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="50dp"
-        android:fontFamily="@font/dream2"
-        android:text="양림동 펭귄마을(광주 남구 천변좌로446번길 7)로 이동하여 펭귄 사진을 찍어보세요!"
-        android:textSize="10dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView10" />
+        <TextView
+            android:id="@+id/textView21"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="70dp"
+            android:fontFamily="@font/dream5"
+            android:text="펭귄마을에서 펭귄 찍기"
+            android:textColor="#000000"
+            android:textSize="17dp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/imageView14"
+            app:layout_constraintTop_toTopOf="@+id/guideline7" />
 
-    <Button
-        android:id="@+id/button5"
-        android:layout_width="85dp"
-        android:layout_height="35dp"
-        android:backgroundTint="#FF6D64"
-        android:layout_marginStart="50dp"
-        android:text="미션 수행하기"
-        android:textColor="@color/white"
-        android:textSize="10dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView11" />
+        <TextView
+            android:id="@+id/textView12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="120dp"
+            android:fontFamily="@font/dream5"
+            android:text="펭귄마을에서 펭귄 찍기"
+            android:textColor="#000000"
+            android:textSize="17dp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/imageView15"
+            app:layout_constraintTop_toTopOf="@+id/imageView15" />
 
-    <TextView
-        android:id="@+id/textView12"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/dream4"
-        android:layout_marginTop="105dp"
-        android:layout_marginStart="50dp"
-        android:text="국립아시아문화전당 분수대 찍기"
-        android:textColor="@color/black"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView11" />
+        <TextView
+            android:id="@+id/textView22"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/dream4"
+            android:text="양림동 펭귄마을(광주 남구 천변좌로446번길 7)로 이동하여 펭귄 사진을 찍어보세요!"
+            android:textColor="#000000"
+            android:textSize="15dp"
+            app:layout_constraintStart_toStartOf="@+id/textView21"
+            app:layout_constraintTop_toBottomOf="@+id/textView21" />
 
-    <TextView
-        android:id="@+id/textView13"
-        android:layout_width="255dp"
-        android:layout_height="30dp"
-        android:fontFamily="@font/dream2"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="50dp"
-        android:text="국립아시아문화전당(ACC)(광주 동구 문화전당로 38)로 이동하여 분수대 사진을 찍어보세요!"
-        android:textSize="10dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView12" />
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/dream4"
+            android:text="양림동 펭귄마을(광주 남구 천변좌로446번길 7)로 이동하여 펭귄 사진을 찍어보세요!"
+            android:textColor="#000000"
+            android:textSize="15dp"
+            app:layout_constraintStart_toStartOf="@+id/textView12"
+            app:layout_constraintTop_toBottomOf="@+id/textView12" />
 
-    <Button
-        android:id="@+id/button7"
-        android:layout_width="85dp"
-        android:layout_height="35dp"
-        android:backgroundTint="#FF6D64"
-        android:layout_marginStart="50dp"
-        android:text="미션 수행하기"
-        android:textColor="@color/white"
-        android:textSize="10dp"
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/circleImageView3"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="80dp"
+            android:layout_marginEnd="50dp"
+            android:src="@drawable/penguin"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guideline7" />
 
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView13" />
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/circleImageView"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="140dp"
+            android:layout_marginEnd="50dp"
+            android:src="@drawable/penguin"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/imageView15" />
 
-    <TextView
-        android:id="@+id/textView14"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="100dp"
-        android:fontFamily="@font/dream4"
-        android:text="전일빌딩 관련 문제 풀기"
-        android:textColor="@color/black"
+        <TextView
+            android:id="@+id/textView20"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/dream4"
+            android:letterSpacing="-0.03"
+            android:text="님의 미션"
+            android:textColor="#FFFFFF"
+            android:textSize="22sp"
+            app:layout_constraintBottom_toBottomOf="@+id/textView19"
+            app:layout_constraintStart_toEndOf="@+id/textView19" />
 
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView13" />
+        <TextView
+            android:id="@+id/textView19"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="50dp"
+            android:fontFamily="@font/dream6"
+            android:letterSpacing="-0.03"
+            android:text="런닝머신"
+            android:textColor="#FFFFFF"
+            android:textSize="27sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/textView15"
-        android:layout_width="255dp"
-        android:layout_height="30dp"
-        android:fontFamily="@font/dream2"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="50dp"
-        android:textSize="10dp"
-        android:text="전일빌딩(광주광역시 동구 금남로 245)로 이동하여 전일빌딩 관련 문제를 풀어보세요!"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView14" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="148dp" />
 
-    <Button
-        android:id="@+id/button8"
-        android:layout_width="85dp"
-        android:layout_height="35dp"
-        android:backgroundTint="#FF6D64"
-        android:text="미션 수행하기"
-        android:textColor="@color/white"
-        android:textSize="10dp"
-        android:layout_marginStart="50dp"
+        <ImageView
+            android:id="@+id/imageView18"
+            android:layout_width="370dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            app:layout_constraintEnd_toEndOf="@+id/imageView15"
+            app:layout_constraintStart_toStartOf="@+id/imageView15"
+            app:layout_constraintTop_toBottomOf="@+id/textView13"
+            app:srcCompat="@drawable/missionbox3" />
 
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView15" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="926dp" />
 
-    <!--동그라미 이미지뷰-->
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/circleImageView"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="180dp"
-        android:src="@drawable/penguin"
-        app:layout_constraintStart_toEndOf="@+id/textView11"
-        app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/textView14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="120dp"
+            android:fontFamily="@font/dream5"
+            android:text="펭귄마을에서 펭귄 찍기"
+            android:textColor="#000000"
+            android:textSize="17dp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/imageView18"
+            app:layout_constraintTop_toTopOf="@+id/button5" />
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/circleImageView2"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="115dp"
-        android:src="@drawable/fountain"
-        app:layout_constraintStart_toEndOf="@+id/textView13"
-        app:layout_constraintTop_toBottomOf="@+id/circleImageView" />
+        <TextView
+            android:id="@+id/textView15"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/dream4"
+            android:text="양림동 펭귄마을(광주 남구 천변좌로446번길 7)로 이동하여 펭귄 사진을 찍어보세요!"
+            android:textColor="#000000"
+            android:textSize="15dp"
+            app:layout_constraintStart_toStartOf="@+id/textView14"
+            app:layout_constraintTop_toBottomOf="@+id/textView14" />
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="105dp"
-        android:src="@drawable/pen"
-        app:layout_constraintStart_toEndOf="@+id/textView15"
-        app:layout_constraintTop_toBottomOf="@+id/circleImageView2" />
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/circleImageView2"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="130dp"
+            android:layout_marginEnd="50dp"
+            android:src="@drawable/penguin"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/circleImageView" />
 
+        <Button
+            android:id="@+id/button13"
+            android:layout_width="100dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/round_submit"
+            android:fontFamily="@font/dream4"
+            android:text="미션 수행하기"
+            android:textColor="@color/white"
+            android:textSize="12dp"
+            app:layout_constraintStart_toStartOf="@+id/textView15"
+            app:layout_constraintTop_toBottomOf="@+id/textView15" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
