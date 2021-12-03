@@ -10,11 +10,31 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.WeQuiz">
         <activity
-            android:name=".CameraActivity"
+            android:name=".MapActivity"
             android:exported="true" />
         <activity
-            android:name=".MyMissionActivity"
+            android:name=".MemberModifyActivity"
             android:exported="true" />
+        <activity
+            android:name=".RankActivity"
+            android:exported="true" />
+        <activity
+            android:name=".TextMissionActivity"
+            android:exported="true" />
+        <activity
+            android:name=".MissionLoadActivity"
+            android:exported="true" />
+        <activity
+            android:name=".MissionMapActivity"
+            android:exported="true" />
+        <activity
+            android:name=".CameraActivity"
+            android:exported="true"/>
+        <activity
+            android:name=".MyMissionActivity"
+            android:exported="true">
+
+        </activity>
         <activity
             android:name=".MissionListActivity"
             android:exported="true" />
