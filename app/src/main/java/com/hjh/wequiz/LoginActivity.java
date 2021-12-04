@@ -2,6 +2,7 @@ package com.hjh.wequiz;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +11,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -33,7 +37,9 @@ public class LoginActivity extends AppCompatActivity {
     EditText et_loginId, et_loginPw;
     Button btn_login;
 
+
     Context mContext;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,9 +52,12 @@ public class LoginActivity extends AppCompatActivity {
         et_loginPw = findViewById(R.id.et_loginPw);
         btn_login = findViewById(R.id.btn_login);
 
+
         if (requestQueue == null) {
             requestQueue = Volley.newRequestQueue(getApplicationContext());
         }
+
+
 
         //로그인 버튼 누르면 로그인 이동
         btn_login.setOnClickListener(new View.OnClickListener() {
