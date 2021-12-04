@@ -26,13 +26,7 @@
             android:name=".RankActivity"
             android:exported="true" />
         <activity
-            android:name=".TextMissionActivity"
-            android:exported="true" />
-        <activity
             android:name=".MissionLoadActivity"
-            android:exported="true" />
-        <activity
-            android:name=".MissionMapActivity"
             android:exported="true" />
         <activity
             android:name=".CameraActivity"
