@@ -8,7 +8,7 @@
 
     <Button
 
-        android:id="@+id/button6"
+        android:id="@+id/btn_signNick"
         android:layout_width="50dp"
         android:layout_height="23dp"
         android:background="@drawable/button_color"
@@ -23,9 +23,9 @@
         android:text="중복 확인"
         android:textColor="#606060"
         android:textSize="10sp"
-        app:layout_constraintBottom_toBottomOf="@+id/editText9"
-        app:layout_constraintStart_toEndOf="@+id/editText9"
-        app:layout_constraintTop_toTopOf="@+id/editText9" />
+        app:layout_constraintBottom_toBottomOf="@+id/et_signNick"
+        app:layout_constraintStart_toEndOf="@+id/et_signNick"
+        app:layout_constraintTop_toTopOf="@+id/et_signNick" />
 
     <ImageView
 
@@ -48,14 +48,14 @@
         android:textColor="#0C430E"
         android:textSize="14sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/editText6"
+        app:layout_constraintBottom_toBottomOf="@+id/et_signId"
         app:layout_constraintStart_toStartOf="@+id/guideline4"
-        app:layout_constraintTop_toTopOf="@+id/editText6" />
+        app:layout_constraintTop_toTopOf="@+id/et_signId" />
 
     <EditText
 
 
-        android:id="@+id/editText6"
+        android:id="@+id/et_signId"
         android:layout_width="190dp"
         android:layout_height="36dp"
         android:layout_marginTop="168dp"
@@ -71,6 +71,7 @@
 
     <Button
 
+        android:id="@+id/btn_signId"
         android:layout_width="50dp"
         android:layout_height="23dp"
         android:background="@drawable/button_color"
@@ -81,13 +82,13 @@
         android:paddingRight="0dp"
         android:paddingBottom="0dp"
         android:text="중복 확인"
+
+
         android:textColor="#606060"
-
-
         android:textSize="10sp"
-        app:layout_constraintBottom_toBottomOf="@+id/editText6"
-        app:layout_constraintStart_toEndOf="@+id/editText6"
-        app:layout_constraintTop_toTopOf="@+id/editText6" />
+        app:layout_constraintBottom_toBottomOf="@+id/et_signId"
+        app:layout_constraintStart_toEndOf="@+id/et_signId"
+        app:layout_constraintTop_toTopOf="@+id/et_signId" />
 
     <TextView
 
@@ -101,15 +102,15 @@
         android:textColor="#0C430E"
         android:textSize="14sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/editText7"
+        app:layout_constraintBottom_toBottomOf="@+id/et_signPw"
         app:layout_constraintStart_toStartOf="@+id/guideline4"
-        app:layout_constraintTop_toTopOf="@+id/editText7"
+        app:layout_constraintTop_toTopOf="@+id/et_signPw"
         app:layout_constraintVertical_bias="0.555" />
 
     <EditText
 
 
-        android:id="@+id/editText7"
+        android:id="@+id/et_signPw"
         android:layout_width="240dp"
         android:layout_height="36dp"
         android:layout_marginTop="15dp"
@@ -120,8 +121,8 @@
         android:hint="비밀번호를 입력해주세요"
         android:inputType="textPersonName"
         android:textSize="10sp"
-        app:layout_constraintStart_toStartOf="@+id/editText6"
-        app:layout_constraintTop_toBottomOf="@+id/editText6" />
+        app:layout_constraintStart_toStartOf="@+id/et_signId"
+        app:layout_constraintTop_toBottomOf="@+id/et_signId" />
 
     <TextView
 
@@ -136,15 +137,15 @@
         android:textColor="#0C430E"
         android:textSize="14sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/editText8"
-        app:layout_constraintEnd_toStartOf="@+id/editText8"
+        app:layout_constraintBottom_toBottomOf="@+id/et_signCheckPw"
+        app:layout_constraintEnd_toStartOf="@+id/et_signCheckPw"
         app:layout_constraintStart_toStartOf="@+id/guideline4"
-        app:layout_constraintTop_toTopOf="@+id/editText8" />
+        app:layout_constraintTop_toTopOf="@+id/et_signCheckPw" />
 
     <EditText
 
 
-        android:id="@+id/editText8"
+        android:id="@+id/et_signCheckPw"
         android:layout_width="240dp"
         android:layout_height="36dp"
         android:layout_marginTop="15dp"
@@ -155,8 +156,8 @@
         android:hint="비밀번호를 한 번 더 입력해주세요"
         android:inputType="textPersonName"
         android:textSize="10sp"
-        app:layout_constraintStart_toStartOf="@+id/editText7"
-        app:layout_constraintTop_toBottomOf="@+id/editText7" />
+        app:layout_constraintStart_toStartOf="@+id/et_signPw"
+        app:layout_constraintTop_toBottomOf="@+id/et_signPw" />
 
     <TextView
 
@@ -169,13 +170,13 @@
         android:textColor="#0C430E"
         android:textSize="14sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/editText9"
+        app:layout_constraintBottom_toBottomOf="@+id/et_signNick"
         app:layout_constraintStart_toStartOf="@+id/guideline4"
-        app:layout_constraintTop_toTopOf="@+id/editText9" />
+        app:layout_constraintTop_toTopOf="@+id/et_signNick" />
 
     <EditText
 
-        android:id="@+id/editText9"
+        android:id="@+id/et_signNick"
         android:layout_width="190dp"
         android:layout_height="36dp"
         android:layout_marginTop="15dp"
@@ -185,8 +186,8 @@
         android:hint="닉네임을 입력해주세요"
         android:inputType="textPersonName"
         android:textSize="10sp"
-        app:layout_constraintStart_toStartOf="@+id/editText8"
-        app:layout_constraintTop_toBottomOf="@+id/editText8" />
+        app:layout_constraintStart_toStartOf="@+id/et_signCheckPw"
+        app:layout_constraintTop_toBottomOf="@+id/et_signCheckPw" />
 
 
     <TextView
@@ -199,13 +200,13 @@
         android:textColor="#0C430E"
         android:textSize="14sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_birth"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_signBirth"
         app:layout_constraintStart_toStartOf="@+id/guideline4"
-        app:layout_constraintTop_toTopOf="@+id/tv_birth" />
+        app:layout_constraintTop_toTopOf="@+id/tv_signBirth" />
 
     <Button
 
-        android:id="@+id/btn_birth"
+        android:id="@+id/btn_signBirth"
         android:layout_width="50dp"
         android:layout_height="23dp"
         android:background="@drawable/button_color"
@@ -221,14 +222,14 @@
         android:textColor="#606060"
         android:textSize="10sp"
         app:iconPadding="0dp"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_birth"
-        app:layout_constraintStart_toEndOf="@+id/tv_birth"
-        app:layout_constraintTop_toTopOf="@+id/tv_birth"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_signBirth"
+        app:layout_constraintStart_toEndOf="@+id/tv_signBirth"
+        app:layout_constraintTop_toTopOf="@+id/tv_signBirth"
         app:layout_constraintVertical_bias="0.7" />
 
     <TextView
 
-        android:id="@+id/tv_birth"
+        android:id="@+id/tv_signBirth"
         android:layout_width="190dp"
         android:layout_height="33dp"
         android:layout_marginTop="15dp"
@@ -240,8 +241,8 @@
         android:text="날짜 정보"
         android:textAlignment="viewStart"
         android:textSize="10sp"
-        app:layout_constraintStart_toStartOf="@+id/editText9"
-        app:layout_constraintTop_toBottomOf="@+id/editText9" />
+        app:layout_constraintStart_toStartOf="@+id/et_signNick"
+        app:layout_constraintTop_toBottomOf="@+id/et_signNick" />
 
     <TextView
 
@@ -252,21 +253,21 @@
         android:textColor="#0C430E"
         android:textSize="14sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/rg_gender"
+        app:layout_constraintBottom_toBottomOf="@+id/rg_signGender"
         app:layout_constraintStart_toStartOf="@+id/guideline4" />
 
     <RadioGroup
 
-        android:id="@+id/rg_gender"
+        android:id="@+id/rg_signGender"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintStart_toStartOf="@+id/tv_birth"
-        app:layout_constraintTop_toBottomOf="@+id/tv_birth">
+        app:layout_constraintStart_toStartOf="@+id/tv_signBirth"
+        app:layout_constraintTop_toBottomOf="@+id/tv_signBirth">
 
         <RadioButton
 
-            android:id="@+id/rb_woman"
+            android:id="@+id/rb_signWoman"
             android:layout_width="61dp"
             android:layout_height="23dp"
             android:layout_marginTop="22dp"
@@ -277,7 +278,7 @@
 
         <RadioButton
 
-            android:id="@+id/rb_man"
+            android:id="@+id/rb_signMan"
             android:layout_width="61dp"
             android:layout_height="23dp"
             android:layout_marginTop="22dp"
@@ -297,10 +298,12 @@
 
     <Button
 
+        android:id="@+id/btn_sign"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@drawable/gradation_color"
         android:fontFamily="@font/dream6"
+        android:onClick="OnClickHandler"
         android:text="가입하기"
         android:textColor="@color/white"
         android:textSize="25sp"
@@ -321,9 +324,9 @@
         android:layout_width="0dp"
         android:layout_height="0.9dp"
         android:background="#787878"
-        app:layout_constraintEnd_toStartOf="@+id/btn_birth"
-        app:layout_constraintStart_toStartOf="@+id/tv_birth"
-        app:layout_constraintTop_toBottomOf="@+id/tv_birth" />
+        app:layout_constraintEnd_toStartOf="@+id/btn_signBirth"
+        app:layout_constraintStart_toStartOf="@+id/tv_signBirth"
+        app:layout_constraintTop_toBottomOf="@+id/tv_signBirth" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
