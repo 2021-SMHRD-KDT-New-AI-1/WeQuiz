@@ -10,7 +10,7 @@
 
     <EditText
 
-        android:id="@+id/editText2"
+        android:id="@+id/et_loginPw"
         android:layout_width="300dp"
         android:layout_height="45dp"
         android:layout_marginTop="15dp"
@@ -25,11 +25,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText" />
+        app:layout_constraintTop_toBottomOf="@+id/et_loginId" />
 
     <EditText
 
-        android:id="@+id/editText"
+        android:id="@+id/et_loginId"
         android:layout_width="300dp"
         android:layout_height="45dp"
         android:layout_marginTop="288dp"
@@ -48,7 +48,7 @@
 
     <Button
 
-        android:id="@+id/button"
+        android:id="@+id/btn_login"
         android:layout_width="wrap_content"
         android:layout_height="45dp"
         android:background="@drawable/button_color"
@@ -62,7 +62,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText2"
+        app:layout_constraintTop_toBottomOf="@+id/et_loginPw"
         app:layout_constraintVertical_bias="0.19" />
 
     <ImageView
@@ -70,7 +70,7 @@
         android:layout_width="225dp"
         android:layout_height="225dp"
         android:layout_marginBottom="10dp"
-        app:layout_constraintBottom_toTopOf="@+id/editText"
+        app:layout_constraintBottom_toTopOf="@+id/et_loginId"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
