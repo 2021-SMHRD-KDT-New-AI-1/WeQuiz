@@ -2,7 +2,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.hjh.wequiz">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    # 카메라 접근 권한 설정
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA"/>
+
+
 
     <application
         android:allowBackup="true"
@@ -12,6 +18,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.WeQuiz"
         android:usesCleartextTraffic="true">
+
+        <meta-data
+            android:name="com.kakao.sdk.AppKey"
+            android:value="4427e253f430ade00212f26da52ad0ad" /><!-- 네이티브 앱 키 설정 -->
+        android:theme="@style/Theme.WeQuiz">
+
+        <meta-data
+            android:name="com.google.android.actions"
+            android:resource="@xml/fab_open" />
+
         <activity
             android:name=".ShortAnswerActivity"
             android:exported="true" />
@@ -24,7 +40,13 @@
             android:exported="true" />
         <activity
             android:name=".MemberModifyActivity"
-            android:exported="true" />
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".RankActivity"
             android:exported="true" />
@@ -34,11 +56,6 @@
         <activity
             android:name=".MyMissionActivity"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".MissionListActivity"
@@ -54,9 +71,7 @@
             android:exported="true" />
         <activity
             android:name=".LoginActivity"
-            android:exported="true" >
-
-        </activity>
+            android:exported="true" />
         <activity
             android:name=".SplashActivity"
             android:exported="true" />
