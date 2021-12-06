@@ -49,8 +49,6 @@ public class CameraActivity extends AppCompatActivity {
                 builder.setView(dialoglayout);
                 builder.show();
 
-                ad.dismiss();
-
             }
         });
 
