@@ -199,19 +199,20 @@
         android:textColor="#0C430E"
         android:textSize="14sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/textView2"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_birth"
         app:layout_constraintStart_toStartOf="@+id/guideline4"
-        app:layout_constraintTop_toTopOf="@+id/textView2" />
+        app:layout_constraintTop_toTopOf="@+id/tv_birth" />
 
     <Button
 
-        android:id="@+id/button7"
+        android:id="@+id/btn_birth"
         android:layout_width="50dp"
         android:layout_height="23dp"
         android:background="@drawable/button_color"
         android:fontFamily="@font/dream4"
 
         android:letterSpacing="-0.05"
+        android:onClick="OnClickHandler"
         android:paddingLeft="0dp"
         android:paddingTop="0dp"
         android:paddingRight="0dp"
@@ -220,19 +221,20 @@
         android:textColor="#606060"
         android:textSize="10sp"
         app:iconPadding="0dp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView2"
-        app:layout_constraintStart_toEndOf="@+id/textView2"
-        app:layout_constraintTop_toTopOf="@+id/textView2"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_birth"
+        app:layout_constraintStart_toEndOf="@+id/tv_birth"
+        app:layout_constraintTop_toTopOf="@+id/tv_birth"
         app:layout_constraintVertical_bias="0.7" />
 
     <TextView
 
-        android:id="@+id/textView2"
+        android:id="@+id/tv_birth"
         android:layout_width="190dp"
         android:layout_height="33dp"
         android:layout_marginTop="15dp"
         android:fontFamily="@font/dream3"
         android:gravity="center"
+        android:onClick="OnClickHandler"
         android:paddingLeft="5dp"
         android:paddingTop="10dp"
         android:text="날짜 정보"
@@ -250,20 +252,21 @@
         android:textColor="#0C430E"
         android:textSize="14sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/radioGroup"
+        app:layout_constraintBottom_toBottomOf="@+id/rg_gender"
         app:layout_constraintStart_toStartOf="@+id/guideline4" />
 
     <RadioGroup
 
-        android:id="@+id/radioGroup"
+        android:id="@+id/rg_gender"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintStart_toStartOf="@+id/textView2"
-        app:layout_constraintTop_toBottomOf="@+id/textView2">
+        app:layout_constraintStart_toStartOf="@+id/tv_birth"
+        app:layout_constraintTop_toBottomOf="@+id/tv_birth">
 
         <RadioButton
 
+            android:id="@+id/rb_woman"
             android:layout_width="61dp"
             android:layout_height="23dp"
             android:layout_marginTop="22dp"
@@ -274,6 +277,7 @@
 
         <RadioButton
 
+            android:id="@+id/rb_man"
             android:layout_width="61dp"
             android:layout_height="23dp"
             android:layout_marginTop="22dp"
@@ -317,9 +321,9 @@
         android:layout_width="0dp"
         android:layout_height="0.9dp"
         android:background="#787878"
-        app:layout_constraintEnd_toStartOf="@+id/button7"
-        app:layout_constraintStart_toStartOf="@+id/textView2"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintEnd_toStartOf="@+id/btn_birth"
+        app:layout_constraintStart_toStartOf="@+id/tv_birth"
+        app:layout_constraintTop_toBottomOf="@+id/tv_birth" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
