@@ -17,7 +17,7 @@
         app:srcCompat="@drawable/main_user" />
 
     <TextView
-        android:id="@+id/textView31"
+        android:id="@+id/tv_memberModifyNick"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/dream5"
@@ -28,7 +28,7 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView21" />
 
     <EditText
-        android:id="@+id/editTextTextPassword"
+        android:id="@+id/et_memberModifyPw"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -37,13 +37,13 @@
         android:hint="현재 비밀번호를 입력하세요."
         android:inputType="textPassword"
         android:textSize="15sp"
-        app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName3"
+        app:layout_constraintEnd_toEndOf="@+id/et_memberModifyNick"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName3"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName3" />
+        app:layout_constraintStart_toStartOf="@+id/et_memberModifyNick"
+        app:layout_constraintTop_toBottomOf="@+id/et_memberModifyNick" />
 
     <EditText
-        android:id="@+id/editTextTextPassword2"
+        android:id="@+id/et_memberModifyChangePw"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -52,13 +52,13 @@
         android:hint="변경할 비밀번호를 입력하세요."
         android:inputType="textPassword"
         android:textSize="15sp"
-        app:layout_constraintEnd_toEndOf="@+id/editTextTextPassword"
+        app:layout_constraintEnd_toEndOf="@+id/et_memberModifyPw"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/editTextTextPassword"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword" />
+        app:layout_constraintStart_toStartOf="@+id/et_memberModifyPw"
+        app:layout_constraintTop_toBottomOf="@+id/et_memberModifyPw" />
 
     <EditText
-        android:id="@+id/editTextTextPassword3"
+        android:id="@+id/et_memberModifyCheckChangePw"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -67,13 +67,13 @@
         android:hint="변경할 비밀번호를 다시 입력하세요."
         android:inputType="textPassword"
         android:textSize="15sp"
-        app:layout_constraintEnd_toEndOf="@+id/editTextTextPassword2"
+        app:layout_constraintEnd_toEndOf="@+id/et_memberModifyChangePw"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/editTextTextPassword2"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword2" />
+        app:layout_constraintStart_toStartOf="@+id/et_memberModifyChangePw"
+        app:layout_constraintTop_toBottomOf="@+id/et_memberModifyChangePw" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName3"
+        android:id="@+id/et_memberModifyNick"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
@@ -82,13 +82,13 @@
         android:hint="닉네임을 입력하세요."
         android:inputType="textPersonName"
         android:textSize="15sp"
-        app:layout_constraintBottom_toTopOf="@+id/editTextTextPassword"
-        app:layout_constraintEnd_toEndOf="@+id/textView31"
-        app:layout_constraintStart_toStartOf="@+id/textView31"
-        app:layout_constraintTop_toBottomOf="@+id/textView31" />
+        app:layout_constraintBottom_toTopOf="@+id/et_memberModifyPw"
+        app:layout_constraintEnd_toEndOf="@+id/tv_memberModifyNick"
+        app:layout_constraintStart_toStartOf="@+id/tv_memberModifyNick"
+        app:layout_constraintTop_toBottomOf="@+id/tv_memberModifyNick" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btn_memberModifyNickCheck"
         android:layout_width="65dp"
         android:layout_height="30dp"
         android:layout_marginEnd="60dp"
@@ -98,9 +98,9 @@
         android:text="중복확인"
         android:textColor="@color/white"
         android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="@+id/editTextTextPersonName3"
+        app:layout_constraintBottom_toBottomOf="@+id/et_memberModifyNick"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/editTextTextPersonName3" />
+        app:layout_constraintTop_toTopOf="@+id/et_memberModifyNick" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline13"
@@ -110,7 +110,7 @@
         app:layout_constraintGuide_percent="0.9" />
 
     <Button
-        android:id="@+id/button14"
+        android:id="@+id/btn_memberModify"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@drawable/gradation_color"
@@ -132,7 +132,7 @@
         app:srcCompat="@drawable/main_refresh" />
 
     <EditText
-        android:id="@+id/tv_birthDate"
+        android:id="@+id/tv_memberModifyBirthDate"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -144,9 +144,9 @@
         android:inputType="textPersonName"
         android:onClick="OnClickHandler"
         android:textSize="15sp"
-        app:layout_constraintEnd_toEndOf="@+id/editTextTextPassword3"
-        app:layout_constraintStart_toStartOf="@+id/editTextTextPassword3"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword3" />
+        app:layout_constraintEnd_toEndOf="@+id/et_memberModifyCheckChangePw"
+        app:layout_constraintStart_toStartOf="@+id/et_memberModifyCheckChangePw"
+        app:layout_constraintTop_toBottomOf="@+id/et_memberModifyCheckChangePw" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
