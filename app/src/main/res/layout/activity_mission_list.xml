@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout  xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:tools="http://schemas.android.com/tools"
@@ -10,6 +10,99 @@
     android:fillViewport="true"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
+
+
+    <!-- ★★플로팅 버튼★★ -->
+
+    <!-- 플로팅 홈 버튼 -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/float_home"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:layout_marginLeft="330dp"
+        android:layout_marginTop="580dp"
+        android:src="@drawable/float_home"
+        app:backgroundTint="#ffffff"
+        app:elevation="6dp"
+        app:pressedTranslationZ="12dp" />
+
+    <!-- 플로팅 마이미션 버튼 -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/float_mission"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/float_mission"
+        android:layout_gravity="end|bottom"
+        android:layout_marginTop="580dp"
+        android:layout_marginLeft="330dp"
+        app:backgroundTint="#ffffff"
+        app:elevation="5dp"
+        app:pressedTranslationZ="12dp" />
+    <!-- 플로팅 전국뱃지지도 버튼 -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/float_badge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/float_badge"
+        android:layout_gravity="end|bottom"
+        android:layout_marginTop="580dp"
+        android:layout_marginLeft="330dp"
+        app:backgroundTint="#ffffff"
+        app:elevation="6dp"
+        app:pressedTranslationZ="12dp" />
+    <!-- 플로팅 내정보수정 버튼 -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/float_my"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/float_my"
+        android:layout_gravity="end|bottom"
+        android:layout_marginTop="580dp"
+        android:layout_marginLeft="330dp"
+        app:backgroundTint="#ffffff"
+        app:elevation="6dp"
+        app:pressedTranslationZ="12dp" />
+    <!-- 플로팅 미션지도 버튼 -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/float_map"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:layout_marginTop="580dp"
+        android:layout_marginLeft="330dp"
+        android:src="@drawable/float_map"
+        app:backgroundTint="#ffffff"
+        app:elevation="6dp"
+        app:pressedTranslationZ="12dp" />
+    <!-- 플로팅 열었을 때 버튼 -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/float_plus2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/float_plus2"
+        android:layout_gravity="end|bottom"
+        android:layout_marginTop="580dp"
+        android:layout_marginLeft="330dp"
+        app:backgroundTint="#ff6d64"
+        app:elevation="6dp"
+        app:pressedTranslationZ="12dp" />
+    <!-- 플로팅 기본 버튼 -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/float_plus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:layout_marginLeft="330dp"
+        android:layout_marginTop="580dp"
+        android:src="@drawable/float_plus"
+        app:backgroundTint="#ff6d64"
+        app:elevation="6dp"
+        app:pressedTranslationZ="12dp" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -39,12 +132,6 @@
             app:layout_constraintTop_toBottomOf="@+id/textView19"
             app:srcCompat="@drawable/missionbox1" />
 
-        <TextView
-            android:id="@+id/textView11"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:layout_editor_absoluteX="26dp"
-            tools:layout_editor_absoluteY="500dp" />
 
         <ImageView
             android:id="@+id/imageView15"
@@ -116,9 +203,12 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:fontFamily="@font/dream4"
+            android:letterSpacing="-0.05"
+            android:lineSpacingExtra="5dp"
             android:text="양림동 펭귄마을(광주 남구 천변좌로446번길 7)로 이동하여 펭귄 사진을 찍어보세요!"
             android:textColor="#000000"
-            android:textSize="15dp"
+
+            android:textSize="13dp"
             app:layout_constraintStart_toStartOf="@+id/textView21"
             app:layout_constraintTop_toBottomOf="@+id/textView21" />
 
@@ -128,9 +218,11 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:fontFamily="@font/dream4"
+            android:letterSpacing="-0.05"
+            android:lineSpacingExtra="5dp"
             android:text="양림동 펭귄마을(광주 남구 천변좌로446번길 7)로 이동하여 펭귄 사진을 찍어보세요!"
             android:textColor="#000000"
-            android:textSize="15dp"
+            android:textSize="13dp"
             app:layout_constraintStart_toStartOf="@+id/textView12"
             app:layout_constraintTop_toBottomOf="@+id/textView12" />
 
@@ -193,6 +285,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             app:layout_constraintEnd_toEndOf="@+id/imageView15"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/imageView15"
             app:layout_constraintTop_toBottomOf="@+id/textView13"
             app:srcCompat="@drawable/missionbox3" />
@@ -224,9 +317,11 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:fontFamily="@font/dream4"
+            android:letterSpacing="-0.05"
+            android:lineSpacingExtra="5dp"
             android:text="양림동 펭귄마을(광주 남구 천변좌로446번길 7)로 이동하여 펭귄 사진을 찍어보세요!"
             android:textColor="#000000"
-            android:textSize="15dp"
+            android:textSize="13dp"
             app:layout_constraintStart_toStartOf="@+id/textView14"
             app:layout_constraintTop_toBottomOf="@+id/textView14" />
 
@@ -241,7 +336,7 @@
             app:layout_constraintTop_toBottomOf="@+id/circleImageView" />
 
         <Button
-            android:id="@+id/button13"
+            android:id="@+id/btn_camera"
             android:layout_width="100dp"
             android:layout_height="30dp"
             android:layout_marginTop="20dp"
@@ -253,6 +348,10 @@
             app:layout_constraintStart_toStartOf="@+id/textView15"
             app:layout_constraintTop_toBottomOf="@+id/textView15" />
 
+
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-</ScrollView>
+    </ScrollView>
+</RelativeLayout>

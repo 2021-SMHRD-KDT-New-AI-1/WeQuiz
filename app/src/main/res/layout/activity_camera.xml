@@ -19,7 +19,7 @@
         android:scaleType="centerCrop" />
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/img_select"
         android:layout_width="300dp"
         android:layout_height="300dp"
         android:layout_marginTop="200dp"
@@ -30,18 +30,19 @@
         tools:srcCompat="@tools:sample/avatars" />
 
     <Button
+        android:id="@+id/btn_album"
         android:layout_width="130dp"
         android:layout_height="45dp"
         android:layout_marginTop="52dp"
         android:background="@drawable/button_color"
         android:elevation="0dp"
         android:fontFamily="@font/dream5"
-        android:text="다시찍기"
+        android:text="가져오기"
         android:textColor="#FFFFFF"
         android:textSize="20sp"
         app:cornerRadius="14dp"
-        app:layout_constraintStart_toStartOf="@+id/imageView3"
-        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+        app:layout_constraintStart_toStartOf="@+id/img_select"
+        app:layout_constraintTop_toBottomOf="@+id/img_select" />
 
     <Button
         android:layout_width="130dp"
@@ -54,6 +55,15 @@
         android:textColor="#FFFFFF"
         android:textSize="20sp"
         app:cornerRadius="14dp"
-        app:layout_constraintEnd_toEndOf="@+id/imageView3"
-        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+        app:layout_constraintEnd_toEndOf="@+id/img_select"
+        app:layout_constraintTop_toBottomOf="@+id/img_select" />
+
+    <Button
+        android:id="@+id/btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
