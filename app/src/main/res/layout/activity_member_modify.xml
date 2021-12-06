@@ -7,7 +7,7 @@
     tools:context=".MemberModifyActivity">
 
     <ImageView
-        android:id="@+id/imageView21"
+        android:id="@+id/img_profile"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginTop="100dp"
@@ -23,9 +23,9 @@
         android:fontFamily="@font/dream5"
         android:text="태태"
         android:textSize="30sp"
-        app:layout_constraintEnd_toEndOf="@+id/imageView21"
-        app:layout_constraintStart_toStartOf="@+id/imageView21"
-        app:layout_constraintTop_toBottomOf="@+id/imageView21" />
+        app:layout_constraintEnd_toEndOf="@+id/img_profile"
+        app:layout_constraintStart_toStartOf="@+id/img_profile"
+        app:layout_constraintTop_toBottomOf="@+id/img_profile" />
 
     <EditText
         android:id="@+id/et_memberModifyPw"
@@ -124,11 +124,11 @@
         app:layout_constraintTop_toTopOf="@+id/guideline13" />
 
     <ImageView
-        android:id="@+id/imageView23"
+        android:id="@+id/img_changeProfile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView21"
-        app:layout_constraintEnd_toEndOf="@+id/imageView21"
+        app:layout_constraintBottom_toBottomOf="@+id/img_profile"
+        app:layout_constraintEnd_toEndOf="@+id/img_profile"
         app:srcCompat="@drawable/main_refresh" />
 
     <EditText

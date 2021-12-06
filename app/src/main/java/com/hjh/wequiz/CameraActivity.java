@@ -55,7 +55,7 @@ public class CameraActivity extends AppCompatActivity {
         btn_album.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // 카메라로 촬영
+                // 앨범에서 사진 선택
                 btn_album = findViewById(R.id.btn_album);
                 btn_album.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -80,7 +80,7 @@ public class CameraActivity extends AppCompatActivity {
         if (requestCode == REQUEST_IMAGE_CODE) {
             Uri image = data.getData();
             try {
-                // 앨범에서 가져온 사진으로 이미지뷰셋팅.(지윤이 코드)
+                // 앨범에서 가져온 사진으로 이미지뷰셋팅.
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), image);
                 img_select.setImageBitmap(bitmap);
 
