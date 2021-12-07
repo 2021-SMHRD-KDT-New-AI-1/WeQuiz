@@ -8,8 +8,8 @@
 
     <ImageView
         android:id="@+id/img_myMissionBox"
-        android:layout_width="0dp"
-        android:layout_height="100dp"
+        android:layout_width="403dp"
+        android:layout_height="103dp"
         android:layout_marginStart="12dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

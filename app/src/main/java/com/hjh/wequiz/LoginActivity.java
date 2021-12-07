@@ -6,7 +6,6 @@ import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -35,7 +34,7 @@ public class LoginActivity extends AppCompatActivity {
 
     RequestQueue requestQueue;
     EditText et_loginId, et_loginPw;
-    Button btn_login;
+    Button btn_login, btn_loginSign;
 
 
     Context mContext;
@@ -51,6 +50,7 @@ public class LoginActivity extends AppCompatActivity {
         et_loginId = findViewById(R.id.et_loginId);
         et_loginPw = findViewById(R.id.et_loginPw);
         btn_login = findViewById(R.id.btn_login);
+        btn_loginSign = findViewById(R.id.btn_loginSign);
 
 
         if (requestQueue == null) {
@@ -67,6 +67,14 @@ public class LoginActivity extends AppCompatActivity {
                 String pw = et_loginPw.getText().toString();
 
                 postLogin(id, pw);
+            }
+        });
+
+        btn_loginSign.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(LoginActivity.this, SignActivity.class);
+                startActivity(intent);
             }
         });
     }
@@ -88,9 +96,10 @@ public class LoginActivity extends AppCompatActivity {
                             if (status.equals("success")) {
 
                                 Toast.makeText(mContext, "로그인 성공", Toast.LENGTH_SHORT).show();
+                                PreferenceManager.setString(mContext,"mem_id", id);
 
-//                                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-//                                startActivity(intent);
+                                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                startActivity(intent);
                             }else{
                                 Toast.makeText(LoginActivity.this, "아이디나 비밀번호를 확인하세요.", Toast.LENGTH_SHORT).show();
                             }

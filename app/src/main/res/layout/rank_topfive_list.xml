@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/img_main_rank_box"
+        android:layout_width="176dp"
+        android:layout_height="77dp"
+        android:layout_marginEnd="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/badge_round" />
+
+    <ImageView
+        android:id="@+id/img_main_rank_profile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        app:layout_constraintBottom_toBottomOf="@+id/img_main_rank_box"
+        app:layout_constraintStart_toStartOf="@+id/img_main_rank_box"
+        app:layout_constraintTop_toTopOf="@+id/img_main_rank_box"
+        app:srcCompat="@drawable/main_rank1" />
+
+    <TextView
+        android:id="@+id/tv_main_rank_num"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/dream5"
+        android:text="1"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/img_main_rank_medal"
+        app:layout_constraintStart_toEndOf="@+id/img_main_rank_medal"
+        app:layout_constraintTop_toTopOf="@+id/img_main_rank_medal" />
+
+    <ImageView
+        android:id="@+id/img_main_rank_medal"
+        android:layout_width="23dp"
+        android:layout_height="21dp"
+        app:layout_constraintStart_toEndOf="@+id/img_main_rank_profile"
+        app:layout_constraintTop_toTopOf="@+id/img_main_rank_profile"
+        app:srcCompat="@drawable/main_gold" />
+
+    <TextView
+        android:id="@+id/textView81"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:fontFamily="@font/dream4"
+        android:text="획득뱃지 :"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/img_main_rank_profile"
+        app:layout_constraintStart_toEndOf="@+id/img_main_rank_profile"
+        app:layout_constraintTop_toBottomOf="@+id/textView77" />
+
+    <TextView
+        android:id="@+id/tv_main_rank_badge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="1dp"
+        android:fontFamily="@font/dream4"
+        android:text="158"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView81"
+        app:layout_constraintStart_toEndOf="@+id/textView81"
+        app:layout_constraintTop_toTopOf="@+id/textView81" />
+
+    <TextView
+        android:id="@+id/tv_main_rank_nick"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:fontFamily="@font/dream5"
+        android:text="태태"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView77"
+        app:layout_constraintStart_toEndOf="@+id/textView77" />
+
+    <TextView
+        android:id="@+id/textView77"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/dream5"
+        android:text="위"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/textView71"
+        app:layout_constraintStart_toEndOf="@+id/tv_main_rank_num"
+        app:layout_constraintTop_toTopOf="@+id/tv_main_rank_num" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/dream4"
+        android:text="개"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_main_rank_badge"
+        app:layout_constraintStart_toEndOf="@+id/tv_main_rank_badge"
+        app:layout_constraintTop_toTopOf="@+id/tv_main_rank_badge" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

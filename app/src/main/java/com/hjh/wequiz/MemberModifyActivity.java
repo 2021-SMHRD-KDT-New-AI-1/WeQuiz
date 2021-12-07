@@ -2,7 +2,6 @@ package com.hjh.wequiz;
 
 import static android.util.Base64.encodeToString;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
@@ -10,19 +9,14 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
-import android.net.Uri;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
-import android.provider.MediaStore;
 import android.util.Log;
 import android.util.Base64;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,7 +33,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
@@ -49,11 +42,11 @@ public class MemberModifyActivity extends AppCompatActivity {
     RequestQueue requestQueue;
     EditText et_memberModifyNick, et_memberModifyPw, et_memberModifyChangePw,et_memberModifyCheckChangePw;
     Button btn_memberModify;
-    TextView tv_memberModifyNick, tv_memberModifyBirthDate,tv_birthDate;
+    TextView tv_memberModifyNick;
     ImageView img_changeProfile, img_profile;
     Bitmap image;
     // '생년월일'
-    private TextView textView_Date;
+    private TextView tv_memberModifyBirthDate;
     private DatePickerDialog.OnDateSetListener callbackMethod;
 
 
@@ -61,13 +54,12 @@ public class MemberModifyActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_member_modify);
-        tv_birthDate = findViewById(R.id.tv_memberModifyBirthDate);
         tv_memberModifyBirthDate = findViewById(R.id.tv_memberModifyBirthDate);
         tv_memberModifyNick = findViewById(R.id.tv_memberModifyNick);
         et_memberModifyNick = findViewById(R.id.et_memberModifyNick);
         et_memberModifyPw = findViewById(R.id.et_memberModifyPw);
         et_memberModifyChangePw = findViewById(R.id.et_memberModifyChangePw);
-        et_memberModifyCheckChangePw = findViewById(R.id.et_memberModifyChangePw);
+        et_memberModifyCheckChangePw = findViewById(R.id.et_memberModifyCheckChangePw);
         img_changeProfile = findViewById(R.id.img_changeProfile);
         img_profile = findViewById(R.id.img_profile);
 
@@ -85,7 +77,7 @@ public class MemberModifyActivity extends AppCompatActivity {
         // 로그인 유지기능 추가후 작성예정~!~!~!~!~!~!
         //String mem_id = PreferenceManager.getString(this,"mem_id");
         // 후루꾸~~~
-        String mem_id = "999";
+        String mem_id = "test";
         getMemberInfo(mem_id);
 
         // '수정하기' 버튼 클릭 리스너! ( 수정 완료 후 메인페이지로 이동)
@@ -95,7 +87,7 @@ public class MemberModifyActivity extends AppCompatActivity {
                 String nick = et_memberModifyNick.getText().toString();
                 String currentPw = et_memberModifyPw.getText().toString();
                 String changePw = et_memberModifyChangePw.getText().toString();
-                String birth = textView_Date.getText().toString();
+                String birth = tv_memberModifyBirthDate.getText().toString();
 
                 // 입력값 검사 부분
                 boolean checkPw = changePw.equals(et_memberModifyCheckChangePw.getText().toString());
@@ -196,7 +188,7 @@ public class MemberModifyActivity extends AppCompatActivity {
 
     // Json 파일을 만들어 웹 서버로 보내기~!
     public void postModify(String id, String nick, String pw, String birth, Bitmap image){
-        String url = "~~~~~~~~ 주소 ~~~~~~~~";
+        String url = "http://172.30.1.34:3003/Member/Modify";
         StringRequest request = new StringRequest(
                 Request.Method.POST,
                 url,
@@ -237,9 +229,9 @@ public class MemberModifyActivity extends AppCompatActivity {
 
     // 회원삭제 웹 서버 보내기~?
 
-    public void modify(String id, String currentPw, String nick, String changePw, String birth){
+    public void modify(String id, String currentPw, String changePw, String nick, String birth){
         // 입력한 현재 비밀번호가 일치하는지 확인, id와 매치되는 비밀번호인지 로그인 요청으로 확인가능하다.
-        String url = "~~~~~~~ 로그인 주소~~~~~~~~~"; //(로그인 요청! - 회원테이블에서 확인)
+        String url = "http://172.30.1.34:3003/Member/Login"; //(로그인 요청! - 회원테이블에서 확인)
         // 로그인 요청 후 -> 로그인 여부에 따라 status에 success 혹은 fail을 담아서 전달
         StringRequest request = new StringRequest(
                 Request.Method.POST,
@@ -253,9 +245,12 @@ public class MemberModifyActivity extends AppCompatActivity {
                             Log.d("result : ", jsonObject.getString("result"));
                             String status = jsonObject.getString("result");
 
+                            BitmapDrawable bitmapDrawable = (BitmapDrawable) img_profile.getDrawable();
+                            Bitmap bitmap = bitmapDrawable.getBitmap();
+
                             if (status.equals("success")) {
                                 // 로그인 성공 (비밀번호가 일치)
-                                postModify(id, nick, changePw, birth, image); // postModify 메소드 호출
+                                postModify(id, nick, changePw, birth, bitmap); // postModify 메소드 호출
                             } else {
                                 // 로그인 실패 (비밀번호 불일치)
                                 Toast.makeText(MemberModifyActivity.this, "현재 비밀번호를 확인해주세요.", Toast.LENGTH_SHORT).show();
@@ -286,7 +281,7 @@ public class MemberModifyActivity extends AppCompatActivity {
 
     // 회원 정보를 서버에 요청하여 받아오는 메소드~
     public void getMemberInfo(String id){
-        String url = "~~~~~~ 회원정보 주소~~~~~~";
+        String url = "http://172.30.1.34:3003/Member/MemberInfo";
         StringRequest request = new StringRequest(
                 Request.Method.POST,
                 url,
@@ -337,7 +332,7 @@ public class MemberModifyActivity extends AppCompatActivity {
 
     // '생년월일'
     private void InitializeView() {
-        textView_Date = (TextView) findViewById(R.id.tv_memberModifyBirthDate);
+        tv_memberModifyBirthDate = (TextView) findViewById(R.id.tv_memberModifyBirthDate);
     }
 
     private void InitializeListener() {
@@ -345,7 +340,7 @@ public class MemberModifyActivity extends AppCompatActivity {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int monthOfYear
                     , int dayOfMonth) {
-                textView_Date.setText(year + "-" + (monthOfYear + 1) + "-" + dayOfMonth);
+                tv_memberModifyBirthDate.setText(year + "-" + (monthOfYear + 1) + "-" + dayOfMonth);
             }
         };
     }
