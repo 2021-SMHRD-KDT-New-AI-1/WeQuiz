@@ -27,6 +27,8 @@ public class MissionListActivity extends AppCompatActivity {
 
     // 사진 문제 카메라 접근
     Button btn_camera;
+    // 객관식, 주관식 문제 이동 버튼
+    Button btn_choice, btn_short;
     // intent로 액티비티 간 이동하기 위한 상수
     public static final int sub = 1001;
 
@@ -108,11 +110,30 @@ public class MissionListActivity extends AppCompatActivity {
 
         // 카메라 미션 페이지로 이동
         btn_camera = findViewById(R.id.btn_camera); /*페이지 전환버튼*/
-
         btn_camera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(),CameraActivity.class);
+                startActivityForResult(intent, sub);//액티비티 띄우기
+            }
+        });
+
+        // 객관식 미션 페이지로 이동
+        btn_choice = findViewById(R.id.btn_choice);/*페이지 전환버튼*/
+        btn_choice.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(),ChoiceAnswerActivity.class);
+                startActivityForResult(intent, sub);//액티비티 띄우기
+            }
+        });
+
+        // 주관식 미션 페이지로 이동
+        btn_short = findViewById(R.id.btn_short);/*페이지 전환버튼*/
+        btn_short.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(),ShortAnswerActivity.class);
                 startActivityForResult(intent, sub);//액티비티 띄우기
             }
         });

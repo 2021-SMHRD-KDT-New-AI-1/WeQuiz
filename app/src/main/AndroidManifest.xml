@@ -51,7 +51,9 @@
         <activity
             android:name=".RankActivity"
             android:exported="true" />
-
+        <activity
+            android:name=".MissionLoadActivity"
+            android:exported="true" />
         <activity
             android:name=".CameraActivity"
             android:exported="true"/>
@@ -76,9 +78,7 @@
             android:exported="true" />
         <activity
             android:name=".LoginActivity"
-            android:exported="true" >
-
-        </activity>
+            android:exported="true" />
         <activity
             android:name=".SplashActivity"
             android:exported="true" />

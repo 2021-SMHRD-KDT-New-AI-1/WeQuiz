@@ -4,6 +4,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
@@ -19,7 +21,7 @@ import java.io.IOException;
 
 public class CameraActivity extends AppCompatActivity {
 
-    Button btn, btn_close_starpopup, btn_album;
+    Button btn, btn_album, btn_close_starpopup;
     AlertDialog.Builder builder;
     AlertDialog ad;
     ImageView img_select;
@@ -42,13 +44,23 @@ public class CameraActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                builder = new AlertDialog.Builder(CameraActivity.this, R.style.CustomDialog);
-                ad = builder.create();
-                LayoutInflater inflater = getLayoutInflater();
-                View dialoglayout = inflater.inflate(R.layout.star_popup, null);
-                builder.setView(dialoglayout);
-                builder.show();
 
+                builder = new AlertDialog.Builder(CameraActivity.this, R.style.CustomDialog);
+
+                View dialoglayout = getLayoutInflater().inflate(R.layout.star_popup, null);
+                builder.setView(dialoglayout);
+
+                Button dialogButton = dialoglayout.findViewById(R.id.btn_close_starpopup);
+
+                dialogButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        ad.dismiss();
+                    }
+                });
+
+                ad = builder.create();
+                ad.show();
             }
         });
 

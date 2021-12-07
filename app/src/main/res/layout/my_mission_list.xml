@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <ImageView
+        android:id="@+id/img_myMissionBox"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/my_missionbox" />
+
+    <ImageView
+        android:id="@+id/img_myMissionBadge"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="@+id/img_myMissionBox"
+        app:layout_constraintTop_toTopOf="@+id/img_myMissionBox"
+        app:srcCompat="@drawable/badge_gwangju" />
+
+    <TextView
+        android:id="@+id/tv_myMissionLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:fontFamily="@font/dream6"
+        android:text="광주"
+        android:textSize="25dp"
+        app:layout_constraintBottom_toBottomOf="@+id/img_myMissionBadge"
+        app:layout_constraintStart_toEndOf="@+id/img_myMissionBadge"
+        app:layout_constraintTop_toTopOf="@+id/img_myMissionBadge" />
+
+    <ImageView
+        android:id="@+id/img_star1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_myMissionLocation"
+        app:layout_constraintStart_toEndOf="@+id/tv_myMissionLocation"
+        app:layout_constraintTop_toTopOf="@+id/tv_myMissionLocation"
+        app:srcCompat="@drawable/star_empty" />
+
+    <ImageView
+        android:id="@+id/img_star2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/img_star1"
+        app:layout_constraintStart_toEndOf="@+id/img_star1"
+        app:layout_constraintTop_toTopOf="@+id/img_star1"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/star_empty" />
+
+    <ImageView
+        android:id="@+id/img_star3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/img_star2"
+        app:layout_constraintStart_toEndOf="@+id/img_star2"
+        app:layout_constraintTop_toTopOf="@+id/img_star2"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/star_empty" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
