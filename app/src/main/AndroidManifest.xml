@@ -8,6 +8,8 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA"/>
 
+
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -42,8 +44,7 @@
         </activity>
         <activity
             android:name=".RankActivity"
-            android:exported="true">
-        </activity>
+            android:exported="true" />
         <activity
             android:name=".CameraActivity"
             android:exported="true">
@@ -51,7 +52,6 @@
         <activity
             android:name=".MyMissionActivity"
             android:exported="true">
-
         </activity>
         <activity
             android:name=".MissionListActivity"
@@ -59,13 +59,7 @@
         </activity>
         <activity
             android:name=".QuizLoadingActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:exported="true" />
         <activity
             android:name=".SignSuccActivity"
             android:exported="true" />
@@ -78,7 +72,11 @@
         <activity
             android:name=".SplashActivity"
             android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".MainActivity"

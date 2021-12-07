@@ -22,10 +22,6 @@ public class QuizLoadingActivity extends AppCompatActivity {
                 finish();
             }
         }, 1500); //1.5초 후 미션리스트 액티비티로 전환
+
     }
-    @Override
-    protected void onPause() {
-        super.onPause();
-        finish();
-    }
-    }
+}

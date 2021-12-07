@@ -117,7 +117,7 @@ public class SignActivity extends AppCompatActivity {
 
     // Json 파일을 만들어 웹 서버로 보내기!!
     public void postRegist(String id, String pw, String nick, String birth, String gender){
-        String url = "~~~ 웹서버 주소 자리~~~";
+        String url = "http://172.30.1.34:3003/Member/Sign";
         StringRequest request = new StringRequest(
                 Request.Method.POST,
                 url,
