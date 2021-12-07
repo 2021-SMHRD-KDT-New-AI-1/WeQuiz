@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/img_rank_rankBox"
+        android:layout_width="380dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/rankingbox_bottom" />
+
+    <TextView
+        android:id="@+id/tv_rank_num"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="25dp"
+        android:fontFamily="@font/dream6"
+        android:text="4"
+        android:textColor="#00D92A"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="@+id/img_rank_rankBox"
+        app:layout_constraintTop_toTopOf="@+id/img_rank_rankBox" />
+
+    <ImageView
+        android:id="@+id/img_rank_profile"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="30dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_rank_num"
+        app:layout_constraintStart_toEndOf="@+id/tv_rank_num"
+        app:layout_constraintTop_toTopOf="@+id/tv_rank_num"
+        app:srcCompat="@drawable/main_user" />
+
+    <TextView
+        android:id="@+id/tv_rank_nick"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:fontFamily="@font/dream4"
+        android:text="멘보샤"
+        android:textColor="#000000"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/img_rank_profile"
+        app:layout_constraintStart_toEndOf="@+id/img_rank_profile"
+        app:layout_constraintTop_toTopOf="@+id/img_rank_profile" />
+
+    <TextView
+        android:id="@+id/textView42"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="50dp"
+        android:fontFamily="@font/dream4"
+        android:text="개"
+        android:textColor="#00D92A"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/img_rank_rankBox"
+        app:layout_constraintEnd_toEndOf="@+id/img_rank_rankBox"
+        app:layout_constraintTop_toTopOf="@+id/img_rank_rankBox" />
+
+    <TextView
+        android:id="@+id/tv_rank_medal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/dream4"
+        android:text="85"
+        android:textColor="#00D92A"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView42"
+        app:layout_constraintEnd_toStartOf="@+id/textView42"
+        app:layout_constraintTop_toTopOf="@+id/textView42" />
+</androidx.constraintlayout.widget.ConstraintLayout>
