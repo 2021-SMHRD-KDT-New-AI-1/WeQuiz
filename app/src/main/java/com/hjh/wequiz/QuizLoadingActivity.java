@@ -17,11 +17,11 @@ public class QuizLoadingActivity extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(getApplicationContext(), MissionListActivity.class);
+                Intent intent = new Intent(getApplicationContext(), MapActivity.class);
                 startActivity(intent);
                 finish();
             }
-        }, 1500); //1.5초 후 미션리스트 액티비티로 전환
+        }, 1500); //1.5초 후 맵 액티비티로 전환
 
     }
 }

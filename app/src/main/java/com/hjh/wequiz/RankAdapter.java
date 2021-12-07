@@ -47,6 +47,8 @@ public class RankAdapter extends RecyclerView.Adapter<RankAdapter.ViewHolder>  {
         holder.tv_rank_nick.setText(nick);
         holder.tv_rank_medal.setText(String.valueOf(medal));
 
+
+
     }
 
     // getItemCount : 전체 데이터의 개수를 리턴
