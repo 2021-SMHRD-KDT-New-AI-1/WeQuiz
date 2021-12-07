@@ -7,8 +7,8 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="275dp"
+        android:layout_height="300dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -19,11 +19,15 @@
         android:id="@+id/btn_close_starpopup"
         android:layout_width="50dp"
         android:layout_height="50dp"
+        android:layout_marginStart="250dp"
+        android:layout_marginBottom="300dp"
         android:background="@drawable/round_submit"
         android:fontFamily="@font/dream7"
         android:text="×"
         android:textColor="#FFFFFF"
         android:textSize="34sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView"
         app:layout_constraintEnd_toEndOf="@+id/imageView"
+        app:layout_constraintStart_toStartOf="@+id/imageView"
         app:layout_constraintTop_toTopOf="@+id/imageView" />
 </androidx.constraintlayout.widget.ConstraintLayout>
