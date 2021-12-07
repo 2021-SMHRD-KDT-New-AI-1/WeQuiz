@@ -21,6 +21,8 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView rv_mainRank;
     private LinearLayoutManager mLayoutManager;
 
+    // 로그인인지 아닌지를 알려줄 텍스트뷰 코드 -> 나중에 삭제
+    TextView tv_login_gara;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,14 +47,14 @@ public class MainActivity extends AppCompatActivity {
         mdata.add(new MainRankVO(5,"윤지","길도사진","금메달",5));
 
         rv_mainRank = findViewById(R.id.rv_mainRank);
-
+        // 가로로 리싸이클러 뷰 전환하는 코드
         mLayoutManager = new LinearLayoutManager(this);
         mLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
 
         MainRankAdapter adapter = new MainRankAdapter(mdata);
 
         rv_mainRank.setLayoutManager(mLayoutManager);
-        rv_mainRank.setAdapter(adapter);
+        rv_mainRank.setAdapter(adapter); // 여기까지 리싸이클러 뷰 코드
 
 
         btn_mainLogin.setOnClickListener(new View.OnClickListener() {
@@ -76,6 +78,16 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        tv_login_gara = findViewById(R.id.tv_login_gara);
+        String gara = tv_login_gara.getText().toString();
+
+        // 로그인인 상태일 때 버튼 이벤트 변화
+        if(gara.equals("로그인 상태")) {
+            btn_mainLogin.setText("로그아웃");
+        } else {
+            btn_mainLogin.setText("로그인");
+        }
 
 
 
