@@ -35,7 +35,7 @@ public class LoginActivity extends AppCompatActivity {
 
     RequestQueue requestQueue;
     EditText et_loginId, et_loginPw;
-    Button btn_login;
+    Button btn_login, btn_loginSign;
 
 
     Context mContext;
@@ -69,6 +69,14 @@ public class LoginActivity extends AppCompatActivity {
                 postLogin(id, pw);
             }
         });
+
+        btn_loginSign.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(LoginActivity.this, SignActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     // Json파일을 만들어 웹 서버로 보내기
@@ -89,8 +97,8 @@ public class LoginActivity extends AppCompatActivity {
 
                                 Toast.makeText(mContext, "로그인 성공", Toast.LENGTH_SHORT).show();
 
-//                                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-//                                startActivity(intent);
+                                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                startActivity(intent);
                             }else{
                                 Toast.makeText(LoginActivity.this, "아이디나 비밀번호를 확인하세요.", Toast.LENGTH_SHORT).show();
                             }
