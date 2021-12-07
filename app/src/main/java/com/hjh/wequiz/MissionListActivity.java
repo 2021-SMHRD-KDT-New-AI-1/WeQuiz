@@ -31,6 +31,7 @@ public class MissionListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mission_list);
 
+        // 플로팅 버튼 초기화
         float_plus = findViewById(R.id.float_plus);
         float_plus2 = findViewById(R.id.float_plus2);
         float_home = findViewById(R.id.float_home);
@@ -84,7 +85,9 @@ public class MissionListActivity extends AppCompatActivity {
         float_badge.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                click_r = true;
+                Intent intent = new Intent(MissionListActivity.this, BadgeMapActivity.class);
+                startActivity(intent);
                 Toast.makeText(MissionListActivity.this, "전국뱃지지도 버튼 클릭", Toast.LENGTH_SHORT).show();
             }
         });
