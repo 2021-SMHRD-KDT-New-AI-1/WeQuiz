@@ -61,10 +61,6 @@ public class CameraActivity extends AppCompatActivity {
 
                 ad = builder.create();
                 ad.show();
-
-
-
-
             }
         });
 

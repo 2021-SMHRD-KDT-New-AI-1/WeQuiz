@@ -1,17 +1,21 @@
 package com.hjh.wequiz;
 
+import static android.util.Base64.encodeToString;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.util.Base64;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -34,7 +38,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -43,16 +49,13 @@ public class MemberModifyActivity extends AppCompatActivity {
     RequestQueue requestQueue;
     EditText et_memberModifyNick, et_memberModifyPw, et_memberModifyChangePw,et_memberModifyCheckChangePw;
     Button btn_memberModify;
-    TextView tv_memberModifyNick, tv_memberModifyBirthDate;
+    TextView tv_memberModifyNick, tv_memberModifyBirthDate,tv_birthDate;
     ImageView img_changeProfile, img_profile;
-    Bitmap bmp_img;
-    int REQUEST_IMAGE_CODE = 1001;
-
+    Bitmap image;
     // '생년월일'
     private TextView textView_Date;
     private DatePickerDialog.OnDateSetListener callbackMethod;
 
-    TextView tv_birthDate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +68,8 @@ public class MemberModifyActivity extends AppCompatActivity {
         et_memberModifyPw = findViewById(R.id.et_memberModifyPw);
         et_memberModifyChangePw = findViewById(R.id.et_memberModifyChangePw);
         et_memberModifyCheckChangePw = findViewById(R.id.et_memberModifyChangePw);
+        img_changeProfile = findViewById(R.id.img_changeProfile);
+        img_profile = findViewById(R.id.img_profile);
 
         btn_memberModify = findViewById(R.id.btn_memberModify);
 
@@ -72,6 +77,10 @@ public class MemberModifyActivity extends AppCompatActivity {
         if (requestQueue == null){
             requestQueue = Volley.newRequestQueue(getApplicationContext());
         }
+
+
+
+
 
         // 로그인 유지기능 추가후 작성예정~!~!~!~!~!~!
         //String mem_id = PreferenceManager.getString(this,"mem_id");
@@ -121,40 +130,72 @@ public class MemberModifyActivity extends AppCompatActivity {
 
         // 탈퇴하기~누르기~~~~?
 
-        // 프로필 사진 변경하는 코드
-        img_changeProfile = findViewById(R.id.img_changeProfile);
+
+        // 프로필사진 밑 새로고침 이미지 클릭 시 폰 갤러리 열기
         img_changeProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent in = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                startActivityForResult(in, REQUEST_IMAGE_CODE);
+                Intent intent = new Intent();
+                intent.setType("image/*");
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                startActivityForResult(intent,1);
             }
         });
 
     }
 
+    // 선택한 사진으로 프사바꾸기
     @Override
-    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode, Intent data){
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == REQUEST_IMAGE_CODE) {
-            Uri image = data.getData();
-            try {
-                // 앨범에서 가져온 사진으로 이미지뷰셋팅
-                Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), image);
-                img_profile.setImageBitmap(bitmap);
 
-                // bmp_img 에 앨범에서 선택한 이미지 넣기
-                BitmapDrawable drawable = (BitmapDrawable) img_profile.getDrawable();
-                bmp_img = drawable.getBitmap();
+        img_profile = findViewById(R.id.img_profile);
 
-            } catch (IOException e) {
-                e.printStackTrace();
+        if (requestCode == 1){
+            if(resultCode == RESULT_OK){
+                try {
+                    InputStream in = getContentResolver().openInputStream(data.getData());
+                    image = BitmapFactory.decodeStream(in);
+                    in.close();
+
+                    img_profile.setImageBitmap(image);
+                    Toast.makeText(MemberModifyActivity.this,
+                            "프로필 사진이 변경되었습니다", Toast.LENGTH_SHORT).show();
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
             }
         }
     }
 
+    // 선택한 사진(비트맵형식)을 String형태로 변환하기
+    public static String BitmapToString(Bitmap bitmap){
+        if (bitmap == null){
+            return "디폴트 이미지";
+        }
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG,70,baos);
+        byte[] bytes = baos.toByteArray();
+        String bitString = encodeToString(bytes, Base64.DEFAULT);
+        return bitString;
+    }
+
+    // 서버로부터 받아온 이미지 스트링 -> 비트맵 변환
+    public static Bitmap StringToBitmap(String encodedString){
+        try{
+            byte[] encodeByte = Base64.decode(encodedString, Base64.DEFAULT);
+            Bitmap bitmap = BitmapFactory.decodeByteArray(encodeByte,0,encodeByte.length);
+            return bitmap;
+        }catch (Exception e){
+            e.getMessage();
+            return null;
+        }
+    }
+
+
+
     // Json 파일을 만들어 웹 서버로 보내기~!
-    public void postModify(String id, String nick, String pw, String birth){
+    public void postModify(String id, String nick, String pw, String birth, Bitmap image){
         String url = "~~~~~~~~ 주소 ~~~~~~~~";
         StringRequest request = new StringRequest(
                 Request.Method.POST,
@@ -186,6 +227,7 @@ public class MemberModifyActivity extends AppCompatActivity {
                 params.put("nick",nick);
                 params.put("pw",pw);
                 params.put("birth",birth);
+                params.put("mem_image", BitmapToString(image));
 
                 return params;
             }
@@ -213,7 +255,7 @@ public class MemberModifyActivity extends AppCompatActivity {
 
                             if (status.equals("success")) {
                                 // 로그인 성공 (비밀번호가 일치)
-                                postModify(id, nick, changePw, birth); // postModify 메소드 호출
+                                postModify(id, nick, changePw, birth, image); // postModify 메소드 호출
                             } else {
                                 // 로그인 실패 (비밀번호 불일치)
                                 Toast.makeText(MemberModifyActivity.this, "현재 비밀번호를 확인해주세요.", Toast.LENGTH_SHORT).show();
@@ -261,6 +303,11 @@ public class MemberModifyActivity extends AppCompatActivity {
                             String birth = jsonObject.getString("birth"); // 생년월일 받아오기
                             String birthdate = birth.substring(0, 10); // 받아온 날짜 중 년월일만 표시!
                             tv_memberModifyBirthDate.setText(birthdate);
+
+                            String img = jsonObject.getString("mem_image"); // 기존 프로필이미지 가져오기
+                            Bitmap bitmap = StringToBitmap(img);
+                            img_profile.setImageBitmap(bitmap);
+
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -307,4 +354,6 @@ public class MemberModifyActivity extends AppCompatActivity {
                 (this, callbackMethod, 1990, 7, 1);
         dialog.show();
     }
+
+
 }
