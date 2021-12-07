@@ -28,6 +28,8 @@ public class MainActivity extends AppCompatActivity {
         btn_mainBadgeList = findViewById(R.id.btn_mainBadgeList);
         btn_mainMissonStart = findViewById(R.id.btn_mainMissonStart);
 
+
+
         btn_mainLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
