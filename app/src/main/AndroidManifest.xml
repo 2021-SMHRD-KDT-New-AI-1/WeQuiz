@@ -34,7 +34,6 @@
         <activity
             android:name=".ChoiceAnswerActivity"
             android:exported="true">
-
         </activity>
         <activity
             android:name=".MapActivity"
@@ -48,21 +47,16 @@
             android:name=".RankActivity"
             android:exported="true" />
         <activity
-            android:name=".MissionLoadActivity"
-            android:exported="true" />
-        <activity
             android:name=".CameraActivity"
-            android:exported="true"/>
+            android:exported="true">
+        </activity>
         <activity
             android:name=".MyMissionActivity"
             android:exported="true">
-
         </activity>
         <activity
             android:name=".MissionListActivity"
-            android:exported="true">
-
-        </activity>
+            android:exported="true" />
         <activity
             android:name=".QuizLoadingActivity"
             android:exported="true" />
@@ -74,18 +68,19 @@
             android:exported="true" />
         <activity
             android:name=".LoginActivity"
-            android:exported="true" />
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".SplashActivity"
             android:exported="true" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 

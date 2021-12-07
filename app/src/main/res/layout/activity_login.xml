@@ -79,7 +79,7 @@
         app:srcCompat="@drawable/login_logo" />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/btn_loginSign"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:text="가입하기"
