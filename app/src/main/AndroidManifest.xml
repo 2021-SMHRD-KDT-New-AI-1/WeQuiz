@@ -41,7 +41,6 @@
         <activity
             android:name=".MemberModifyActivity"
             android:exported="true">
-
         </activity>
         <activity
             android:name=".RankActivity"
@@ -49,11 +48,6 @@
         <activity
             android:name=".CameraActivity"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".MyMissionActivity"
@@ -70,7 +64,13 @@
             android:exported="true" />
         <activity
             android:name=".SignActivity"
-            android:exported="true" />
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".LoginActivity"
             android:exported="true" />
