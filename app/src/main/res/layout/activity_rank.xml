@@ -16,7 +16,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/rank_back" />
 
     <androidx.recyclerview.widget.RecyclerView
@@ -135,7 +135,7 @@
         app:layout_constraintGuide_percent="0.15" />
 
     <ImageView
-        android:id="@+id/imageView33"
+        android:id="@+id/img_rankProfile1"
         android:layout_width="90dp"
         android:layout_height="90dp"
         android:layout_marginTop="20dp"
@@ -146,7 +146,7 @@
         app:srcCompat="@drawable/ranking_fir_img" />
 
     <ImageView
-        android:id="@+id/imageView34"
+        android:id="@+id/img_rankProfile2"
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:layout_marginStart="40dp"
@@ -156,7 +156,7 @@
         app:srcCompat="@drawable/ranking_sec_img" />
 
     <ImageView
-        android:id="@+id/imageView35"
+        android:id="@+id/img_rankProfile3"
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:layout_marginTop="60dp"
@@ -166,7 +166,7 @@
         app:srcCompat="@drawable/ranking_thi_img" />
 
     <TextView
-        android:id="@+id/textView34"
+        android:id="@+id/tv_rankNick1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -174,12 +174,12 @@
         android:text="태태"
         android:textColor="#000000"
         android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="@+id/imageView33"
-        app:layout_constraintStart_toStartOf="@+id/imageView33"
-        app:layout_constraintTop_toBottomOf="@+id/imageView33" />
+        app:layout_constraintEnd_toEndOf="@+id/img_rankProfile1"
+        app:layout_constraintStart_toStartOf="@+id/img_rankProfile1"
+        app:layout_constraintTop_toBottomOf="@+id/img_rankProfile1" />
 
     <TextView
-        android:id="@+id/textView35"
+        android:id="@+id/tv_rankNick2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -187,12 +187,12 @@
         android:text="길도"
         android:textColor="#000000"
         android:textSize="19sp"
-        app:layout_constraintEnd_toEndOf="@+id/imageView34"
-        app:layout_constraintStart_toStartOf="@+id/imageView34"
-        app:layout_constraintTop_toBottomOf="@+id/imageView34" />
+        app:layout_constraintEnd_toEndOf="@+id/img_rankProfile2"
+        app:layout_constraintStart_toStartOf="@+id/img_rankProfile2"
+        app:layout_constraintTop_toBottomOf="@+id/img_rankProfile2" />
 
     <TextView
-        android:id="@+id/textView36"
+        android:id="@+id/tv_rankNick3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -200,12 +200,12 @@
         android:text="김배우"
         android:textColor="#000000"
         android:textSize="19sp"
-        app:layout_constraintEnd_toEndOf="@+id/imageView35"
-        app:layout_constraintStart_toStartOf="@+id/imageView35"
-        app:layout_constraintTop_toBottomOf="@+id/imageView35" />
+        app:layout_constraintEnd_toEndOf="@+id/img_rankProfile3"
+        app:layout_constraintStart_toStartOf="@+id/img_rankProfile3"
+        app:layout_constraintTop_toBottomOf="@+id/img_rankProfile3" />
 
     <TextView
-        android:id="@+id/textView38"
+        android:id="@+id/tv_rankBadge2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="1dp"
@@ -218,7 +218,7 @@
         app:layout_constraintTop_toTopOf="@+id/textView61" />
 
     <TextView
-        android:id="@+id/textView39"
+        android:id="@+id/tv_rankBadge1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="1dp"
@@ -228,48 +228,53 @@
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="@+id/textView60"
         app:layout_constraintEnd_toStartOf="@+id/textView60"
-        app:layout_constraintTop_toTopOf="@+id/textView60" />
+        app:layout_constraintTop_toTopOf="@+id/textView60"
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/textView60"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
         android:layout_marginTop="5dp"
-        android:layout_marginEnd="3dp"
         android:fontFamily="@font/dream3"
         android:text="개"
         android:textColor="#000000"
         android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="@+id/textView34"
-        app:layout_constraintTop_toBottomOf="@+id/textView34" />
+        app:layout_constraintEnd_toEndOf="@+id/img_rankProfile1"
+        app:layout_constraintStart_toStartOf="@+id/img_rankProfile1"
+        app:layout_constraintTop_toBottomOf="@+id/tv_rankNick1" />
 
     <TextView
         android:id="@+id/textView61"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
         android:layout_marginTop="5dp"
         android:fontFamily="@font/dream3"
         android:text="개"
         android:textColor="#000000"
         android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="@+id/textView35"
-        app:layout_constraintTop_toBottomOf="@+id/textView35" />
+        app:layout_constraintEnd_toEndOf="@+id/img_rankProfile2"
+        app:layout_constraintStart_toStartOf="@+id/img_rankProfile2"
+        app:layout_constraintTop_toBottomOf="@+id/tv_rankNick2" />
 
     <TextView
         android:id="@+id/textView59"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
         android:layout_marginTop="5dp"
-        android:layout_marginEnd="15dp"
         android:fontFamily="@font/dream3"
         android:text="개"
         android:textColor="#000000"
         android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="@+id/textView36"
-        app:layout_constraintTop_toBottomOf="@+id/textView36" />
+        app:layout_constraintEnd_toEndOf="@+id/img_rankProfile3"
+        app:layout_constraintStart_toStartOf="@+id/img_rankProfile3"
+        app:layout_constraintTop_toBottomOf="@+id/tv_rankNick3" />
 
     <TextView
-        android:id="@+id/textView58"
+        android:id="@+id/tv_rankBadge3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="1dp"
@@ -277,6 +282,7 @@
         android:text="98"
         android:textColor="#000000"
         android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView59"
         app:layout_constraintEnd_toStartOf="@+id/textView59"
         app:layout_constraintTop_toTopOf="@+id/textView59" />
 

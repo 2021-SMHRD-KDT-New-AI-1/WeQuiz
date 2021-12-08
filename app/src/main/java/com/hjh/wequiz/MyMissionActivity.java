@@ -144,7 +144,6 @@ public class MyMissionActivity extends AppCompatActivity {
                                 int badge = jsonObject.getInt("badge");
 
                                 MyMissionVO myMission = new MyMissionVO(badge, location_name, Integer.parseInt(star));
-                                System.out.println(myMission);
                                 mData.add(myMission);
                                 adapter.notifyDataSetChanged();
 
