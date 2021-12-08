@@ -51,7 +51,7 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/badge_gwangju" />
+                        app:srcCompat="@drawable/gray_badge_gangjin" />
 
                     <TextView
                         android:id="@+id/tv_gwangju"
@@ -95,7 +95,7 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/badge_koksung" />
+                        app:srcCompat="@drawable/gray_badge_hampyeong" />
 
                     <TextView
                         android:id="@+id/tv_koksung"
@@ -139,7 +139,7 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/badge_mokpo" />
+                        app:srcCompat="@drawable/gray_badge_jindo" />
 
                     <TextView
                         android:id="@+id/tv_mokpo"
@@ -183,7 +183,7 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/badge_suncheon" />
+                        app:srcCompat="@drawable/gray_badge_wando" />
 
                     <TextView
                         android:id="@+id/tv_suncheon"
@@ -227,7 +227,7 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/badge_yeosu" />
+                        app:srcCompat="@drawable/gray_badge_goheung" />
 
                     <TextView
                         android:id="@+id/tv_yeosu"
@@ -279,7 +279,7 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/badge_gwangju" />
+                        app:srcCompat="@drawable/gray_badge_jangheung" />
 
                     <TextView
                         android:id="@+id/tv_shinan"
@@ -323,7 +323,7 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/badge_koksung" />
+                        app:srcCompat="@drawable/gray_badge_boseong" />
 
                     <TextView
                         android:id="@+id/tv_yeonggwang"
@@ -367,7 +367,7 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/badge_mokpo" />
+                        app:srcCompat="@drawable/gray_badge_yeongam" />
 
                     <TextView
                         android:id="@+id/tv_jangseong"
@@ -411,7 +411,7 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/badge_suncheon" />
+                        app:srcCompat="@drawable/gray_badge_haenam" />
 
                     <TextView
                         android:id="@+id/tv_damyang"
@@ -455,7 +455,7 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/badge_yeosu" />
+                        app:srcCompat="@drawable/gray_badge_gwangyang" />
 
                     <TextView
                         android:id="@+id/tv_gurye"
@@ -507,7 +507,7 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/badge_gwangju" />
+                        app:srcCompat="@drawable/gray_badge_hwasun" />
 
                     <TextView
                         android:id="@+id/tv_muan"
@@ -551,7 +551,7 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/badge_koksung" />
+                        app:srcCompat="@drawable/gray_badge_naju" />
 
                     <TextView
                         android:id="@+id/tv_naju"
@@ -595,7 +595,7 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/badge_mokpo" />
+                        app:srcCompat="@drawable/gray_badge_muan" />
 
                     <TextView
                         android:id="@+id/tv_hwasun"
@@ -639,7 +639,7 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/badge_suncheon" />
+                        app:srcCompat="@drawable/gray_badge_gurye" />
 
                     <TextView
                         android:id="@+id/tv_gwangyang"
