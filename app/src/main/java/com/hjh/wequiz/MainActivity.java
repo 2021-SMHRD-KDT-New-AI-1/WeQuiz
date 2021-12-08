@@ -37,6 +37,8 @@ public class MainActivity extends AppCompatActivity{
         btn_mainBadgeList = findViewById(R.id.btn_mainBadgeList);
         btn_mainMissonStart = findViewById(R.id.btn_mainMissonStart);
 
+
+
         // 랭킹 Top5 리싸이클러 뷰 코드
         ArrayList<MainRankVO> mdata = new ArrayList<>();
         // 랭킹 데이터 입력

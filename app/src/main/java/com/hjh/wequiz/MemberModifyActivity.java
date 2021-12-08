@@ -70,14 +70,8 @@ public class MemberModifyActivity extends AppCompatActivity {
             requestQueue = Volley.newRequestQueue(getApplicationContext());
         }
 
-
-
-
-
-        // 로그인 유지기능 추가후 작성예정~!~!~!~!~!~!
-        //String mem_id = PreferenceManager.getString(this,"mem_id");
-        // 후루꾸~~~
-        String mem_id = "test";
+        // 현재 로그인된 사용자의 아이디를 가져옴
+        String mem_id = PreferenceManager.getString(this,"mem_id");
         getMemberInfo(mem_id);
 
         // '수정하기' 버튼 클릭 리스너! ( 수정 완료 후 메인페이지로 이동)
