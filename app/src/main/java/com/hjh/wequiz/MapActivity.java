@@ -35,6 +35,9 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
 import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -49,8 +52,7 @@ import net.daum.mf.map.api.MapPoint;
 import net.daum.mf.map.api.MapView;
 
 import com.google.common.collect.MapMaker;
-import com.gun0912.tedpermission.PermissionListener;
-import com.gun0912.tedpermission.TedPermission;
+
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -62,10 +64,10 @@ public class MapActivity extends AppCompatActivity {
 
     private static final String TAG = "MapActivity";
 
+    //생성자
     MapView mapView;
     TextView tvCurrentPosition;
     ConstraintLayout mapViewContainer;
-
     MapPoint mapPoint;
     MapPOIItem marker;
 
@@ -73,17 +75,14 @@ public class MapActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_map);
-        mapView = new MapView(this);
 
-        tvCurrentPosition = findViewById(R.id.tvCurrentPosition);
-        mapViewContainer = findViewById(R.id.map_view);
+        // 카카오맵 지도 띄우기
+        mapView = new MapView(this); // 지도 담은 변수
+        mapViewContainer = findViewById(R.id.map_view); //지도를 띄울 view
+        mapViewContainer.addView(mapView); // view에 지도 추가하여 띄우기기
 
-        //자동권한요청
-        //requestPermission();
 
-        LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE); //위치관리자 객체 생성
 
 
         //1. 사용자 위치 관련 permission 여부 및 추가
@@ -91,15 +90,19 @@ public class MapActivity extends AppCompatActivity {
         //가지고 있다면 packageManager.PERMISSION_GRANTED를 리턴, 없다면 packageManager.PERMISSION_DENIED를 리턴
        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
                 ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            //requestPermissions => 퍼미션 요청
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, 0);
-            return;
-        }
+                    Toast.makeText(this, "앱 실행을 위해서는 권한을 설정해야 합니다.", Toast.LENGTH_LONG).show();
+               //requestPermissions => 퍼미션 요청
+               ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, 0);
+               return;
+       } //앱 실행시 FINE_LOCATION && COARSE_LOCATION != PackageManager.PERMISSION_GRANTED 라면 메시지 띄운 후
+
+
 
         //2. 위치정보 가져오기
-        //초기 좌표 값 기록
-        Location lastLocation = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+        LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE); //위치관리자 객체 생성
+        Location lastLocation = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER); //GPS 정보 담기
 
+        //초기 좌표 값 기록
         String provider = lastLocation.getProvider();
         double lat = lastLocation.getLatitude(); //위도
         double lng = lastLocation.getLongitude(); //경도
@@ -107,8 +110,9 @@ public class MapActivity extends AppCompatActivity {
 
         Log.d(TAG, "현재 위치: " + provider + " / " + lat + " / " + lng + " / " + alti);
 
+        tvCurrentPosition = findViewById(R.id.tvCurrentPosition); //현재 위치 주소
         tvCurrentPosition.setText(getAddress(MapActivity.this, lat,lng));
-//        tvCurrentPosition.setText("현재 위치: " + provider + " / " + lat + " / " + lng + " / " + alti);
+
 
         mapPoint = MapPoint.mapPointWithGeoCoord(lat,lng);
         mapView.setMapCenterPoint(mapPoint, true); //중심점 변경
@@ -135,7 +139,6 @@ public class MapActivity extends AppCompatActivity {
                 1000,
                 1,
                 getLocationListener);
-
     }
 
     final LocationListener getLocationListener = new LocationListener() {
@@ -164,20 +167,16 @@ public class MapActivity extends AppCompatActivity {
             marker.setSelectedMarkerType(MapPOIItem.MarkerType.RedPin);
 
             //mapView.addPOIItem(marker);
-
         }
     };
 
-    public static String getAddress(Context mContext, double lat, double lng)
-    {
+    public static String getAddress(Context mContext, double lat, double lng) {
         String nowAddr ="현재 위치를 확인 할 수 없습니다.";
         Geocoder geocoder = new Geocoder(mContext, Locale.KOREA);
         List<Address> address;
 
-        try
-        {
-            if (geocoder != null)
-            {
+        try {
+            if (geocoder != null) {
                 // 한좌표에 대해 두개이상의 이름이 존재할수있기에 주소배열을 리턴받고
                 // 세번째 파라메터인 maxResults는 리턴받을 주소의 최대 갯수를 지정함
                 // (여기서는 1개만 받는걸로...)
@@ -190,8 +189,7 @@ public class MapActivity extends AppCompatActivity {
                 }
             }
         }
-        catch (IOException e)
-        {
+        catch (IOException e) {
             Toast.makeText(mContext, "주소를 가져 올 수 없습니다.", Toast.LENGTH_LONG).show();
             e.printStackTrace();
         }
@@ -200,28 +198,5 @@ public class MapActivity extends AppCompatActivity {
 
 
 
-    //위치정보 권한요청 메소드
-//    private void requestPermission() {
-//        PermissionListener permissionlistener = new PermissionListener() {
-//            @Override
-//            public void onPermissionGranted() {
-//            //접근 허용시 실행할 코드
-//                Toast.makeText(MapActivity.this, "권한 허가", Toast.LENGTH_SHORT).show();
-//            }
-//
-//            @Override
-//            public void onPermissionDenied(ArrayList<String> deniedPermissions) {
-//            //접근 거부시 실행할 코드드
-//               Toast.makeText(MapActivity.this, "권한 거부\n" + deniedPermissions.toString(), Toast.LENGTH_SHORT).show();
-//            }
-//        };
-//
-//        TedPermission.Builder with = TedPermission.with(this);
-//        with.setPermissionListener(permissionlistener);
-//        with.setRationaleMessage("위치정보 권한이 필요합니다.");
-//        with.setDeniedMessage("권한을 허용하지 않으면 서비스를 이용할 수 없습니다. \n [설정] - [권한] 에서 권한을 설정해주세요.");
-//        with.setPermissions(Manifest.permission.READ_CONTACTS);
-//        with.check();
-//
-//    }
+
 }
