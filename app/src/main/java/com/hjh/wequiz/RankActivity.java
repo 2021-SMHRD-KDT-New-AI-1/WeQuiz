@@ -72,6 +72,7 @@ public class RankActivity extends AppCompatActivity {
 
         getRankInfo();
 
+        System.out.println(mData);
         adapter = new RankAdapter(mData);
         rv_Rank.setAdapter(adapter);
     }
