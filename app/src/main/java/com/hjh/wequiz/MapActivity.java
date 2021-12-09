@@ -47,6 +47,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.ActivityCompat;
 
+
 import net.daum.mf.map.api.MapPOIItem;
 import net.daum.mf.map.api.MapPoint;
 import net.daum.mf.map.api.MapView;
@@ -66,23 +67,23 @@ public class MapActivity extends AppCompatActivity {
 
     //생성자
     MapView mapView;
-    TextView tvCurrentPosition;
-    ConstraintLayout mapViewContainer;
+    TextView tvCurrentPosition; // 현재위치 표시 텍스트뷰
+    ConstraintLayout mapViewContainer; // 이 부분 물어보기 !!!
     MapPoint mapPoint;
     MapPOIItem marker;
-
+    Location location;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
 
+        tvCurrentPosition = findViewById(R.id.tvCurrentPosition);
+
         // 카카오맵 지도 띄우기
         mapView = new MapView(this); // 지도 담은 변수
         mapViewContainer = findViewById(R.id.map_view); //지도를 띄울 view
         mapViewContainer.addView(mapView); // view에 지도 추가하여 띄우기기
-
-
 
 
         //1. 사용자 위치 관련 permission 여부 및 추가
@@ -99,29 +100,42 @@ public class MapActivity extends AppCompatActivity {
 
 
         //2. 위치정보 가져오기
+        // LocationManager : GPS, Network 에서 위치 정보 가져올 수 있음
+        // LocationManager.getLastKnownLocation() : 가장 마지막에 기록된 위치정보
+        // LocationManager.requestLocationUpdates() : Listener 를 등록하여 위치가 변경될 때마다 이벤트 받을 수 있음
+        // Location_Service : GPS를 통한 위치 서비스를 제공하는 LocationManager
         LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE); //위치관리자 객체 생성
-        Location lastLocation = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER); //GPS 정보 담기
+        location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER); //GPS 정보 담기
 
         //초기 좌표 값 기록
-        String provider = lastLocation.getProvider();
-        double lat = lastLocation.getLatitude(); //위도
-        double lng = lastLocation.getLongitude(); //경도
-        double alti = lastLocation.getAltitude(); //고도
-
+        String provider = location.getProvider();
+        double lat = location.getLatitude(); //위도
+        double lng = location.getLongitude(); //경도
+        double alti = location.getAltitude(); //고도
         Log.d(TAG, "현재 위치: " + provider + " / " + lat + " / " + lng + " / " + alti);
 
-        tvCurrentPosition = findViewById(R.id.tvCurrentPosition); //현재 위치 주소
+        // map_xml 에서 현재위치 표시 텍스트뷰
         tvCurrentPosition.setText(getAddress(MapActivity.this, lat,lng));
 
+        //중심점으로 잡을 좌표값 변수
+        mapPoint = MapPoint.mapPointWithGeoCoord(37.28730797086605,127.01192716921177);
 
-        mapPoint = MapPoint.mapPointWithGeoCoord(lat,lng);
-        mapView.setMapCenterPoint(mapPoint, true); //중심점 변경
-        //true면 앱 실행 시 애니메이션 효과가 나오고 false면 애니메이션이 나오지않음.
+        //중심점 변경
+        mapView.setMapCenterPoint(mapPoint, true); //true면 앱 실행 시 애니메이션 효과가 나오고 false면 애니메이션이 나오지않음.
+        mapView.setZoomLevel(1, true); // 확대 레벨 설정 (값이 작을수록 더 확대)
 
-        mapViewContainer.addView(mapView);
+        /*if(mapView!=null){
+            //addView()를 2번 해야할경우
+            ViewGroup parentViewGroup = (ViewGroup) mapView.getParent();
+            if (null != parentViewGroup) {
+                parentViewGroup.removeView(mapView);
+            }
+        }
+        mapViewContainer.addView(mapView);*/ // 이게 문제였음!!!!!!!!!!!!
+
 
         marker = new MapPOIItem();
-        marker.setItemName("wequiz");
+        marker.setItemName("quiz");
         marker.setTag(0);
         marker.setMapPoint(mapPoint);
         // 기본으로 제공하는 BluePin 마커 모양.
