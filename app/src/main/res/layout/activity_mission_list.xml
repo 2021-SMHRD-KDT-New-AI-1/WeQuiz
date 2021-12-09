@@ -14,7 +14,6 @@
     <!-- ★★플로팅 버튼★★ -->
 
     <!-- 플로팅 홈 버튼 -->
-
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/float_home"
         android:layout_width="wrap_content"
@@ -23,13 +22,11 @@
         android:layout_marginLeft="330dp"
         android:layout_marginTop="580dp"
         android:src="@drawable/float_home"
-        android:tooltipText="홈"
         app:backgroundTint="#ffffff"
         app:elevation="6dp"
         app:pressedTranslationZ="12dp" />
 
     <!-- 플로팅 마이미션 버튼 -->
-
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/float_mission"
         android:layout_width="wrap_content"
@@ -77,8 +74,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end|bottom"
-        android:layout_marginLeft="330dp"
         android:layout_marginTop="580dp"
+        android:layout_marginLeft="330dp"
         android:src="@drawable/float_map"
         app:backgroundTint="#ffffff"
         app:elevation="6dp"
@@ -332,6 +329,7 @@
             app:layout_constraintBottom_toBottomOf="@+id/textView14"
             app:layout_constraintStart_toEndOf="@+id/textView14"
             app:layout_constraintTop_toTopOf="@+id/textView14" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

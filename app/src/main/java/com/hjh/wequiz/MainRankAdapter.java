@@ -1,6 +1,9 @@
 package com.hjh.wequiz;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,12 +18,11 @@ import java.util.HashMap;
 
 public class MainRankAdapter extends RecyclerView.Adapter<MainRankAdapter.ViewHolder>  {
 
-    private ArrayList<MainRankVO> mdata = null;
+    private ArrayList<RankVO> mdata = null;
     Context mContext;
 
-    public MainRankAdapter(ArrayList mdata) {
+    public MainRankAdapter(ArrayList<RankVO> mdata) {
         this.mdata = mdata;
-
     }
 
     // onCreateViewHolder : 아이템 뷰를 위한 뷰홀더 객체를 생성하여 리턴
@@ -40,15 +42,23 @@ public class MainRankAdapter extends RecyclerView.Adapter<MainRankAdapter.ViewHo
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
-        int main_rank = mdata.get(position).getMainRank();
-        String main_nick = mdata.get(position).getMainNick();
-        String main_profile = mdata.get(position).getMainProfile();
-        String main_medal = mdata.get(position).getMainMedal();
-        int medal_num = mdata.get(position).getMedalNum();
+        int rank = mdata.get(position).getRank();
+        String nick = mdata.get(position).getNick();
+        int medal = mdata.get(position).getMedal();
+        String mem_image = mdata.get(position).getProfile();
 
-        holder.tv_main_rank_num.setText(String.valueOf(main_rank));
-        holder.tv_main_rank_nick.setText(main_nick);
-        holder.tv_main_rank_badge.setText(String.valueOf(medal_num));
+        holder.tv_main_rank_num.setText(String.valueOf(rank));
+        holder.tv_main_rank_nick.setText(nick);
+        holder.tv_main_rank_badge.setText(String.valueOf(medal));
+        holder.img_main_rank_profile.setImageBitmap(StringToBitmap(mem_image));
+
+        if(position == 0) {
+            holder.img_main_rank_medal.setImageResource(R.drawable.main_gold);
+        } else if(position == 1){
+            holder.img_main_rank_medal.setImageResource(R.drawable.main_silver);
+        } else if(position == 2){
+            holder.img_main_rank_medal.setImageResource(R.drawable.main_bronze);
+        }
 
     }
 
@@ -79,5 +89,19 @@ public class MainRankAdapter extends RecyclerView.Adapter<MainRankAdapter.ViewHo
         }
 
     }
+
+    // 서버로부터 받아온 이미지 스트링 -> 비트맵 변환
+    public static Bitmap StringToBitmap(String encodedString){
+        try{
+            byte[] encodeByte = Base64.decode(encodedString, Base64.DEFAULT);
+            Bitmap bitmap = BitmapFactory.decodeByteArray(encodeByte,0,encodeByte.length);
+            return bitmap;
+        }catch (Exception e){
+            e.getMessage();
+
+            return null;
+        }
+    }
+
 }
 

@@ -21,8 +21,8 @@
 
         <ImageView
             android:id="@+id/img_mainProfile"
-            android:layout_width="49dp"
-            android:layout_height="57dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -31,11 +31,11 @@
 
         <TextView
             android:id="@+id/tv_mainNick"
-            android:layout_width="159dp"
-            android:layout_height="29dp"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
             android:layout_marginStart="10dp"
             android:fontFamily="@font/dream5"
-            android:text="안녕하세요! 런닝머신님"
+            android:text="로그인을 해주세요!"
             app:layout_constraintBottom_toBottomOf="@+id/img_mainProfile"
             app:layout_constraintStart_toEndOf="@+id/img_mainProfile"
             app:layout_constraintTop_toTopOf="@+id/img_mainProfile" />
@@ -263,7 +263,7 @@
                     app:layout_constraintTop_toTopOf="@+id/imageView41" />
 
                 <TextView
-                    android:id="@+id/tv_jeollanamdo1"
+                    android:id="@+id/textView37"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
@@ -327,14 +327,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView13" />
-
-        <TextView
-            android:id="@+id/tv_login_gara"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="히히"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -17,8 +17,8 @@
 
     <ImageView
         android:id="@+id/img_main_rank_profile"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_marginStart="15dp"
         app:layout_constraintBottom_toBottomOf="@+id/img_main_rank_box"
         app:layout_constraintStart_toStartOf="@+id/img_main_rank_box"
@@ -42,7 +42,7 @@
         android:layout_height="21dp"
         app:layout_constraintStart_toEndOf="@+id/img_main_rank_profile"
         app:layout_constraintTop_toTopOf="@+id/img_main_rank_profile"
-        app:srcCompat="@drawable/main_gold" />
+        app:srcCompat="@drawable/mini_badge" />
 
     <TextView
         android:id="@+id/textView81"
@@ -78,7 +78,8 @@
         android:text="태태"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/textView77"
-        app:layout_constraintStart_toEndOf="@+id/textView77" />
+        app:layout_constraintStart_toEndOf="@+id/textView77"
+        app:layout_constraintTop_toTopOf="@+id/textView77" />
 
     <TextView
         android:id="@+id/textView77"
@@ -87,7 +88,7 @@
         android:fontFamily="@font/dream5"
         android:text="위"
         android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/textView71"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_main_rank_num"
         app:layout_constraintStart_toEndOf="@+id/tv_main_rank_num"
         app:layout_constraintTop_toTopOf="@+id/tv_main_rank_num" />
 
