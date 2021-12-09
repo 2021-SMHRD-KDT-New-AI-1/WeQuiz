@@ -25,7 +25,6 @@ public class MissionListActivity extends AppCompatActivity {
     private boolean fabMain_status = false;
 
     FloatingActionButton float_home, float_map, float_plus, float_plus2, float_mission, float_badge, float_my;
-    ExtendedFloatingActionButton mAddFab;
     TextView float_mission_text;
     ImageView transparent;
 
