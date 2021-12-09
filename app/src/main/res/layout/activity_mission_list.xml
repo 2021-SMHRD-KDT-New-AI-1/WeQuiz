@@ -40,6 +40,7 @@
         android:layout_marginLeft="330dp"
         app:backgroundTint="#ffffff"
         app:elevation="5dp"
+        android:tooltipText="마이미션"
         app:pressedTranslationZ="12dp" />
 
     <!-- 플로팅 전국뱃지지도 버튼 -->
@@ -53,6 +54,7 @@
         android:layout_marginLeft="330dp"
         app:backgroundTint="#ffffff"
         app:elevation="6dp"
+        android:tooltipText="전국뱃지지도"
         app:pressedTranslationZ="12dp" />
 
     <!-- 플로팅 내정보수정 버튼 -->
@@ -66,6 +68,7 @@
         android:src="@drawable/float_my"
         app:backgroundTint="#ffffff"
         app:elevation="6dp"
+        android:tooltipText="내정보수정"
         app:pressedTranslationZ="12dp" />
 
     <!-- 플로팅 미션지도 버튼 -->

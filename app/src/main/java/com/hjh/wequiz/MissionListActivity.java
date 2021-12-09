@@ -65,6 +65,7 @@ public class MissionListActivity extends AppCompatActivity {
             public void onClick(View v) {
                 num++;
                 if(num % 2 == 0){
+                    transparent.clearAnimation();
                     transparent.setVisibility(View.INVISIBLE);
                 }else{
                     Animation anima = AnimationUtils.loadAnimation(MissionListActivity.this, R.anim.alpha);
