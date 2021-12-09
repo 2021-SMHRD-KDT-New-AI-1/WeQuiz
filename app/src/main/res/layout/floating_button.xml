@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="SpeakableTextPresentCheck"
+    tools:layout_editor_absoluteX="1dp"
+    tools:layout_editor_absoluteY="1dp"
+    android:fillViewport="true"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- ★★플로팅 버튼★★ -->
+
+    <!-- 플로팅 홈 버튼 -->
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/float_home"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:layout_marginLeft="330dp"
+        android:layout_marginTop="580dp"
+        android:src="@drawable/float_home"
+        app:backgroundTint="#ffffff"
+        app:elevation="6dp"
+        app:pressedTranslationZ="12dp" />
+
+    <!-- 플로팅 마이미션 버튼 -->
+    <TextView
+        android:id="@+id/textView15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/float_mission"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/float_mission"
+        android:layout_gravity="end|bottom"
+        android:layout_marginTop="580dp"
+        android:layout_marginLeft="330dp"
+        app:backgroundTint="#ffffff"
+        app:elevation="5dp"
+        app:pressedTranslationZ="12dp" />
+
+    <TextView
+        android:id="@+id/float_mission_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:text="마이미션"
+        app:layout_constraintBottom_toBottomOf="@+id/float_mission"
+        app:layout_constraintEnd_toStartOf="@+id/float_mission"
+        app:layout_constraintTop_toTopOf="@+id/float_mission" />
+
+    <!-- 플로팅 전국뱃지지도 버튼 -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/float_badge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/float_badge"
+        android:layout_gravity="end|bottom"
+        android:layout_marginTop="580dp"
+        android:layout_marginLeft="330dp"
+        app:backgroundTint="#ffffff"
+        app:elevation="6dp"
+        app:pressedTranslationZ="12dp" />
+
+    <!-- 플로팅 내정보수정 버튼 -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/float_my"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/float_my"
+        android:layout_gravity="end|bottom"
+        android:layout_marginTop="580dp"
+        android:layout_marginLeft="330dp"
+        app:backgroundTint="#ffffff"
+        app:elevation="6dp"
+        app:pressedTranslationZ="12dp" />
+
+    <!-- 플로팅 미션지도 버튼 -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/float_map"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:layout_marginTop="580dp"
+        android:layout_marginLeft="330dp"
+        android:src="@drawable/float_map"
+        app:backgroundTint="#ffffff"
+        app:elevation="6dp"
+        app:pressedTranslationZ="12dp" />
+
+    <!-- 플로팅 열었을 때 버튼 -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/float_plus2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/float_plus2"
+        android:layout_gravity="end|bottom"
+        android:layout_marginTop="580dp"
+        android:layout_marginLeft="330dp"
+        app:backgroundTint="#ff6d64"
+        app:pressedTranslationZ="12dp" />
+
+    <!-- 플로팅 기본 버튼 -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/float_plus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:layout_marginLeft="330dp"
+        android:layout_marginTop="580dp"
+        android:src="@drawable/float_plus"
+        app:backgroundTint="#ff6d64"
+        app:pressedTranslationZ="12dp" />
+
+
+
+</RelativeLayout>

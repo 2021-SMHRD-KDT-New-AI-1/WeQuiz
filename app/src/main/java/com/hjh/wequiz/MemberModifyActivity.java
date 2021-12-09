@@ -101,13 +101,8 @@ public class MemberModifyActivity extends AppCompatActivity {
                     Toast.makeText(MemberModifyActivity.this,
                             "모든 입력란에 입력을 완료해주세요.", Toast.LENGTH_SHORT).show();
                 }else {
-                    // 입력완료 후
-                    Toast.makeText(MemberModifyActivity.this,
-                            "회원정보가 수정되었습니다.", Toast.LENGTH_SHORT).show();
                     // id와 입력받은 값을 매개변수로 하여 modify 메소드 호출
                     modify(mem_id, currentPw, changePw, nick, birth);
-                    Intent intent = new Intent(getApplicationContext(),MainActivity.class);
-                    startActivity(intent);
                 }
             }
         });
@@ -192,6 +187,8 @@ public class MemberModifyActivity extends AppCompatActivity {
                         try {
                             JSONObject jsonObject = (JSONObject) (new JSONArray(response).get(0));
                             Log.d("status : ", jsonObject.getString("status"));
+                            Toast.makeText(MemberModifyActivity.this,
+                                    "회원정보가 수정되었습니다.", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(MemberModifyActivity.this, MainActivity.class);
                             startActivity(intent);
                         } catch (JSONException e) {

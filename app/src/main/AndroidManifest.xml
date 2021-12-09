@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.hjh.wequiz">
 
     <uses-permission android:name="android.permission.INTERNET" /> <!-- 인터넷 권한 추가 -->
@@ -24,6 +25,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.WeQuiz"
         android:usesCleartextTraffic="true">
+        <activity
+            android:name=".FloatingButtonActivity"
+            android:exported="true"
+            android:theme="@style/Transparent"/>
 
         <meta-data
             android:name="com.kakao.sdk.AppKey"
@@ -38,27 +43,19 @@
         <activity
             android:name=".ShortAnswerActivity"
             android:exported="true" />
-
         <activity
             android:name=".ChoiceAnswerActivity"
             android:exported="true">
         </activity>
-
         <activity
             android:name=".MapActivity"
             android:exported="true" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
-
         <activity
             android:name=".MemberModifyActivity"
             android:exported="true">
         </activity>
-
         <activity
             android:name=".RankActivity"
             android:exported="true" />
@@ -67,48 +64,44 @@
             android:name=".CameraActivity"
             android:exported="true">
         </activity>
+            android:exported="true">
 
+        </activity>
         <activity
             android:name=".MyMissionActivity"
             android:exported="true">
 
         </activity>
-
         <activity
             android:name=".BadgeMapActivity"
             android:exported="true">
         </activity>
-
         <activity
             android:name=".MissionListActivity"
-            android:exported="true"/>
+            android:exported="true">
+        </activity>
+            android:exported="true" >
 
+        </activity>
         <activity
             android:name=".QuizLoadingActivity"
             android:exported="true" />
-
         <activity
             android:name=".SignSuccActivity"
             android:exported="true" />
-
         <activity
             android:name=".SignActivity"
-            android:exported="true"/>
-
+            android:exported="true"></activity>
         <activity
             android:name=".LoginActivity"
             android:exported="true" />
-
         <activity
             android:name=".SplashActivity"
             android:exported="true" />
-
         <activity
             android:name=".MainActivity"
             android:exported="true">
-
         </activity>
-
     </application>
 
 </manifest>
