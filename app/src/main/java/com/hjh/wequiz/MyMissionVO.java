@@ -2,17 +2,17 @@ package com.hjh.wequiz;
 
 public class MyMissionVO {
 
-    private int badge;
+    private String badge;
     private String location;
     private int star;
 
-    public MyMissionVO(int badge, String location, int star) {
+    public MyMissionVO(String badge, String location, int star) {
         this.badge = badge;
         this.location = location;
         this.star = star;
     }
 
-    public int getBadge() {
+    public String getBadge() {
         return badge;
     }
 
