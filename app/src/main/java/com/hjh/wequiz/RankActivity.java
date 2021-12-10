@@ -78,7 +78,7 @@ public class RankActivity extends AppCompatActivity {
     }
 
     public void getRankInfo() {
-        String url = "http://172.30.1.34:3003/Rank/RankInfo";
+        String url = "http://172.30.1.34:3003/Badge/RankInfo";
         StringRequest request = new StringRequest(
                 Request.Method.POST,
                 url,
