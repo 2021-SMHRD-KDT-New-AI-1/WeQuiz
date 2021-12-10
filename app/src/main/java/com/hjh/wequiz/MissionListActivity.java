@@ -3,19 +3,33 @@ package com.hjh.wequiz;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.animation.ObjectAnimator;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class MissionListActivity extends AppCompatActivity {
@@ -30,7 +44,6 @@ public class MissionListActivity extends AppCompatActivity {
 
     int num;
 
-
     // 사진 문제 카메라 접근
     Button btn_camera;
     // 객관식, 주관식 문제 이동 버튼
@@ -38,10 +51,26 @@ public class MissionListActivity extends AppCompatActivity {
     // intent로 액티비티 간 이동하기 위한 상수
     public static final int sub = 1001;
 
+
+    RequestQueue requestQueue;
+    Context mContext;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mission_list);
+
+        if (requestQueue == null) {
+            requestQueue = Volley.newRequestQueue(getApplicationContext());
+        }
+        mContext = this;
+
+
+        String mem_id = PreferenceManager.getString(mContext, "mem_id");
+        Intent intent = getIntent();
+        String location_name = intent.getStringExtra("location_name");
+
+        getMissionList(mem_id, location_name);
 
         // 플로팅 버튼 초기화
         float_plus = findViewById(R.id.float_plus);
@@ -132,7 +161,7 @@ public class MissionListActivity extends AppCompatActivity {
         // 홈 플로팅 버튼 클릭
 
         // 카메라 미션 페이지로 이동
-        btn_camera = findViewById(R.id.btn_camera); /*페이지 전환버튼*/
+        btn_camera = findViewById(R.id.btn_missionLIst3); /*페이지 전환버튼*/
         btn_camera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -142,7 +171,7 @@ public class MissionListActivity extends AppCompatActivity {
         });
 
         // 객관식 미션 페이지로 이동
-        btn_choice = findViewById(R.id.btn_choice);/*페이지 전환버튼*/
+        btn_choice = findViewById(R.id.btn_missionLIst1);/*페이지 전환버튼*/
         btn_choice.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -152,7 +181,7 @@ public class MissionListActivity extends AppCompatActivity {
         });
 
         // 주관식 미션 페이지로 이동
-        btn_short = findViewById(R.id.btn_short);/*페이지 전환버튼*/
+        btn_short = findViewById(R.id.btn_missionLIst2);/*페이지 전환버튼*/
         btn_short.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -163,6 +192,56 @@ public class MissionListActivity extends AppCompatActivity {
 
 
     }
+
+    public void getMissionList(String mem_id, String location_name){
+
+        String url = "http://172.30.1.34:3003/Mission/MissionList";
+        StringRequest request = new StringRequest(
+                Request.Method.POST,
+                url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONArray jsonArray = new JSONArray(response);
+                            for(int i = 0; i < jsonArray.length(); i++) {
+                                JSONObject jsonObject = jsonArray.getJSONObject(i);
+
+                                int mission_id = jsonObject.getInt("mission_id");
+                                String mission_type = jsonObject.getString("mission_type");
+                                String location_name = jsonObject.getString("location_name");
+                                String keyword = jsonObject.getString("keyword");
+                                String quiz = jsonObject.getString("quiz");
+                                String answer = jsonObject.getString("answer");
+
+
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                    }
+                }
+        ) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("mem_id", mem_id);
+                params.put("location_name", location_name);
+
+                return params;
+            }
+        };
+        requestQueue.add(request);
+    }
+
+
     public void toggleFab() {
         if (fabMain_status) {
             // 플로팅 액션 버튼 닫기

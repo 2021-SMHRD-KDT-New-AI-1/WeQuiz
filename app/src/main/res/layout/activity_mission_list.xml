@@ -36,7 +36,7 @@
                 app:srcCompat="@drawable/mission_list_back" />
 
             <TextView
-                android:id="@+id/textView21"
+                android:id="@+id/tv_missionListKeyword1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/dream5"
@@ -44,13 +44,13 @@
                 android:textColor="#000000"
                 android:textSize="20dp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@+id/btn_choice"
-                app:layout_constraintEnd_toEndOf="@+id/btn_choice"
-                app:layout_constraintStart_toStartOf="@+id/btn_choice"
-                app:layout_constraintTop_toTopOf="@+id/imageView5" />
+                app:layout_constraintBottom_toTopOf="@+id/btn_missionLIst1"
+                app:layout_constraintEnd_toEndOf="@+id/btn_missionLIst1"
+                app:layout_constraintStart_toStartOf="@+id/btn_missionLIst1"
+                app:layout_constraintTop_toTopOf="@+id/img_missionListType1" />
 
             <Button
-                android:id="@+id/btn_choice"
+                android:id="@+id/btn_missionLIst1"
                 android:layout_width="100dp"
                 android:layout_height="30dp"
                 android:layout_marginEnd="60dp"
@@ -60,11 +60,11 @@
                 android:text="미션 수행하기"
                 android:textColor="@color/white"
                 android:textSize="12dp"
-                app:layout_constraintBottom_toBottomOf="@+id/imageView5"
+                app:layout_constraintBottom_toBottomOf="@+id/img_missionListType1"
                 app:layout_constraintEnd_toEndOf="parent" />
 
             <TextView
-                android:id="@+id/textView12"
+                android:id="@+id/tv_missionListKeyword2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/dream5"
@@ -72,14 +72,14 @@
                 android:textColor="#000000"
                 android:textSize="20dp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@+id/btn_short"
-                app:layout_constraintEnd_toEndOf="@+id/btn_short"
-                app:layout_constraintStart_toStartOf="@+id/btn_short"
-                app:layout_constraintTop_toTopOf="@+id/imageView7"
+                app:layout_constraintBottom_toTopOf="@+id/btn_missionLIst2"
+                app:layout_constraintEnd_toEndOf="@+id/btn_missionLIst2"
+                app:layout_constraintStart_toStartOf="@+id/btn_missionLIst2"
+                app:layout_constraintTop_toTopOf="@+id/img_missionListType2"
                 app:layout_constraintVertical_bias="0.467" />
 
             <Button
-                android:id="@+id/btn_short"
+                android:id="@+id/btn_missionLIst2"
                 android:layout_width="100dp"
                 android:layout_height="30dp"
                 android:layout_marginEnd="60dp"
@@ -89,7 +89,7 @@
                 android:text="미션 수행하기"
                 android:textColor="@color/white"
                 android:textSize="12dp"
-                app:layout_constraintBottom_toBottomOf="@+id/imageView7"
+                app:layout_constraintBottom_toBottomOf="@+id/img_missionListType2"
                 app:layout_constraintEnd_toEndOf="parent" />
 
             <TextView
@@ -98,14 +98,14 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/dream4"
                 android:letterSpacing="-0.03"
-                android:text="님의 미션"
+                android:text="의 미션"
                 android:textColor="@color/white"
                 android:textSize="22sp"
-                app:layout_constraintBottom_toBottomOf="@+id/textView19"
-                app:layout_constraintStart_toEndOf="@+id/textView19" />
+                app:layout_constraintBottom_toBottomOf="@+id/tv_missionListLocation"
+                app:layout_constraintStart_toEndOf="@+id/tv_missionListLocation" />
 
             <TextView
-                android:id="@+id/textView19"
+                android:id="@+id/tv_missionListLocation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="40dp"
@@ -133,7 +133,7 @@
                 app:layout_constraintGuide_begin="926dp" />
 
             <TextView
-                android:id="@+id/textView14"
+                android:id="@+id/tv_missionListKeyword3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/dream5"
@@ -141,13 +141,13 @@
                 android:textColor="#000000"
                 android:textSize="20dp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@+id/btn_camera"
-                app:layout_constraintEnd_toEndOf="@+id/btn_camera"
-                app:layout_constraintStart_toStartOf="@+id/btn_camera"
-                app:layout_constraintTop_toTopOf="@+id/imageView8" />
+                app:layout_constraintBottom_toTopOf="@+id/btn_missionLIst3"
+                app:layout_constraintEnd_toEndOf="@+id/btn_missionLIst3"
+                app:layout_constraintStart_toStartOf="@+id/btn_missionLIst3"
+                app:layout_constraintTop_toTopOf="@+id/img_missionListType3" />
 
             <Button
-                android:id="@+id/btn_camera"
+                android:id="@+id/btn_missionLIst3"
                 android:layout_width="100dp"
                 android:layout_height="30dp"
                 android:layout_marginEnd="60dp"
@@ -157,41 +157,41 @@
                 android:text="미션 수행하기"
                 android:textColor="@color/white"
                 android:textSize="12dp"
-                app:layout_constraintBottom_toBottomOf="@+id/imageView8"
+                app:layout_constraintBottom_toBottomOf="@+id/img_missionListType3"
                 app:layout_constraintEnd_toEndOf="parent" />
 
             <ImageView
-                android:id="@+id/imageView5"
+                android:id="@+id/img_missionListType1"
                 android:layout_width="140dp"
                 android:layout_height="140dp"
                 android:layout_marginStart="1dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="10dp"
-                app:layout_constraintEnd_toStartOf="@+id/textView21"
+                app:layout_constraintEnd_toStartOf="@+id/tv_missionListKeyword1"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/guideline7"
                 fab:srcCompat="@drawable/button_gack" />
 
             <ImageView
-                android:id="@+id/imageView7"
+                android:id="@+id/img_missionListType2"
                 android:layout_width="140dp"
                 android:layout_height="140dp"
                 android:layout_marginStart="1dp"
                 android:layout_marginTop="40dp"
-                app:layout_constraintEnd_toEndOf="@+id/imageView5"
-                app:layout_constraintStart_toStartOf="@+id/imageView5"
-                app:layout_constraintTop_toBottomOf="@+id/imageView5"
+                app:layout_constraintEnd_toEndOf="@+id/img_missionListType1"
+                app:layout_constraintStart_toStartOf="@+id/img_missionListType1"
+                app:layout_constraintTop_toBottomOf="@+id/img_missionListType1"
                 fab:srcCompat="@drawable/button_ju" />
 
             <ImageView
-                android:id="@+id/imageView8"
+                android:id="@+id/img_missionListType3"
                 android:layout_width="140dp"
                 android:layout_height="140dp"
                 android:layout_marginStart="1dp"
                 android:layout_marginTop="40dp"
-                app:layout_constraintEnd_toEndOf="@+id/imageView7"
-                app:layout_constraintStart_toStartOf="@+id/imageView7"
-                app:layout_constraintTop_toBottomOf="@+id/imageView7"
+                app:layout_constraintEnd_toEndOf="@+id/img_missionListType2"
+                app:layout_constraintStart_toStartOf="@+id/img_missionListType2"
+                app:layout_constraintTop_toBottomOf="@+id/img_missionListType2"
                 fab:srcCompat="@drawable/button_camera" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
