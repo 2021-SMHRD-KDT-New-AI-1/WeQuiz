@@ -68,8 +68,13 @@ public class MyMissionAdapter extends RecyclerView.Adapter<MyMissionAdapter.View
         int badgeResId = mContext.getResources().getIdentifier(badge, "drawable", mContext.getPackageName());
         holder.img_myMissionBadge.setImageResource(badgeResId);
         holder.tv_myMissionLocation.setText(location);
-        for(int i = 0; i < star; i++) {
-            holder.img_stars[i].setImageResource(R.drawable.star);
+        for(int i = 0; i < 3; i++) {
+            if(i < star) {
+                holder.img_stars[i].setImageResource(R.drawable.star);
+            } else {
+                holder.img_stars[i].setImageResource(R.drawable.star_empty);
+            }
+
         }
 
     }
