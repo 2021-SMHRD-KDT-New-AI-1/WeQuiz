@@ -43,6 +43,11 @@
         <activity
             android:name=".ChoiceAnswerActivity"
             android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".MapActivity"
@@ -70,11 +75,7 @@
         <activity
             android:name=".BadgeMapActivity"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".MissionListActivity"
@@ -99,6 +100,7 @@
         <activity
             android:name=".MainActivity"
             android:exported="true">
+
         </activity>
     </application>
 
