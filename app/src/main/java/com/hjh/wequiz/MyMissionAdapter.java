@@ -16,19 +16,11 @@ import java.util.HashMap;
 
 public class MyMissionAdapter extends RecyclerView.Adapter<MyMissionAdapter.ViewHolder> {
 
-    HashMap<Integer,String> hashMap_badge = new HashMap<>();
-
     private ArrayList<MyMissionVO> mdata = null;
     Context mContext;
 
     public MyMissionAdapter(ArrayList mdata) {
         this.mdata = mdata;
-        hashMap_badge.put(1, "badge_gwangju");
-        hashMap_badge.put(2, "badge_koksung");
-        hashMap_badge.put(3, "badge_mokpo");
-        hashMap_badge.put(4, "badge_suncheon");
-        hashMap_badge.put(5, "badge_yeosu");
-
     }
 
     // 아이템 뷰를 위한 뷰홀더 객체 생성
@@ -47,13 +39,11 @@ public class MyMissionAdapter extends RecyclerView.Adapter<MyMissionAdapter.View
     // 데이터를 뷰홀더의 아이템 뷰에 표시
     @Override
     public void onBindViewHolder(@NonNull MyMissionAdapter.ViewHolder holder, int position) {
-        int badge = mdata.get(position).getBadge();
+        String badge = mdata.get(position).getBadge();
         String location = mdata.get(position).getLocation();
         int star = mdata.get(position).getStar();
 
-        //holder.img_myMissionBox.setImageResource(R.drawable.my_missionbox);
-        String badgeName = hashMap_badge.get(badge);
-        int badgeResId = mContext.getResources().getIdentifier(badgeName, "drawable", mContext.getPackageName());
+        int badgeResId = mContext.getResources().getIdentifier(badge, "drawable", mContext.getPackageName());
         holder.img_myMissionBadge.setImageResource(badgeResId);
         holder.tv_myMissionLocation.setText(location);
         for(int i = 0; i < star; i++) {

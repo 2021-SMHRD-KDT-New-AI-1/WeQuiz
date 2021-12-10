@@ -141,7 +141,7 @@ public class MyMissionActivity extends AppCompatActivity {
                                 JSONObject jsonObject = jsonArray.getJSONObject(i);
                                 String location_name = jsonObject.getString("location_name");
                                 String star = jsonObject.getString("star");
-                                int badge = jsonObject.getInt("badge");
+                                String badge = jsonObject.getString("badge");
 
                                 MyMissionVO myMission = new MyMissionVO(badge, location_name, Integer.parseInt(star));
                                 mData.add(myMission);
