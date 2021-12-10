@@ -1,6 +1,9 @@
 package com.hjh.wequiz;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,12 +45,14 @@ public class RankAdapter extends RecyclerView.Adapter<RankAdapter.ViewHolder>  {
         int rank = mdata.get(position).getRank();
         String nick = mdata.get(position).getNick();
         int medal = mdata.get(position).getMedal();
+        String mem_image = mdata.get(position).getProfile();
+
+        Bitmap mem_image_bitmap = StringToBitmap(mem_image);
 
         holder.tv_rank_num.setText(String.valueOf(rank));
         holder.tv_rank_nick.setText(nick);
         holder.tv_rank_medal.setText(String.valueOf(medal));
-
-
+        holder.img_rank_profile.setImageBitmap(mem_image_bitmap);
 
     }
 
@@ -61,7 +66,7 @@ public class RankAdapter extends RecyclerView.Adapter<RankAdapter.ViewHolder>  {
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView tv_rank_num, tv_rank_nick, tv_rank_medal;
-        ImageView img_rank_rankBox;
+        ImageView img_rank_rankBox, img_rank_profile;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -71,9 +76,23 @@ public class RankAdapter extends RecyclerView.Adapter<RankAdapter.ViewHolder>  {
             tv_rank_nick = itemView.findViewById(R.id.tv_rank_nick);
             tv_rank_medal = itemView.findViewById(R.id.tv_rank_medal);
             img_rank_rankBox = itemView.findViewById(R.id.img_rank_rankBox);
+            img_rank_profile = itemView.findViewById(R.id.img_rank_profile);
 
         }
 
+    }
+
+
+    // 서버로부터 받아온 이미지 스트링 -> 비트맵 변환
+    public static Bitmap StringToBitmap(String encodedString){
+        try{
+            byte[] encodeByte = Base64.decode(encodedString, Base64.DEFAULT);
+            Bitmap bitmap = BitmapFactory.decodeByteArray(encodeByte,0,encodeByte.length);
+            return bitmap;
+        }catch (Exception e){
+            e.getMessage();
+            return null;
+        }
     }
 }
 

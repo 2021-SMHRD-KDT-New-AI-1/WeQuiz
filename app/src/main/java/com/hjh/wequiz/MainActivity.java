@@ -4,30 +4,75 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.animation.ObjectAnimator;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Base64;
+import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity{
+
+    RequestQueue requestQueue;
+    Context mContext;
+    ArrayList<RankVO> mData;
+
+    MainRankAdapter adapter;
 
     ImageView img_mainProfile, img_mainLocationRe;
     TextView tv_mainNick, tv_mainLocation;
     Button btn_mainLogin, btn_mainBadgeList, btn_mainMissonStart;
     RecyclerView rv_mainRank;
-    private LinearLayoutManager mLayoutManager;
 
-    // 로그인인지 아닌지를 알려줄 텍스트뷰 코드 -> 나중에 삭제
-    TextView tv_login_gara;
+    static boolean click_r;
+    // 플로팅버튼 상태
+    private boolean fabMain_status = false;
+
+    FloatingActionButton float_home, float_map, float_plus, float_plus2, float_mission, float_badge, float_my;
+    TextView float_mission_text;
+    ImageView transparent;
+
+    int num;
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        mContext = this;
+
+        if (requestQueue == null) {
+            requestQueue = Volley.newRequestQueue(getApplicationContext());
+        }
 
         img_mainProfile = findViewById(R.id.img_mainProfile);
         img_mainLocationRe = findViewById(R.id.img_mainLocationRe);
@@ -37,29 +82,129 @@ public class MainActivity extends AppCompatActivity {
         btn_mainBadgeList = findViewById(R.id.btn_mainBadgeList);
         btn_mainMissonStart = findViewById(R.id.btn_mainMissonStart);
 
-        // 랭킹 Top5 리싸이클러 뷰 코드
-        ArrayList<MainRankVO> mdata = new ArrayList<>();
-        // 랭킹 데이터 입력
-        mdata.add(new MainRankVO(1,"길도","길도사진","금메달",5));
-        mdata.add(new MainRankVO(2,"태태","길도사진","금메달",5));
-        mdata.add(new MainRankVO(3,"마르코","길도사진","금메달",5));
-        mdata.add(new MainRankVO(4,"쿼카","길도사진","금메달",5));
-        mdata.add(new MainRankVO(5,"윤지","길도사진","금메달",5));
+        // 플로팅 버튼 초기화
+        float_plus = findViewById(R.id.float_plus);
+        float_plus2 = findViewById(R.id.float_plus2);
+        float_home = findViewById(R.id.float_home);
+        float_map = findViewById(R.id.float_map);
+        float_mission = findViewById(R.id.float_mission);
+        float_badge = findViewById(R.id.float_badge);
+        float_my = findViewById(R.id.float_my);
+        transparent = findViewById(R.id.transparent);
+
+        float_mission_text = findViewById(R.id.float_mission_text);
+
+
+        transparent.setVisibility(View.INVISIBLE);
+
+
+
+
+        // 메인플로팅 버튼 클릭
+        float_plus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                num++;
+                if(num % 2 == 0){
+                    transparent.clearAnimation();
+                    transparent.setVisibility(View.INVISIBLE);
+                }else{
+                    Animation anima = AnimationUtils.loadAnimation(MainActivity.this, R.anim.alpha);
+                    transparent.startAnimation(anima);
+                    transparent.setVisibility(View.VISIBLE);
+                }
+                toggleFab();
+            }
+        });
+
+        //플로팅 홈버튼 클릭
+        float_home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                click_r = true;
+                Intent intent = new Intent(MainActivity.this, MainActivity.class);
+                startActivity(intent);
+                Toast.makeText(MainActivity.this, "홈 버튼 클릭", Toast.LENGTH_SHORT).show();
+            }
+        });
+        //플로팅 미션지도 버튼 클릭
+        float_map.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                click_r = true;
+                Intent intent = new Intent(MainActivity.this, MapActivity.class);
+                startActivity(intent);
+                Toast.makeText(MainActivity.this, "미션지도 버튼 클릭", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        //플로팅 마이미션 버튼 클릭
+        float_mission.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                click_r = true;
+                Intent intent = new Intent(MainActivity.this, MyMissionActivity.class);
+                startActivity(intent);
+                Toast.makeText(MainActivity.this, "마이미션 버튼 클릭", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        //플로팅 전국뱃지지도 버튼 클릭
+        float_badge.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                click_r = true;
+                Intent intent = new Intent(MainActivity.this, BadgeMapActivity.class);
+                startActivity(intent);
+                Toast.makeText(MainActivity.this, "전국뱃지지도 버튼 클릭", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        //플로팅 내 정보 수정 버튼 클릭
+        float_my.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                click_r = true;
+                Intent intent = new Intent(MainActivity.this, MemberModifyActivity.class);
+                startActivity(intent);
+                Toast.makeText(MainActivity.this, "내정보수정 버튼 클릭", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+
+
+
+
+
+        // 메인 랭킹 표시하는 코드
+        mData = new ArrayList<>();
 
         rv_mainRank = findViewById(R.id.rv_mainRank);
-        // 가로로 리싸이클러 뷰 전환하는 코드
-        mLayoutManager = new LinearLayoutManager(this);
+        LinearLayoutManager mLayoutManager = new LinearLayoutManager(this); // 가로로 리싸이클러 뷰 전환하는 코드
         mLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
-
-        MainRankAdapter adapter = new MainRankAdapter(mdata);
-
         rv_mainRank.setLayoutManager(mLayoutManager);
-        rv_mainRank.setAdapter(adapter); // 여기까지 리싸이클러 뷰 코드
+
+        getRankInfo();
+
+        adapter = new MainRankAdapter(mData);
+        rv_mainRank.setAdapter(adapter);
+        // 여기까지 메인 랭킹 표시하는 코드 //
 
 
+        // 회원 정보 가져와서 상단의 환영 문구에 반영하는 코드
+        String mem_id = PreferenceManager.getString(this, "mem_id");
+        getMemberInfo(mem_id);
+        // 여기까지 환영 문구 변경 코드
+
+
+        // 버튼 이벤트
         btn_mainLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(btn_mainLogin.getText().toString().equals("로그아웃")) {
+                    PreferenceManager.setString(mContext,"mem_id","");
+                }
                 Intent intent = new Intent(MainActivity.this, LoginActivity.class);
                 startActivity(intent);
             }
@@ -79,17 +224,159 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        tv_login_gara = findViewById(R.id.tv_login_gara);
-        String gara = tv_login_gara.getText().toString();
-
         // 로그인인 상태일 때 버튼 이벤트 변화
-        if(gara.equals("로그인 상태")) {
-            btn_mainLogin.setText("로그아웃");
-        } else {
+        if(mem_id.equals("")) {
             btn_mainLogin.setText("로그인");
+        } else {
+            btn_mainLogin.setText("로그아웃");
         }
 
+    }
 
+    public void getRankInfo() {
+        String url = "http://172.30.1.34:3003/Badge/RankInfo";
+        StringRequest request = new StringRequest(
+                Request.Method.POST,
+                url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONArray jsonArray = new JSONArray(response);
+                            for(int i = 0; i < jsonArray.length(); i++) {
+                                if(i == 5) {
+                                    break;
+                                }
+                                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                                String ranking = jsonObject.getString("ranking");
+                                String nick = jsonObject.getString("nick");
+                                String mem_image = jsonObject.getString("mem_image");
+                                String badge_num = jsonObject.getString("badge_num");
+
+                                RankVO rank_info = new RankVO(Integer.parseInt(ranking), nick, mem_image, Integer.parseInt(badge_num));
+                                mData.add(rank_info);
+                                adapter.notifyDataSetChanged();
+                                Log.d("rankInfo : ", "info" + i);
+                            }
+                            System.out.println(mData);
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                    }
+                }
+        ) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("status", "200");
+
+                return params;
+            }
+        };
+        requestQueue.add(request);
+    }
+
+    // 회원 정보를 서버에 요청하여 받아오는 메소드~
+    public void getMemberInfo(String id){
+        String url = "http://172.30.1.34:3003/Member/MemberInfo";
+        StringRequest request = new StringRequest(
+                Request.Method.POST,
+                url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        // 응답 성공!
+                        try {
+                            Log.v("abcd", response);
+                            JSONObject jsonObject = (JSONObject) (new JSONArray(response)).get(0);
+                            String nick = jsonObject.getString("nick"); // 닉네임 받아오기
+                            String welcome = "안녕하세요! " + nick + "님";
+                            tv_mainNick.setText(welcome);
+
+                            String img = jsonObject.getString("mem_image"); // 기존 프로필이미지 가져오기
+                            Bitmap bitmap = StringToBitmap(img);
+                            img_mainProfile.setImageBitmap(bitmap);
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        error.printStackTrace();
+                    }
+                }
+        ){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError{
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("mem_id", id);
+
+                return params;
+            }
+        };
+        requestQueue.add(request);
+    }
+
+    // 서버로부터 받아온 이미지 스트링 -> 비트맵 변환
+    public static Bitmap StringToBitmap(String encodedString){
+        try{
+            byte[] encodeByte = Base64.decode(encodedString, Base64.DEFAULT);
+            Bitmap bitmap = BitmapFactory.decodeByteArray(encodeByte,0,encodeByte.length);
+            return bitmap;
+        }catch (Exception e){
+            e.getMessage();
+            return null;
+        }
+    }
+
+    public void toggleFab() {
+        if (fabMain_status) {
+            // 플로팅 액션 버튼 닫기
+            // 애니메이션 추가
+            ObjectAnimator fh_animation = ObjectAnimator.ofFloat(float_home, "translationY", 0f);
+            fh_animation.start();
+            ObjectAnimator fmy_animation = ObjectAnimator.ofFloat(float_my, "translationY", 0f);
+            fmy_animation.start();
+            ObjectAnimator fb_animation = ObjectAnimator.ofFloat(float_badge, "translationY", 0f);
+            fb_animation.start();
+            ObjectAnimator fmi_animation = ObjectAnimator.ofFloat(float_mission, "translationY", 0f);
+            fmi_animation.start();
+            ObjectAnimator fmap_animation = ObjectAnimator.ofFloat(float_map, "translationY", 0f);
+            fmap_animation.start();
+
+            // 메인 플로팅 이미지 변경
+            float_plus.setImageResource(R.drawable.float_plus);
+
+        } else {
+            // 플로팅 액션 버튼 열기
+            ObjectAnimator fmy_animation = ObjectAnimator.ofFloat(float_my, "translationY", -180f);
+            fmy_animation.start();
+            ObjectAnimator fb_animation = ObjectAnimator.ofFloat(float_badge, "translationY", -360f);
+            fb_animation.start();
+            ObjectAnimator fmi_animation = ObjectAnimator.ofFloat(float_mission, "translationY", -540f);
+            fmi_animation.start();
+            ObjectAnimator fmap_animation = ObjectAnimator.ofFloat(float_map, "translationY", -720f);
+            fmap_animation.start();
+            ObjectAnimator fh_animation = ObjectAnimator.ofFloat(float_home, "translationY", -900f);
+            fh_animation.start();
+
+            // 메인 플로팅 이미지 변경
+            float_plus.setImageResource(R.drawable.float_plus2);
+        }
+        // 플로팅 버튼 상태 변경
+        fabMain_status = !fabMain_status;
 
     }
+
 }

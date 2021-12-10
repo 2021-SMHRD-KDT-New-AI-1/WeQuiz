@@ -1,15 +1,22 @@
 package com.hjh.wequiz;
 
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
-
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 
 public class MissionListActivity extends AppCompatActivity {
 
@@ -17,13 +24,12 @@ public class MissionListActivity extends AppCompatActivity {
     // 플로팅버튼 상태
     private boolean fabMain_status = false;
 
-    private FloatingActionButton float_map;
-    private FloatingActionButton float_home;
-    private FloatingActionButton float_plus;
-    private FloatingActionButton float_plus2;
-    private FloatingActionButton float_mission;
-    private FloatingActionButton float_badge;
-    private FloatingActionButton float_my;
+    FloatingActionButton float_home, float_map, float_plus, float_plus2, float_mission, float_badge, float_my;
+    TextView float_mission_text;
+    ImageView transparent;
+
+    int num;
+
 
     // 사진 문제 카메라 접근
     Button btn_camera;
@@ -45,16 +51,31 @@ public class MissionListActivity extends AppCompatActivity {
         float_mission = findViewById(R.id.float_mission);
         float_badge = findViewById(R.id.float_badge);
         float_my = findViewById(R.id.float_my);
+        transparent = findViewById(R.id.transparent);
+
+        float_mission_text = findViewById(R.id.float_mission_text);
+
+
+        transparent.setVisibility(View.INVISIBLE);
 
         // 메인플로팅 버튼 클릭
         float_plus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                num++;
+                if(num % 2 == 0){
+                    transparent.clearAnimation();
+                    transparent.setVisibility(View.INVISIBLE);
+                }else{
+                    Animation anima = AnimationUtils.loadAnimation(MissionListActivity.this, R.anim.alpha);
+                    transparent.startAnimation(anima);
+                    transparent.setVisibility(View.VISIBLE);
+                }
                 toggleFab();
             }
         });
 
-        // 플로팅 홈버튼 클릭
+         //플로팅 홈버튼 클릭
         float_home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -64,8 +85,7 @@ public class MissionListActivity extends AppCompatActivity {
                 Toast.makeText(MissionListActivity.this, "홈 버튼 클릭", Toast.LENGTH_SHORT).show();
             }
         });
-
-        // 플로팅 미션지도 버튼 클릭
+         //플로팅 미션지도 버튼 클릭
         float_map.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -76,7 +96,7 @@ public class MissionListActivity extends AppCompatActivity {
             }
         });
 
-        // 플로팅 마이미션 버튼 클릭
+         //플로팅 마이미션 버튼 클릭
         float_mission.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -87,7 +107,7 @@ public class MissionListActivity extends AppCompatActivity {
             }
         });
 
-        // 플로팅 전국뱃지지도 버튼 클릭
+         //플로팅 전국뱃지지도 버튼 클릭
         float_badge.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -98,7 +118,7 @@ public class MissionListActivity extends AppCompatActivity {
             }
         });
 
-        // 플로팅 내 정보 수정 버튼 클릭
+         //플로팅 내 정보 수정 버튼 클릭
         float_my.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -116,7 +136,7 @@ public class MissionListActivity extends AppCompatActivity {
         btn_camera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(),CameraActivity.class);
+                Intent intent = new Intent(getApplicationContext(), CameraActivity.class);
                 startActivityForResult(intent, sub);//액티비티 띄우기
             }
         });
@@ -126,7 +146,7 @@ public class MissionListActivity extends AppCompatActivity {
         btn_choice.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(),ChoiceAnswerActivity.class);
+                Intent intent = new Intent(getApplicationContext(), ChoiceAnswerActivity.class);
                 startActivityForResult(intent, sub);//액티비티 띄우기
             }
         });
@@ -136,16 +156,13 @@ public class MissionListActivity extends AppCompatActivity {
         btn_short.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(),ShortAnswerActivity.class);
+                Intent intent = new Intent(getApplicationContext(), ShortAnswerActivity.class);
                 startActivityForResult(intent, sub);//액티비티 띄우기
             }
         });
 
 
     }
-
-
-    // 플로팅 액션 버튼 클릭시 애니메이션 효과
     public void toggleFab() {
         if (fabMain_status) {
             // 플로팅 액션 버튼 닫기
@@ -183,13 +200,7 @@ public class MissionListActivity extends AppCompatActivity {
         // 플로팅 버튼 상태 변경
         fabMain_status = !fabMain_status;
 
-
-
-
-
-
     }
 
-
-
 }
+
