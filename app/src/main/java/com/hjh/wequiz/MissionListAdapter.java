@@ -48,9 +48,14 @@ public class MissionListAdapter extends RecyclerView.Adapter<MissionListAdapter.
         String answer = mdata.get(position).getAnswer();
         String mission_type = mdata.get(position).getMission_type();
 
-        holder.img_missionList_mission.setImageResource(R.drawable.button_ju);
-        holder.tv_missionList_location.setText(location_name);
-
+        if(mission_type.equals("주관식")) {
+            holder.img_missionListType.setImageResource(R.drawable.button_ju);
+        } else if(mission_type.equals("객관식")) {
+            holder.img_missionListType.setImageResource(R.drawable.button_gack);
+        } else {
+            holder.img_missionListType.setImageResource(R.drawable.button_camera);
+        }
+        holder.tv_missionListKeyword.setText(keyword);
 
     }
 
@@ -63,16 +68,16 @@ public class MissionListAdapter extends RecyclerView.Adapter<MissionListAdapter.
     // 아이템 뷰를 저장하는 뷰홀더 클래스
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        ImageView img_missionList_box, img_missionList_mission;
-        TextView tv_missionList_location;
+        ImageView img_missionList_box, img_missionListType;
+        TextView tv_missionListKeyword;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             // 뷰 객체 초기화
             img_missionList_box = itemView.findViewById(R.id.img_missionList_box);
-            img_missionList_mission = itemView.findViewById(R.id.img_missionList_mission);
-            tv_missionList_location = itemView.findViewById(R.id.tv_missionList_location);
+            img_missionListType = itemView.findViewById(R.id.img_missionListType);
+            tv_missionListKeyword = itemView.findViewById(R.id.tv_missionListKeyword);
 
         }
 

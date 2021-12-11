@@ -17,7 +17,7 @@
         app:srcCompat="@drawable/mission_list_box" />
 
     <ImageView
-        android:id="@+id/img_missionList_mission"
+        android:id="@+id/img_missionListType"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginStart="70dp"
@@ -27,7 +27,7 @@
         app:srcCompat="@drawable/button_gack" />
 
     <TextView
-        android:id="@+id/tv_missionList_location"
+        android:id="@+id/tv_missionListKeyword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="130dp"
