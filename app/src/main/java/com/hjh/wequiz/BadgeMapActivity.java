@@ -45,6 +45,7 @@ public class BadgeMapActivity extends AppCompatActivity {
     ArrayList<String> myBadges;
 
     TextView tv_jeollanamdo1, tv_jeollanamdo2, tv_jeollanbukdo1, tv_jeollanbukdo2;
+    TextView tv_badgeMapTotal;
     ImageView handle;
     LinearLayout linear;
     LayoutInflater inflater;
@@ -79,6 +80,7 @@ public class BadgeMapActivity extends AppCompatActivity {
         tv_jeollanamdo2 = (TextView) findViewById(R.id.tv_jeollanamdo2);
         tv_jeollanbukdo1 = findViewById(R.id.tv_jeollanbukdo1);
         tv_jeollanbukdo2 = findViewById(R.id.tv_jeollanbukdo2);
+        tv_badgeMapTotal = findViewById(R.id.tv_badgeMapTotal);
 
 
         // 플로팅 버튼 초기화
@@ -98,7 +100,6 @@ public class BadgeMapActivity extends AppCompatActivity {
         SlidingDrawer drawer = (SlidingDrawer)findViewById(R.id.slide);
         linear = findViewById(R.id.content);
         inflater = getLayoutInflater();
-
 
         tv_jeollanamdo1.setOnClickListener(new OnClickListener() {
             @Override
@@ -252,6 +253,8 @@ public class BadgeMapActivity extends AppCompatActivity {
                                 System.out.println(badge);
                                 myBadges.add(badge);
                             }
+                            tv_jeollanamdo1.setText(String.valueOf(myBadges.size()));
+                            tv_badgeMapTotal.setText(String.valueOf(myBadges.size()));
 
                         } catch (JSONException e) {
                             e.printStackTrace();
