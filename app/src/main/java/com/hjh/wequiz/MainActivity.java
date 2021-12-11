@@ -1,14 +1,21 @@
 package com.hjh.wequiz;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.Manifest;
 import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.location.Address;
+import android.location.Geocoder;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Base64;
 import android.util.Log;
@@ -33,11 +40,14 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
-public class MainActivity extends AppCompatActivity{
+public class MainActivity extends AppCompatActivity {
 
     RequestQueue requestQueue;
     Context mContext;
@@ -60,8 +70,8 @@ public class MainActivity extends AppCompatActivity{
 
     int num;
 
-
-
+    Location location;
+    private static final String TAG = "MainActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,10 +104,32 @@ public class MainActivity extends AppCompatActivity{
 
         float_mission_text = findViewById(R.id.float_mission_text);
 
-
         transparent.setVisibility(View.INVISIBLE);
 
 
+        // 현재위치 리셋
+        ImageView img_mainLocationRe = findViewById(R.id.img_mainLocationRe);
+        tv_mainLocation = findViewById(R.id.tv_mainLocation);
+        img_mainLocationRe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+                if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
+                        ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, 0);
+                    return;
+                }
+                location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+                //초기 좌표 값 기록
+                String provider = location.getProvider();
+                double lat = location.getLatitude(); //위도
+                double lng = location.getLongitude(); //경도
+                double alti = location.getAltitude(); //고도
+                Log.d(TAG, "현재 위치: " + provider + " / " + lat + " / " + lng + " / " + alti);
+                tv_mainLocation.setText(getAddress(MainActivity.this, lat,lng));
+
+            }
+        });
 
 
         // 메인플로팅 버튼 클릭
@@ -377,6 +409,39 @@ public class MainActivity extends AppCompatActivity{
         // 플로팅 버튼 상태 변경
         fabMain_status = !fabMain_status;
 
+    }
+
+    // 현재위치 주소 표시 메소드
+    public static String getAddress(Context mContext, double lat, double lng) {
+        String nowAddr ="현재 위치를 확인 할 수 없습니다.";
+        Geocoder geocoder = new Geocoder(mContext, Locale.KOREA);
+        List<Address> address;
+        String[] nowAddr_list;
+        String data = null;
+        try {
+            if (geocoder != null) {
+                // 한좌표에 대해 두개이상의 이름이 존재할수있기에 주소배열을 리턴받고
+                // 세번째 파라메터인 maxResults는 리턴받을 주소의 최대 갯수를 지정함
+                // (여기서는 1개만 받는걸로...)
+                address = geocoder.getFromLocation(lat, lng, 1);
+
+                if (address != null && address.size() > 0)
+                {
+                    // 주소 받아오기
+                    nowAddr = address.get(0).getAddressLine(0).toString();
+                    // 주소 split
+                    nowAddr_list = nowAddr.split("\\s");
+                    data = nowAddr_list[1];
+
+                }
+            }
+
+        }
+        catch (IOException e) {
+            Toast.makeText(mContext, "주소를 가져 올 수 없습니다.", Toast.LENGTH_LONG).show();
+            e.printStackTrace();
+        }
+        return data;
     }
 
 }

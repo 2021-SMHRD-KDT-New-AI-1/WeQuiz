@@ -55,7 +55,7 @@ import java.util.Map;
 
 
 
-public class MapActivity extends AppCompatActivity {
+public class MapActivity extends AppCompatActivity implements MapView.POIItemEventListener{
 
     private static final String TAG = "MapActivity";
 
@@ -72,6 +72,7 @@ public class MapActivity extends AppCompatActivity {
     MapPoint mission1_location;
     MapPoint mission2_location;
     MapPoint mission3_location;
+
 
 
     @Override
@@ -151,7 +152,7 @@ public class MapActivity extends AppCompatActivity {
         btn_mission.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                 //클릭시 메시지 뜨는거 확인하고 잘 작동되는지 확인하는 코드
+                //클릭시 메시지 뜨는거 확인하고 잘 작동되는지 확인하는 코드
                 // mission 위치 변수
                 // 추후 위치값 변수로 넣어주기
                 mission1_location = MapPoint.mapPointWithGeoCoord(35.141998628841115, 126.912268377757); // 사직공원
@@ -180,12 +181,72 @@ public class MapActivity extends AppCompatActivity {
                 mapView.addPOIItem(missionMarker1); // mapView에 마커 add
                 mapView.addPOIItem(missionMarker2);
                 mapView.addPOIItem(missionMarker3);
+
+
+
             }
         });
 
 
 
+        // 4. 미션마커 클릭 시 문제 화면 생성
+
+
+
+
+
+
     }
+
+
+    @Override
+    public void onPOIItemSelected(MapView mapView, MapPOIItem mapPOIItem) {
+
+    }
+
+    @Override
+    public void onCalloutBalloonOfPOIItemTouched(MapView mapView, MapPOIItem mapPOIItem) {
+
+    }
+
+    @Override
+    public void onCalloutBalloonOfPOIItemTouched(MapView mapView, MapPOIItem mapPOIItem, MapPOIItem.CalloutBalloonButtonType calloutBalloonButtonType) {
+
+    }
+
+    @Override
+    public void onDraggablePOIItemMoved(MapView mapView, MapPOIItem mapPOIItem, MapPoint mapPoint) {
+
+    }
+
+    private MapView.POIItemEventListener poiItemEventListener = new MapView.POIItemEventListener() {
+        @Override
+        public void onPOIItemSelected(MapView mapView, MapPOIItem missionMarker2) {
+            //sample code 없음
+            Log.d("111111111111111","진입");
+        }
+
+        @Override
+        public void onCalloutBalloonOfPOIItemTouched(MapView mapView, MapPOIItem mapPOIItem) {
+            Log.i("112222","진입");
+        }
+
+        @Override
+        public void onCalloutBalloonOfPOIItemTouched(MapView mapView, MapPOIItem mapPOIItem, MapPOIItem.CalloutBalloonButtonType calloutBalloonButtonType) {
+            Log.i("13333111","진입");
+        }
+
+        @Override
+        public void onDraggablePOIItemMoved(MapView mapView, MapPOIItem mapPOIItem, MapPoint mapPoint) {
+            Log.i("1144444411","진입");
+        }
+
+    };
+
+
+
+
+
 
 
     // LocationListener 인터페이스 : 위치 정보를 위치 공급자로부터 지속적으로 받아오는 역할
@@ -246,7 +307,13 @@ public class MapActivity extends AppCompatActivity {
 
 
 
+    // 마커 클릭 이벤트 리스너
+
+
+
 
 
 
 }
+
+
