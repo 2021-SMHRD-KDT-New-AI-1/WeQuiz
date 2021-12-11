@@ -106,7 +106,7 @@
             android:fontFamily="@font/dream5"
             android:gravity="center_vertical"
             android:paddingStart="10dp"
-            android:text="광주광역시"
+            android:text="현재 위치를 확인할 수 없습니다."
             app:layout_constraintBottom_toTopOf="@+id/imageView22"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -340,7 +340,10 @@
         android:id="@+id/transparent"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="0dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginBottom="0dp"
         android:background="@drawable/transparent" />
 
     <androidx.constraintlayout.widget.ConstraintLayout

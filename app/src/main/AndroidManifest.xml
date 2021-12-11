@@ -25,7 +25,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.WeQuiz"
         android:usesCleartextTraffic="true">
-
+        <activity
+            android:name=".savemission"
+            android:exported="true" />
 
         <meta-data
             android:name="com.kakao.sdk.AppKey"
@@ -64,13 +66,15 @@
 
         <activity
             android:name=".MyMissionActivity"
-            android:exported="true">
-
-        </activity>
+            android:exported="true"></activity>
         <activity
             android:name=".BadgeMapActivity"
             android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".MissionListActivity"
