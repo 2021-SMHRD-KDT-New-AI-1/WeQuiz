@@ -11,190 +11,67 @@
     android:fillViewport="true"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <ScrollView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#F5F5F5"
-            tools:context=".MainActivity">
+        android:layout_height="match_parent"
+        android:background="#F5F5F5"
+        tools:context=".MainActivity">
 
 
-            <ImageView
-                android:id="@+id/imageView20"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="250dp"
-                app:layout_constraintBottom_toTopOf="@+id/guideline11"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.521"
-                app:srcCompat="@drawable/mission_list_back" />
+        <ImageView
+            android:id="@+id/imageView20"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/mission_list_back"
+            android:scaleType="centerCrop"/>
 
-            <TextView
-                android:id="@+id/tv_missionListKeyword1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/dream5"
-                android:text="펭귄마을"
-                android:textColor="#000000"
-                android:textSize="20dp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@+id/btn_missionLIst1"
-                app:layout_constraintEnd_toEndOf="@+id/btn_missionLIst1"
-                app:layout_constraintStart_toStartOf="@+id/btn_missionLIst1"
-                app:layout_constraintTop_toTopOf="@+id/img_missionListType1" />
+        <TextView
+            android:id="@+id/textView20"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/dream4"
+            android:letterSpacing="-0.03"
+            android:text="의 미션"
+            android:textColor="@color/white"
+            android:textSize="22sp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_missionListLocation"
+            app:layout_constraintStart_toEndOf="@+id/tv_missionListLocation" />
 
-            <Button
-                android:id="@+id/btn_missionLIst1"
-                android:layout_width="100dp"
-                android:layout_height="30dp"
-                android:layout_marginEnd="60dp"
-                android:layout_marginBottom="20dp"
-                android:background="@drawable/round_submit"
-                android:fontFamily="@font/dream4"
-                android:text="미션 수행하기"
-                android:textColor="@color/white"
-                android:textSize="12dp"
-                app:layout_constraintBottom_toBottomOf="@+id/img_missionListType1"
-                app:layout_constraintEnd_toEndOf="parent" />
+        <TextView
+            android:id="@+id/tv_missionListLocation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="50dp"
+            android:fontFamily="@font/dream6"
+            android:letterSpacing="-0.03"
+            android:text="런닝머신"
+            android:textColor="@color/white"
+            android:textSize="27sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/tv_missionListKeyword2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/dream5"
-                android:text="펭귄마을"
-                android:textColor="#000000"
-                android:textSize="20dp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@+id/btn_missionLIst2"
-                app:layout_constraintEnd_toEndOf="@+id/btn_missionLIst2"
-                app:layout_constraintStart_toStartOf="@+id/btn_missionLIst2"
-                app:layout_constraintTop_toTopOf="@+id/img_missionListType2"
-                app:layout_constraintVertical_bias="0.467" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="148dp" />
 
-            <Button
-                android:id="@+id/btn_missionLIst2"
-                android:layout_width="100dp"
-                android:layout_height="30dp"
-                android:layout_marginEnd="60dp"
-                android:layout_marginBottom="20dp"
-                android:background="@drawable/round_submit"
-                android:fontFamily="@font/dream4"
-                android:text="미션 수행하기"
-                android:textColor="@color/white"
-                android:textSize="12dp"
-                app:layout_constraintBottom_toBottomOf="@+id/img_missionListType2"
-                app:layout_constraintEnd_toEndOf="parent" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView20"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guideline7"
+            android:id="@+id/rv_missionList"/>
 
-            <TextView
-                android:id="@+id/textView20"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/dream4"
-                android:letterSpacing="-0.03"
-                android:text="의 미션"
-                android:textColor="@color/white"
-                android:textSize="22sp"
-                app:layout_constraintBottom_toBottomOf="@+id/tv_missionListLocation"
-                app:layout_constraintStart_toEndOf="@+id/tv_missionListLocation" />
-
-            <TextView
-                android:id="@+id/tv_missionListLocation"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="40dp"
-                android:layout_marginTop="50dp"
-                android:fontFamily="@font/dream6"
-                android:letterSpacing="-0.03"
-                android:text="런닝머신"
-                android:textColor="@color/white"
-                android:textSize="27sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline7"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:layout_constraintGuide_begin="148dp" />
-
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline11"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:layout_constraintGuide_begin="926dp" />
-
-            <TextView
-                android:id="@+id/tv_missionListKeyword3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/dream5"
-                android:text="펭귄마을"
-                android:textColor="#000000"
-                android:textSize="20dp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@+id/btn_missionLIst3"
-                app:layout_constraintEnd_toEndOf="@+id/btn_missionLIst3"
-                app:layout_constraintStart_toStartOf="@+id/btn_missionLIst3"
-                app:layout_constraintTop_toTopOf="@+id/img_missionListType3" />
-
-            <Button
-                android:id="@+id/btn_missionLIst3"
-                android:layout_width="100dp"
-                android:layout_height="30dp"
-                android:layout_marginEnd="60dp"
-                android:layout_marginBottom="20dp"
-                android:background="@drawable/round_submit"
-                android:fontFamily="@font/dream4"
-                android:text="미션 수행하기"
-                android:textColor="@color/white"
-                android:textSize="12dp"
-                app:layout_constraintBottom_toBottomOf="@+id/img_missionListType3"
-                app:layout_constraintEnd_toEndOf="parent" />
-
-            <ImageView
-                android:id="@+id/img_missionListType1"
-                android:layout_width="140dp"
-                android:layout_height="140dp"
-                android:layout_marginStart="1dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="10dp"
-                app:layout_constraintEnd_toStartOf="@+id/tv_missionListKeyword1"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/guideline7"
-                fab:srcCompat="@drawable/button_gack" />
-
-            <ImageView
-                android:id="@+id/img_missionListType2"
-                android:layout_width="140dp"
-                android:layout_height="140dp"
-                android:layout_marginStart="1dp"
-                android:layout_marginTop="40dp"
-                app:layout_constraintEnd_toEndOf="@+id/img_missionListType1"
-                app:layout_constraintStart_toStartOf="@+id/img_missionListType1"
-                app:layout_constraintTop_toBottomOf="@+id/img_missionListType1"
-                fab:srcCompat="@drawable/button_ju" />
-
-            <ImageView
-                android:id="@+id/img_missionListType3"
-                android:layout_width="140dp"
-                android:layout_height="140dp"
-                android:layout_marginStart="1dp"
-                android:layout_marginTop="40dp"
-                app:layout_constraintEnd_toEndOf="@+id/img_missionListType2"
-                app:layout_constraintStart_toStartOf="@+id/img_missionListType2"
-                app:layout_constraintTop_toBottomOf="@+id/img_missionListType2"
-                fab:srcCompat="@drawable/button_camera" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     <ImageView

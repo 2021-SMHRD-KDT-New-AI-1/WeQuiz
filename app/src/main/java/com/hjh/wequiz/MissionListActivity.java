@@ -1,6 +1,8 @@
 package com.hjh.wequiz;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.animation.ObjectAnimator;
 import android.content.Context;
@@ -28,6 +30,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -41,6 +44,8 @@ public class MissionListActivity extends AppCompatActivity {
     FloatingActionButton float_home, float_map, float_plus, float_plus2, float_mission, float_badge, float_my;
     TextView float_mission_text;
     ImageView transparent;
+    RecyclerView rv_missionList;
+    ArrayList<MissionListVO> mData;
 
     int num;
 
@@ -158,37 +163,19 @@ public class MissionListActivity extends AppCompatActivity {
             }
         });
 
-        // 홈 플로팅 버튼 클릭
+        // 어댑터 부착 코드
+        mData = new ArrayList<>();
 
-        // 카메라 미션 페이지로 이동
-        btn_camera = findViewById(R.id.btn_missionLIst3); /*페이지 전환버튼*/
-        btn_camera.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), CameraActivity.class);
-                startActivityForResult(intent, sub);//액티비티 띄우기
-            }
-        });
+        mData.add(new MissionListVO(1,"choice","양림동","펭귄마을","태태", "바보"));
+        mData.add(new MissionListVO(1,"choice","양림동","펭귄마을","태태", "바보"));
+        mData.add(new MissionListVO(1,"choice","양림동","펭귄마을","태태", "바보"));
 
-        // 객관식 미션 페이지로 이동
-        btn_choice = findViewById(R.id.btn_missionLIst1);/*페이지 전환버튼*/
-        btn_choice.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), ChoiceAnswerActivity.class);
-                startActivityForResult(intent, sub);//액티비티 띄우기
-            }
-        });
 
-        // 주관식 미션 페이지로 이동
-        btn_short = findViewById(R.id.btn_missionLIst2);/*페이지 전환버튼*/
-        btn_short.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), ShortAnswerActivity.class);
-                startActivityForResult(intent, sub);//액티비티 띄우기
-            }
-        });
+        rv_missionList = findViewById(R.id.rv_missionList);
+        rv_missionList.setLayoutManager(new LinearLayoutManager(this));
+
+        MissionListAdapter adapter = new MissionListAdapter(mData);
+        rv_missionList.setAdapter(adapter);
 
 
     }
