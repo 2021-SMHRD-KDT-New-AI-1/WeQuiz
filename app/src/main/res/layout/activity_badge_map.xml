@@ -76,13 +76,13 @@
             app:layout_constraintTop_toTopOf="@+id/guideline8" />
 
         <TextView
-            android:id="@+id/textView24"
+            android:id="@+id/tv_badgeMapTotal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
             android:layout_marginEnd="5dp"
             android:fontFamily="@font/dream6"
-            android:text="10"
+            android:text="0"
             android:textColor="#02D82A"
             android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="@+id/textView23"
@@ -99,9 +99,9 @@
             android:text="/205개"
             android:textColor="#02D82A"
             android:textSize="14sp"
-            app:layout_constraintBottom_toBottomOf="@+id/textView24"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_badgeMapTotal"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/textView24" />
+            app:layout_constraintTop_toTopOf="@+id/tv_badgeMapTotal" />
 
         <TextView
             android:id="@+id/textView26"
