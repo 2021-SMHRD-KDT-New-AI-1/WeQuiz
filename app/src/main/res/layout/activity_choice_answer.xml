@@ -11,103 +11,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
 
-    <!-- ★★플로팅 버튼★★ -->
-
-    <!-- 플로팅 홈 버튼 -->
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/float_home"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="end|bottom"
-        android:layout_marginLeft="330dp"
-        android:layout_marginTop="650dp"
-        android:src="@drawable/float_home"
-        app:backgroundTint="#ffffff"
-        app:elevation="6dp"
-        app:pressedTranslationZ="12dp" />
-
-    <!-- 플로팅 마이미션 버튼 -->
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/float_mission"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/float_mission"
-        android:layout_gravity="end|bottom"
-        android:layout_marginTop="650dp"
-        android:layout_marginLeft="330dp"
-        app:backgroundTint="#ffffff"
-        app:elevation="5dp"
-        android:tooltipText="마이미션"
-        app:pressedTranslationZ="12dp" />
-
-    <!-- 플로팅 전국뱃지지도 버튼 -->
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/float_badge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/float_badge"
-        android:layout_gravity="end|bottom"
-        android:layout_marginTop="650dp"
-        android:layout_marginLeft="330dp"
-        app:backgroundTint="#ffffff"
-        app:elevation="6dp"
-        android:tooltipText="전국뱃지지도"
-        app:pressedTranslationZ="12dp" />
-
-    <!-- 플로팅 내정보수정 버튼 -->
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/float_my"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="end|bottom"
-        android:layout_marginLeft="330dp"
-        android:layout_marginTop="650dp"
-        android:src="@drawable/float_my"
-        app:backgroundTint="#ffffff"
-        app:elevation="6dp"
-        android:tooltipText="내정보수정"
-        app:pressedTranslationZ="12dp" />
-
-    <!-- 플로팅 미션지도 버튼 -->
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/float_map"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="end|bottom"
-        android:layout_marginTop="650dp"
-        android:layout_marginLeft="330dp"
-        android:src="@drawable/float_map"
-        app:backgroundTint="#ffffff"
-        app:elevation="6dp"
-        app:pressedTranslationZ="12dp" />
-
-    <!-- 플로팅 열었을 때 버튼 -->
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/float_plus2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/float_plus2"
-        android:layout_gravity="end|bottom"
-        android:layout_marginTop="650dp"
-        android:layout_marginLeft="330dp"
-        app:backgroundTint="#ff6d64"
-        app:pressedTranslationZ="12dp" />
-
-    <!-- 플로팅 기본 버튼 -->
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/float_plus"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="end|bottom"
-        android:layout_marginLeft="330dp"
-        android:layout_marginTop="650dp"
-        android:src="@drawable/float_plus"
-        app:backgroundTint="#ff6d64"
-        app:pressedTranslationZ="12dp" />
-
-
-
-    <androidx.constraintlayout.widget.ConstraintLayout
+   <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".MainActivity">
@@ -234,5 +138,131 @@
         android:layout_height="match_parent"
         android:layout_margin="0dp"
         android:background="@drawable/transparent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/float_my"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|bottom"
+            android:src="@drawable/float_my"
+            android:tooltipText="내정보수정"
+            app:backgroundTint="#ffffff"
+            app:elevation="6dp"
+            app:pressedTranslationZ="12dp"
+
+            app:layout_constraintBottom_toBottomOf="@+id/float_plus"
+            app:layout_constraintEnd_toEndOf="@+id/float_plus"
+            app:layout_constraintHorizontal_bias="@+id/float_plus"
+            app:layout_constraintStart_toStartOf="@+id/float_plus"
+            app:layout_constraintTop_toTopOf="@+id/float_plus"
+            app:layout_constraintVertical_bias="@+id/float_plus" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/float_mission"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|bottom"
+            android:src="@drawable/float_mission"
+            android:tooltipText="마이미션"
+            app:backgroundTint="#ffffff"
+            app:elevation="6dp"
+            app:pressedTranslationZ="12dp"
+
+            app:layout_constraintBottom_toBottomOf="@+id/float_plus"
+            app:layout_constraintEnd_toEndOf="@+id/float_plus"
+            app:layout_constraintHorizontal_bias="@+id/float_plus"
+            app:layout_constraintStart_toStartOf="@+id/float_plus"
+            app:layout_constraintTop_toTopOf="@+id/float_plus"
+            app:layout_constraintVertical_bias="@+id/float_plus"/>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/float_map"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|bottom"
+            android:src="@drawable/float_map"
+            app:backgroundTint="#ffffff"
+            app:elevation="6dp"
+            app:pressedTranslationZ="12dp"
+
+            app:layout_constraintBottom_toBottomOf="@+id/float_plus"
+            app:layout_constraintEnd_toEndOf="@+id/float_plus"
+            app:layout_constraintHorizontal_bias="@+id/float_plus"
+            app:layout_constraintStart_toStartOf="@+id/float_plus"
+            app:layout_constraintTop_toTopOf="@+id/float_plus"
+            app:layout_constraintVertical_bias="@+id/float_plus"/>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/float_badge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|bottom"
+            android:src="@drawable/float_badge"
+            android:tooltipText="전국뱃지지도"
+            app:backgroundTint="#ffffff"
+            app:elevation="6dp"
+            app:pressedTranslationZ="12dp"
+
+            app:layout_constraintBottom_toBottomOf="@+id/float_plus"
+            app:layout_constraintEnd_toEndOf="@+id/float_plus"
+            app:layout_constraintHorizontal_bias="@+id/float_plus"
+            app:layout_constraintStart_toStartOf="@+id/float_plus"
+            app:layout_constraintTop_toTopOf="@+id/float_plus"
+            app:layout_constraintVertical_bias="@+id/float_plus"/>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/float_home"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|bottom"
+            android:src="@drawable/float_home"
+            app:backgroundTint="#ffffff"
+            app:elevation="6dp"
+
+            app:layout_constraintBottom_toBottomOf="@+id/float_plus"
+            app:layout_constraintEnd_toEndOf="@+id/float_plus"
+            app:layout_constraintHorizontal_bias="@+id/float_plus"
+            app:layout_constraintStart_toStartOf="@+id/float_plus"
+            app:layout_constraintTop_toTopOf="@+id/float_plus"
+            app:layout_constraintVertical_bias="@+id/float_plus" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/float_plus2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|bottom"
+            android:src="@drawable/float_plus2"
+            app:backgroundTint="#ff6d64"
+            app:elevation="6dp"
+
+            app:layout_constraintBottom_toBottomOf="@+id/float_plus"
+            app:layout_constraintEnd_toEndOf="@+id/float_plus"
+            app:layout_constraintHorizontal_bias="@+id/float_plus"
+            app:layout_constraintStart_toStartOf="@+id/float_plus"
+            app:layout_constraintTop_toTopOf="@+id/float_plus"
+            app:layout_constraintVertical_bias="@+id/float_plus" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/float_plus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|bottom"
+            android:layout_marginStart="280dp"
+            android:layout_marginTop="550dp"
+            android:src="@drawable/float_plus"
+            app:backgroundTint="#ff6d64"
+            app:elevation="6dp"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:pressedTranslationZ="12dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </RelativeLayout>
