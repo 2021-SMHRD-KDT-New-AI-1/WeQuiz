@@ -85,6 +85,7 @@ public class MapActivity extends AppCompatActivity implements MapView.POIItemEve
         mapView = new MapView(this); // 지도 담은 변수
         mapViewContainer = findViewById(R.id.map_view); //지도를 띄울 view
         mapViewContainer.addView(mapView); // view에 지도 추가하여 띄우기기
+        mapView.setPOIItemEventListener(poiItemEventListener); // 마커 클릭이벤트, adapter를 set해주기
 
 
 
@@ -155,7 +156,8 @@ public class MapActivity extends AppCompatActivity implements MapView.POIItemEve
                 //클릭시 메시지 뜨는거 확인하고 잘 작동되는지 확인하는 코드
                 // mission 위치 변수
                 // 추후 위치값 변수로 넣어주기
-                mission1_location = MapPoint.mapPointWithGeoCoord(35.141998628841115, 126.912268377757); // 사직공원
+                // 35.141998628841115 / 126.912268377757 => 사직공원
+                mission1_location = MapPoint.mapPointWithGeoCoord(35.14163185026689, 126.93044048953436); // 사직공원
                 mission2_location = MapPoint.mapPointWithGeoCoord(35.146934630213075, 126.92030700163693); // 국립아시아문화전당
                 mission3_location = MapPoint.mapPointWithGeoCoord(35.145588206467046, 126.90908212678009); // 광주향교
 
@@ -183,70 +185,11 @@ public class MapActivity extends AppCompatActivity implements MapView.POIItemEve
                 mapView.addPOIItem(missionMarker3);
 
 
-
             }
         });
 
 
-
-        // 4. 미션마커 클릭 시 문제 화면 생성
-
-
-
-
-
-
     }
-
-
-    @Override
-    public void onPOIItemSelected(MapView mapView, MapPOIItem mapPOIItem) {
-
-    }
-
-    @Override
-    public void onCalloutBalloonOfPOIItemTouched(MapView mapView, MapPOIItem mapPOIItem) {
-
-    }
-
-    @Override
-    public void onCalloutBalloonOfPOIItemTouched(MapView mapView, MapPOIItem mapPOIItem, MapPOIItem.CalloutBalloonButtonType calloutBalloonButtonType) {
-
-    }
-
-    @Override
-    public void onDraggablePOIItemMoved(MapView mapView, MapPOIItem mapPOIItem, MapPoint mapPoint) {
-
-    }
-
-    private MapView.POIItemEventListener poiItemEventListener = new MapView.POIItemEventListener() {
-        @Override
-        public void onPOIItemSelected(MapView mapView, MapPOIItem missionMarker2) {
-            //sample code 없음
-            Log.d("111111111111111","진입");
-        }
-
-        @Override
-        public void onCalloutBalloonOfPOIItemTouched(MapView mapView, MapPOIItem mapPOIItem) {
-            Log.i("112222","진입");
-        }
-
-        @Override
-        public void onCalloutBalloonOfPOIItemTouched(MapView mapView, MapPOIItem mapPOIItem, MapPOIItem.CalloutBalloonButtonType calloutBalloonButtonType) {
-            Log.i("13333111","진입");
-        }
-
-        @Override
-        public void onDraggablePOIItemMoved(MapView mapView, MapPOIItem mapPOIItem, MapPoint mapPoint) {
-            Log.i("1144444411","진입");
-        }
-
-    };
-
-
-
-
-
 
 
     // LocationListener 인터페이스 : 위치 정보를 위치 공급자로부터 지속적으로 받아오는 역할
@@ -283,6 +226,8 @@ public class MapActivity extends AppCompatActivity implements MapView.POIItemEve
         String nowAddr ="현재 위치를 확인 할 수 없습니다.";
         Geocoder geocoder = new Geocoder(mContext, Locale.KOREA);
         List<Address> address;
+        String[] nowAddr_list;
+        String data = null;
 
         try {
             if (geocoder != null) {
@@ -295,6 +240,9 @@ public class MapActivity extends AppCompatActivity implements MapView.POIItemEve
                 {
                     // 주소 받아오기
                     nowAddr = address.get(0).getAddressLine(0).toString();
+                    // 주소 split
+                    nowAddr_list = nowAddr.split("\\s");
+                    data = nowAddr_list[1] + " " + nowAddr_list[2] + " " + nowAddr_list[3] + " " + nowAddr_list[4];
                 }
             }
         }
@@ -302,14 +250,46 @@ public class MapActivity extends AppCompatActivity implements MapView.POIItemEve
             Toast.makeText(mContext, "주소를 가져 올 수 없습니다.", Toast.LENGTH_LONG).show();
             e.printStackTrace();
         }
-        return nowAddr;
+        return data;
     }
 
 
 
-    // 마커 클릭 이벤트 리스너
+    // 4. 미션마커 클릭 시 문제 화면 생성
+    @Override
+    public void onPOIItemSelected(MapView mapView, MapPOIItem mapPOIItem) {
+    }
+    @Override
+    public void onCalloutBalloonOfPOIItemTouched(MapView mapView, MapPOIItem mapPOIItem) {
+    }
+    @Override
+    public void onCalloutBalloonOfPOIItemTouched(MapView mapView, MapPOIItem mapPOIItem, MapPOIItem.CalloutBalloonButtonType calloutBalloonButtonType) {
+    }
+    @Override
+    public void onDraggablePOIItemMoved(MapView mapView, MapPOIItem mapPOIItem, MapPoint mapPoint) {
+    }
 
 
+    public MapView.POIItemEventListener poiItemEventListener = new MapView.POIItemEventListener() {
+        @Override
+        public void onPOIItemSelected(MapView mapView, MapPOIItem MarkerListener) {
+            Log.d("아이템 이름", MarkerListener.getItemName()); // 마커 클릭 구분 Log.d
+
+
+        }
+        @Override
+        public void onCalloutBalloonOfPOIItemTouched(MapView mapView, MapPOIItem mapPOIItem) {
+            Log.i("112222","진입");
+        }
+        @Override
+        public void onCalloutBalloonOfPOIItemTouched(MapView mapView, MapPOIItem mapPOIItem, MapPOIItem.CalloutBalloonButtonType calloutBalloonButtonType) {
+            Log.i("13333111","진입");
+        }
+        @Override
+        public void onDraggablePOIItemMoved(MapView mapView, MapPOIItem mapPOIItem, MapPoint mapPoint) {
+            Log.i("1144444411","진입");
+        }
+    };
 
 
 
