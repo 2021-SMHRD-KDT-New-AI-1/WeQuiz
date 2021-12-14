@@ -27,6 +27,7 @@ public class MapActivity<mapView> extends AppCompatActivity {
 package com.hjh.wequiz;
 
 import android.Manifest;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -46,6 +47,7 @@ import android.widget.SlidingDrawer;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.ActivityCompat;
@@ -99,7 +101,10 @@ public class MapActivity extends AppCompatActivity implements MapView.POIItemEve
     ImageView handle;
     LinearLayout linear;
     LayoutInflater inflater;
-
+    SlidingDrawer drawer;
+    ActionBarDrawerToggle drawerToggle;
+    androidx.appcompat.app.AlertDialog.Builder builder;
+    androidx.appcompat.app.AlertDialog ad;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -121,13 +126,23 @@ public class MapActivity extends AppCompatActivity implements MapView.POIItemEve
         mapViewContainer = findViewById(R.id.map_view); //지도를 띄울 view
         mapViewContainer.addView(mapView); // view에 지도 추가하여 띄우기기
         mapView.setPOIItemEventListener(poiItemEventListener); // 마커 클릭이벤트, adapter를 set해주기
-//        SlidingDrawer drawer = (SlidingDrawer)findViewById(R.id.slide);
+        drawer = (SlidingDrawer)findViewById(R.id.slide);
 
         handle = findViewById(R.id.handle);
         linear = findViewById(R.id.linear);
         inflater = getLayoutInflater();
 
-
+        /*drawerToggle=new ActionBarDrawerToggle(this,drawer,R.string.open,R.string.close){
+            @Override
+            public void onDrawerOpened(View drawerView) {
+                super.onDrawerOpened(drawerView);
+            }
+            @Override
+            public void onDrawerClosed(View drawerView) {
+                super.onDrawerClosed(drawerView);
+            }
+        };*/
+        //drawer
 
 
 
@@ -328,14 +343,54 @@ public class MapActivity extends AppCompatActivity implements MapView.POIItemEve
         public void onPOIItemSelected(MapView mapView, MapPOIItem MarkerListener) {
             Log.d("아이템 이름", MarkerListener.getItemName()); // 마커 클릭 구분 Log.d
 
-            changeLayout(R.layout.activity_savemission);
+            builder = new androidx.appcompat.app.AlertDialog.Builder(MapActivity.this, R.style.CustomDialog);
 
-            View view = inflater.inflate(R.layout.activity_savemission, linear, true);
+            View dialoglayout = getLayoutInflater().inflate(R.layout.activity_savemission, null);
+            builder.setView(dialoglayout);
+
+            ImageView dialogButton1 = dialoglayout.findViewById(R.id.btn_savemis);
+            ImageView dialogButton2 = dialoglayout.findViewById(R.id.btn_changemis);
+            Button dialogButton3 = dialoglayout.findViewById(R.id.btn_exit);
+
+            dialogButton1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    //저장하는 코드
+//                    ad.dismiss();
+                    Log.d("저장","ㅇㅇ");
+                }
+            });
+
+            dialogButton2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    //교체하는 코드
+//                    ad.dismiss();
+                    Log.d("교체","ㅇㅇ");
+                }
+            });
 
 
-            SlidingDrawer drawer = (SlidingDrawer)findViewById(R.id.slide);
-            drawer.animateClose();
+            dialogButton3.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ad.dismiss();
+                }
+            });
 
+            ad = builder.create();
+            ad.show();
+
+
+//            changeLayout(R.layout.activity_savemission);
+//
+//            View view = inflater.inflate(R.layout.activity_savemission, linear, true);
+//
+//
+//            //SlidingDrawer drawer = (SlidingDrawer)findViewById(R.id.slide);
+//            drawer.animateClose();
+//            //drawer.setClickable(true);
+//            show();
 
         }
         @Override
@@ -407,11 +462,19 @@ public class MapActivity extends AppCompatActivity implements MapView.POIItemEve
     }
 
 
+    // 마커클릭시 팝업 메소드
+    void show() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("저장");
 
-
-
-    private void changeLayout(int savemission) {
     }
+
+
+
+
+//    private void changeLayout(int savemission) {
+//
+//    }
 
 
 }
