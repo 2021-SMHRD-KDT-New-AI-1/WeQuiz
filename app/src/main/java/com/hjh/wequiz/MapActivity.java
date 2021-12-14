@@ -210,9 +210,9 @@ public class MapActivity extends AppCompatActivity implements MapView.POIItemEve
                     Log.d("mmmmmmission ID --- ", String.valueOf(nearMissionList.get(i).getMissionId()));
                 }
 
-                mission1_location = MapPoint.mapPointWithGeoCoord(nearMissionList.get(0).getLat(), nearMissionList.get(0).getLon()); // 사직공원
-                mission2_location = MapPoint.mapPointWithGeoCoord(nearMissionList.get(1).getLat(), nearMissionList.get(1).getLon()); // 국립아시아문화전당
-                mission3_location = MapPoint.mapPointWithGeoCoord(nearMissionList.get(2).getLat(), nearMissionList.get(2).getLon()); // 광주향교
+                mission1_location = MapPoint.mapPointWithGeoCoord(35.141998628841115, 126.912268377757); // 사직공원
+                mission2_location = MapPoint.mapPointWithGeoCoord(35.141998628841115, 126.912268377757); // 국립아시아문화전당
+                mission3_location = MapPoint.mapPointWithGeoCoord(35.141998628841115, 126.912268377757); // 광주향교
 
                 // 마커생성
                 missionMarker1 = new MapPOIItem(); // 마커 생성

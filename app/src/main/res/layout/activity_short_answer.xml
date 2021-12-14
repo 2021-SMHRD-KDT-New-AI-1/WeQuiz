@@ -64,7 +64,7 @@
             android:lineSpacingExtra="10dp"
             android:text="서울의 경리단길에 빗대어 광주에는 동리단길이라는 유명한 카페거리가 있다. 동리단길이 있는 동네의 이름은?"
             android:textColor="#FDFDFD"
-            android:textSize="15SP"
+            android:textSize="15sp"
             app:layout_constraintStart_toStartOf="@+id/textView16"
             app:layout_constraintTop_toBottomOf="@+id/textView16" />
 
