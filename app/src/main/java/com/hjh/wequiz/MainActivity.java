@@ -73,6 +73,8 @@ public class MainActivity extends AppCompatActivity {
     Location location;
     private static final String TAG = "MainActivity";
 
+    String myLocation;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -126,8 +128,8 @@ public class MainActivity extends AppCompatActivity {
                 double lng = location.getLongitude(); //경도
                 double alti = location.getAltitude(); //고도
                 Log.d(TAG, "현재 위치: " + provider + " / " + lat + " / " + lng + " / " + alti);
-                tv_mainLocation.setText(getAddress(MainActivity.this, lat,lng));
-
+                myLocation = getAddress(MainActivity.this, lat,lng);
+                tv_mainLocation.setText(myLocation);
             }
         });
 
@@ -252,6 +254,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, QuizLoadingActivity.class);
+//                intent.putExtra("myLocation", myLocation);
                 startActivity(intent);
             }
         });
@@ -266,7 +269,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void getRankInfo() {
-        String url = "http://172.30.1.34:3003/Badge/RankInfo";
+        String url = "http://172.30.1.58:3003/Badge/RankInfo";
         StringRequest request = new StringRequest(
                 Request.Method.POST,
                 url,
@@ -318,7 +321,7 @@ public class MainActivity extends AppCompatActivity {
 
     // 회원 정보를 서버에 요청하여 받아오는 메소드~
     public void getMemberInfo(String id){
-        String url = "http://172.30.1.34:3003/Member/MemberInfo";
+        String url = "http://172.30.1.58:3003/Member/MemberInfo";
         StringRequest request = new StringRequest(
                 Request.Method.POST,
                 url,
