@@ -45,20 +45,18 @@ public class MissionListActivity extends AppCompatActivity {
     TextView float_mission_text;
     ImageView transparent;
     RecyclerView rv_missionList;
+    TextView tv_missionListLocation;
     ArrayList<MissionListVO> mData;
 
     int num;
 
-    // 사진 문제 카메라 접근
-    Button btn_camera;
-    // 객관식, 주관식 문제 이동 버튼
-    Button btn_choice, btn_short;
     // intent로 액티비티 간 이동하기 위한 상수
     public static final int sub = 1001;
 
 
     RequestQueue requestQueue;
     Context mContext;
+    MissionListAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,12 +68,6 @@ public class MissionListActivity extends AppCompatActivity {
         }
         mContext = this;
 
-
-        String mem_id = PreferenceManager.getString(mContext, "mem_id");
-        Intent intent = getIntent();
-        String location_name = intent.getStringExtra("location_name");
-
-        getMissionList(mem_id, location_name);
 
         // 플로팅 버튼 초기화
         float_plus = findViewById(R.id.float_plus);
@@ -166,17 +158,19 @@ public class MissionListActivity extends AppCompatActivity {
         // 어댑터 부착 코드
         mData = new ArrayList<>();
 
-        mData.add(new MissionListVO(1,"choice","양림동","펭귄마을","태태", "바보"));
-        mData.add(new MissionListVO(1,"choice","양림동","펭귄마을","태태", "바보"));
-        mData.add(new MissionListVO(1,"choice","양림동","펭귄마을","태태", "바보"));
-
+        tv_missionListLocation = findViewById(R.id.tv_missionListLocation);
 
         rv_missionList = findViewById(R.id.rv_missionList);
         rv_missionList.setLayoutManager(new LinearLayoutManager(this));
 
-        MissionListAdapter adapter = new MissionListAdapter(mData);
-        rv_missionList.setAdapter(adapter);
+        String mem_id = PreferenceManager.getString(mContext, "mem_id");
+        Intent intent = getIntent();
+        String location_name = intent.getStringExtra("location_name");
 
+        getMissionList(mem_id, location_name);
+
+        adapter = new MissionListAdapter(mData);
+        rv_missionList.setAdapter(adapter);
 
     }
 
@@ -201,8 +195,12 @@ public class MissionListActivity extends AppCompatActivity {
                                 String quiz = jsonObject.getString("quiz");
                                 String answer = jsonObject.getString("answer");
 
-
+                                MissionListVO mission = new MissionListVO(mission_id, mission_type, location_name, keyword, quiz, answer);
+                                mData.add(mission);
+                                adapter.notifyDataSetChanged();
                             }
+                            tv_missionListLocation.setText(location_name);
+
 
                         } catch (JSONException e) {
                             e.printStackTrace();
