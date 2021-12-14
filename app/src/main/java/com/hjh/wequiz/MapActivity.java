@@ -36,8 +36,12 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.SlidingDrawer;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
@@ -72,7 +76,9 @@ public class MapActivity extends AppCompatActivity implements MapView.POIItemEve
     MapPoint mission1_location;
     MapPoint mission2_location;
     MapPoint mission3_location;
-
+    ImageView handle;
+    LinearLayout linear;
+    LayoutInflater inflater;
 
 
     @Override
@@ -86,6 +92,13 @@ public class MapActivity extends AppCompatActivity implements MapView.POIItemEve
         mapViewContainer = findViewById(R.id.map_view); //지도를 띄울 view
         mapViewContainer.addView(mapView); // view에 지도 추가하여 띄우기기
         mapView.setPOIItemEventListener(poiItemEventListener); // 마커 클릭이벤트, adapter를 set해주기
+//        SlidingDrawer drawer = (SlidingDrawer)findViewById(R.id.slide);
+
+        handle = findViewById(R.id.handle);
+        linear = findViewById(R.id.linear);
+        inflater = getLayoutInflater();
+
+
 
 
 
@@ -275,6 +288,14 @@ public class MapActivity extends AppCompatActivity implements MapView.POIItemEve
         public void onPOIItemSelected(MapView mapView, MapPOIItem MarkerListener) {
             Log.d("아이템 이름", MarkerListener.getItemName()); // 마커 클릭 구분 Log.d
 
+            changeLayout(R.layout.activity_savemission);
+
+            View view = inflater.inflate(R.layout.activity_savemission, linear, true);
+
+
+            SlidingDrawer drawer = (SlidingDrawer)findViewById(R.id.slide);
+            drawer.animateClose();
+
 
         }
         @Override
@@ -292,6 +313,9 @@ public class MapActivity extends AppCompatActivity implements MapView.POIItemEve
     };
 
 
+
+    private void changeLayout(int savemission) {
+    }
 
 
 }
