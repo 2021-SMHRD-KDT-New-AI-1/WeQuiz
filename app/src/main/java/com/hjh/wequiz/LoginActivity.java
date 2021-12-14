@@ -81,7 +81,7 @@ public class LoginActivity extends AppCompatActivity {
 
     // Json파일을 만들어 웹 서버로 보내기
     public void postLogin(String id, String pw) {
-        String url = "http://172.30.1.34:3003/Member/Login";
+        String url = "http://172.30.1.58:3003/Member/Login";
         StringRequest request = new StringRequest(
                 Request.Method.POST,
                 url,

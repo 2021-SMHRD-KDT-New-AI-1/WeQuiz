@@ -176,7 +176,7 @@ public class MissionListActivity extends AppCompatActivity {
 
     public void getMissionList(String mem_id, String location_name){
 
-        String url = "http://172.30.1.34:3003/Mission/MissionList";
+        String url = "http://172.30.1.58:3003/Mission/MissionList";
         StringRequest request = new StringRequest(
                 Request.Method.POST,
                 url,
