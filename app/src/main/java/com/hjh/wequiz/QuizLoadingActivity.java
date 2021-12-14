@@ -17,7 +17,10 @@ public class QuizLoadingActivity extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
+//                Intent getIntent = getIntent();
+//                String myLocation = getIntent.getStringExtra("myLocation");
                 Intent intent = new Intent(getApplicationContext(), MapActivity.class);
+//                intent.putExtra("myLocation", myLocation);
                 startActivity(intent);
                 finish();
             }

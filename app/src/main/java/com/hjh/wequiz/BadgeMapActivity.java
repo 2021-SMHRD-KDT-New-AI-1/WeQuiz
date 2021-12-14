@@ -238,7 +238,7 @@ public class BadgeMapActivity extends AppCompatActivity {
     }
 
     public void getMyBadge(String id) {
-        String url = "http://172.30.1.34:3003/Badge/MyBadge";
+        String url = "http://172.30.1.58:3003/Badge/MyBadge";
         StringRequest request = new StringRequest(
                 Request.Method.POST,
                 url,

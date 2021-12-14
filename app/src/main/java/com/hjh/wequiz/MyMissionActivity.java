@@ -168,7 +168,7 @@ public class MyMissionActivity extends AppCompatActivity {
     }
 
     public void getMyMission(String id) {
-        String url = "http://172.30.1.34:3003/Mission/MyMission";
+        String url = "http://172.30.1.58:3003/Mission/MyMission";
         StringRequest request = new StringRequest(
                 Request.Method.POST,
                 url,

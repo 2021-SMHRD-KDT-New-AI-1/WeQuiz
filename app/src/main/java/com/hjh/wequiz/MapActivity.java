@@ -28,6 +28,7 @@ package com.hjh.wequiz;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
@@ -49,11 +50,26 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.ActivityCompat;
+
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
 import net.daum.mf.map.api.MapPOIItem;
 import net.daum.mf.map.api.MapPoint;
 import net.daum.mf.map.api.MapView;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -61,6 +77,10 @@ import java.util.Map;
 
 
 public class MapActivity extends AppCompatActivity implements MapView.POIItemEventListener{
+
+    ArrayList<MissionMapVO> nearMissionList;
+    RequestQueue requestQueue;
+    Context mContext;
 
     private static final String TAG = "MapActivity";
 
@@ -88,6 +108,15 @@ public class MapActivity extends AppCompatActivity implements MapView.POIItemEve
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
+
+        if (requestQueue == null) {
+            requestQueue = Volley.newRequestQueue(getApplicationContext());
+        }
+        mContext = this;
+        nearMissionList = new ArrayList<>();
+
+//        Intent getIntent = getIntent();
+//        String myLocation = getIntent.getStringExtra("myLocation");
 
 
         // 카카오맵 지도 띄우기
@@ -183,9 +212,20 @@ public class MapActivity extends AppCompatActivity implements MapView.POIItemEve
                 // mission 위치 변수
                 // 추후 위치값 변수로 넣어주기
                 // 35.141998628841115 / 126.912268377757 => 사직공원
-                mission1_location = MapPoint.mapPointWithGeoCoord(35.14163185026689, 126.93044048953436); // 사직공원
-                mission2_location = MapPoint.mapPointWithGeoCoord(35.146934630213075, 126.92030700163693); // 국립아시아문화전당
-                mission3_location = MapPoint.mapPointWithGeoCoord(35.145588206467046, 126.90908212678009); // 광주향교
+                Log.d("mission", "onClick: fffff");
+                try {
+                    getNearMissionList(lat, lng, "광주광역시");
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
+
+                for(int i = 0; i < nearMissionList.size(); i++) {
+                    Log.d("mmmmmmission ID --- ", String.valueOf(nearMissionList.get(i).getMissionId()));
+                }
+
+                mission1_location = MapPoint.mapPointWithGeoCoord(nearMissionList.get(0).getLat(), nearMissionList.get(0).getLon()); // 사직공원
+                mission2_location = MapPoint.mapPointWithGeoCoord(nearMissionList.get(1).getLat(), nearMissionList.get(1).getLon()); // 국립아시아문화전당
+                mission3_location = MapPoint.mapPointWithGeoCoord(nearMissionList.get(2).getLat(), nearMissionList.get(2).getLon()); // 광주향교
 
                 // 마커생성
                 missionMarker1 = new MapPOIItem(); // 마커 생성
@@ -324,6 +364,62 @@ public class MapActivity extends AppCompatActivity implements MapView.POIItemEve
             Log.i("1144444411","진입");
         }
     };
+
+
+    public void getNearMissionList(double mem_lat, double mem_lon, String location_name) {
+        String url = "http://172.30.1.58:3003/Mission/NearMission";
+        StringRequest request = new StringRequest(
+                Request.Method.POST,
+                url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONArray jsonArray = new JSONArray(response);
+                            for(int i = 0; i < jsonArray.length(); i++) {
+                                JSONObject jsonObject = jsonArray.getJSONObject(i);
+
+                                String mission_id = jsonObject.getString("mission_id");
+                                String mission_type = jsonObject.getString("mission_type");
+                                String keyword = jsonObject.getString("keyword");
+                                String lat = jsonObject.getString("lat");
+                                String lon = jsonObject.getString("lon");
+
+                                MissionMapVO mission = new MissionMapVO(Integer.parseInt(mission_id), mission_type, keyword, Double.parseDouble(lat), Double.parseDouble(lon));
+                                nearMissionList.add(mission);
+
+                            }
+                            for(int i = 0; i < nearMissionList.size(); i++) {
+                                Log.d("mission ID --- ", String.valueOf(nearMissionList.get(i).getMissionId()));
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                    }
+                }
+        ) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("mem_lat", String.valueOf(mem_lat));
+                params.put("mem_lon", String.valueOf(mem_lon));
+                params.put("location_name", location_name);
+
+                return params;
+            }
+        };
+        requestQueue.add(request);
+    }
+
+
 
 
 

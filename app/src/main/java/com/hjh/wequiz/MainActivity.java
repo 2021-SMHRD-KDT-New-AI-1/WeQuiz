@@ -73,6 +73,8 @@ public class MainActivity extends AppCompatActivity {
     Location location;
     private static final String TAG = "MainActivity";
 
+    String myLocation;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -125,10 +127,9 @@ public class MainActivity extends AppCompatActivity {
                 double lat = location.getLatitude(); //위도
                 double lng = location.getLongitude(); //경도
                 double alti = location.getAltitude(); //고도
-                String test = getAddress(MainActivity.this, lat,lng);
-                tv_mainLocation.setText(test);
-                Log.d(TAG, "현재 위치: " + provider + " / " + lat + " / " + lng + " / " + alti + "/" + test);
-
+                Log.d(TAG, "현재 위치: " + provider + " / " + lat + " / " + lng + " / " + alti);
+                myLocation = getAddress(MainActivity.this, lat,lng);
+                tv_mainLocation.setText(myLocation);
             }
         });
 
@@ -253,6 +254,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, QuizLoadingActivity.class);
+//                intent.putExtra("myLocation", myLocation);
                 startActivity(intent);
             }
         });
@@ -267,7 +269,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void getRankInfo() {
-        String url = "http://172.30.1.34:3003/Badge/RankInfo";
+        String url = "http://172.30.1.58:3003/Badge/RankInfo";
         StringRequest request = new StringRequest(
                 Request.Method.POST,
                 url,
@@ -319,7 +321,7 @@ public class MainActivity extends AppCompatActivity {
 
     // 회원 정보를 서버에 요청하여 받아오는 메소드~
     public void getMemberInfo(String id){
-        String url = "http://172.30.1.34:3003/Member/MemberInfo";
+        String url = "http://172.30.1.58:3003/Member/MemberInfo";
         StringRequest request = new StringRequest(
                 Request.Method.POST,
                 url,
@@ -414,7 +416,7 @@ public class MainActivity extends AppCompatActivity {
 
     // 현재위치 주소 표시 메소드
     public static String getAddress(Context mContext, double lat, double lng) {
-        String nowAddr;
+        String nowAddr ="현재 위치를 확인 할 수 없습니다.";
         Geocoder geocoder = new Geocoder(mContext, Locale.KOREA);
         List<Address> address;
         String[] nowAddr_list;
