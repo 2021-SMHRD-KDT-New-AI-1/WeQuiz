@@ -125,8 +125,9 @@ public class MainActivity extends AppCompatActivity {
                 double lat = location.getLatitude(); //위도
                 double lng = location.getLongitude(); //경도
                 double alti = location.getAltitude(); //고도
-                Log.d(TAG, "현재 위치: " + provider + " / " + lat + " / " + lng + " / " + alti);
-                tv_mainLocation.setText(getAddress(MainActivity.this, lat,lng));
+                String test = getAddress(MainActivity.this, lat,lng);
+                tv_mainLocation.setText(test);
+                Log.d(TAG, "현재 위치: " + provider + " / " + lat + " / " + lng + " / " + alti + "/" + test);
 
             }
         });
@@ -413,7 +414,7 @@ public class MainActivity extends AppCompatActivity {
 
     // 현재위치 주소 표시 메소드
     public static String getAddress(Context mContext, double lat, double lng) {
-        String nowAddr ="현재 위치를 확인 할 수 없습니다.";
+        String nowAddr;
         Geocoder geocoder = new Geocoder(mContext, Locale.KOREA);
         List<Address> address;
         String[] nowAddr_list;

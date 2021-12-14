@@ -27,7 +27,8 @@
         android:usesCleartextTraffic="true">
         <activity
             android:name=".savemission"
-            android:exported="true" />
+            android:exported="true"
+            android:theme="@android:style/Theme.Dialog" />
 
         <meta-data
             android:name="com.kakao.sdk.AppKey"

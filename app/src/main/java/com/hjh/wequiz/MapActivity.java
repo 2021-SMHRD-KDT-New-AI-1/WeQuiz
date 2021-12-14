@@ -45,6 +45,7 @@ import android.widget.SlidingDrawer;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.ActivityCompat;
@@ -79,6 +80,8 @@ public class MapActivity extends AppCompatActivity implements MapView.POIItemEve
     ImageView handle;
     LinearLayout linear;
     LayoutInflater inflater;
+    SlidingDrawer drawer;
+    ActionBarDrawerToggle drawerToggle;
 
 
     @Override
@@ -92,13 +95,23 @@ public class MapActivity extends AppCompatActivity implements MapView.POIItemEve
         mapViewContainer = findViewById(R.id.map_view); //지도를 띄울 view
         mapViewContainer.addView(mapView); // view에 지도 추가하여 띄우기기
         mapView.setPOIItemEventListener(poiItemEventListener); // 마커 클릭이벤트, adapter를 set해주기
-//        SlidingDrawer drawer = (SlidingDrawer)findViewById(R.id.slide);
+        drawer = (SlidingDrawer)findViewById(R.id.slide);
 
         handle = findViewById(R.id.handle);
         linear = findViewById(R.id.linear);
         inflater = getLayoutInflater();
 
-
+        /*drawerToggle=new ActionBarDrawerToggle(this,drawer,R.string.open,R.string.close){
+            @Override
+            public void onDrawerOpened(View drawerView) {
+                super.onDrawerOpened(drawerView);
+            }
+            @Override
+            public void onDrawerClosed(View drawerView) {
+                super.onDrawerClosed(drawerView);
+            }
+        };*/
+        //drawer
 
 
 
@@ -293,9 +306,9 @@ public class MapActivity extends AppCompatActivity implements MapView.POIItemEve
             View view = inflater.inflate(R.layout.activity_savemission, linear, true);
 
 
-            SlidingDrawer drawer = (SlidingDrawer)findViewById(R.id.slide);
+            //SlidingDrawer drawer = (SlidingDrawer)findViewById(R.id.slide);
             drawer.animateClose();
-
+            //drawer.setClickable(true);
 
         }
         @Override
@@ -315,6 +328,7 @@ public class MapActivity extends AppCompatActivity implements MapView.POIItemEve
 
 
     private void changeLayout(int savemission) {
+
     }
 
 
