@@ -230,8 +230,15 @@ public class MainActivity extends AppCompatActivity {
 
         // 회원 정보 가져와서 상단의 환영 문구에 반영하는 코드
         String mem_id = PreferenceManager.getString(this, "mem_id");
-        getMemberInfo(mem_id);
         // 여기까지 환영 문구 변경 코드
+
+        // 로그인인 상태일 때 버튼 이벤트 변화
+        if(mem_id.equals("")) {
+            btn_mainLogin.setText("로그인");
+        } else {
+            getMemberInfo(mem_id);
+            btn_mainLogin.setText("로그아웃");
+        }
 
 
         // 버튼 이벤트
@@ -260,13 +267,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-        // 로그인인 상태일 때 버튼 이벤트 변화
-        if(mem_id.equals("")) {
-            btn_mainLogin.setText("로그인");
-        } else {
-            btn_mainLogin.setText("로그아웃");
-        }
 
     }
 
