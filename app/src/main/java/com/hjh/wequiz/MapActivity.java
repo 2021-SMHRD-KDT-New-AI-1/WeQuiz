@@ -101,8 +101,6 @@ public class MapActivity extends AppCompatActivity implements MapView.POIItemEve
     ImageView handle;
     LinearLayout linear;
     LayoutInflater inflater;
-    SlidingDrawer drawer;
-    ActionBarDrawerToggle drawerToggle;
     androidx.appcompat.app.AlertDialog.Builder builder;
     androidx.appcompat.app.AlertDialog ad;
 
@@ -126,7 +124,7 @@ public class MapActivity extends AppCompatActivity implements MapView.POIItemEve
         mapViewContainer = findViewById(R.id.map_view); //지도를 띄울 view
         mapViewContainer.addView(mapView); // view에 지도 추가하여 띄우기기
         mapView.setPOIItemEventListener(poiItemEventListener); // 마커 클릭이벤트, adapter를 set해주기
-        drawer = (SlidingDrawer)findViewById(R.id.slide);
+
 
         handle = findViewById(R.id.handle);
         linear = findViewById(R.id.linear);
@@ -409,6 +407,7 @@ public class MapActivity extends AppCompatActivity implements MapView.POIItemEve
 
 
     public void getNearMissionList(double mem_lat, double mem_lon, String location_name) {
+        Log.d("mission", "getNearMissionList: !!!!!!!!!!!!!!!");
         String url = "http://172.30.1.58:3003/Mission/NearMission";
         StringRequest request = new StringRequest(
                 Request.Method.POST,
