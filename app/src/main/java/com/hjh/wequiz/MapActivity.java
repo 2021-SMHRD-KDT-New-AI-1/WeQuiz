@@ -104,6 +104,8 @@ public class MapActivity extends AppCompatActivity implements MapView.POIItemEve
     androidx.appcompat.app.AlertDialog.Builder builder;
     androidx.appcompat.app.AlertDialog ad;
 
+    Button btn_mission;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -203,7 +205,7 @@ public class MapActivity extends AppCompatActivity implements MapView.POIItemEve
 
 
         // 3. 버튼 클릭시 내 주변 미션 마커
-        Button btn_mission = findViewById(R.id.btn_mission);
+        btn_mission = findViewById(R.id.btn_mission);
         // Event Listener
         btn_mission.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -223,9 +225,9 @@ public class MapActivity extends AppCompatActivity implements MapView.POIItemEve
                     Log.d("mmmmmmission ID --- ", String.valueOf(nearMissionList.get(i).getMissionId()));
                 }
 
-                mission1_location = MapPoint.mapPointWithGeoCoord(nearMissionList.get(0).getLat(), nearMissionList.get(0).getLon()); // 사직공원
-                mission2_location = MapPoint.mapPointWithGeoCoord(nearMissionList.get(1).getLat(), nearMissionList.get(1).getLon()); // 국립아시아문화전당
-                mission3_location = MapPoint.mapPointWithGeoCoord(nearMissionList.get(2).getLat(), nearMissionList.get(2).getLon()); // 광주향교
+//                mission1_location = MapPoint.mapPointWithGeoCoord(35.141998628841115, 126.912268377757); // 사직공원
+//                mission2_location = MapPoint.mapPointWithGeoCoord(35.141998628841115, 126.912268377757); // 국립아시아문화전당
+//                mission3_location = MapPoint.mapPointWithGeoCoord(35.141998628841115, 126.912268377757); // 광주향교
 
                 // 마커생성
                 missionMarker1 = new MapPOIItem(); // 마커 생성
@@ -237,9 +239,9 @@ public class MapActivity extends AppCompatActivity implements MapView.POIItemEve
                 missionMarker1.setTag(1); // 마커 생성주기
                 missionMarker2.setTag(2);
                 missionMarker3.setTag(3);
-                missionMarker1.setMapPoint(mission1_location); // 위치값 입력
-                missionMarker2.setMapPoint(mission2_location);
-                missionMarker3.setMapPoint(mission3_location);
+//                missionMarker1.setMapPoint(mission1_location); // 위치값 입력
+//                missionMarker2.setMapPoint(mission2_location);
+//                missionMarker3.setMapPoint(mission3_location);
                 missionMarker1.setMarkerType(MapPOIItem.MarkerType.BluePin); // 마커 디자인, BluePin 기본타입
                 missionMarker2.setMarkerType(MapPOIItem.MarkerType.BluePin);
                 missionMarker3.setMarkerType(MapPOIItem.MarkerType.BluePin);
@@ -433,6 +435,12 @@ public class MapActivity extends AppCompatActivity implements MapView.POIItemEve
                             for(int i = 0; i < nearMissionList.size(); i++) {
                                 Log.d("mission ID --- ", String.valueOf(nearMissionList.get(i).getMissionId()));
                             }
+                            mission1_location = MapPoint.mapPointWithGeoCoord(nearMissionList.get(0).getLat(), nearMissionList.get(0).getLon());
+                            mission2_location = MapPoint.mapPointWithGeoCoord(nearMissionList.get(1).getLat(), nearMissionList.get(1).getLon()); // 국립아시아문화전당
+                            mission3_location = MapPoint.mapPointWithGeoCoord(nearMissionList.get(2).getLat(), nearMissionList.get(2).getLon()); // 광주향교
+                            missionMarker1.setMapPoint(mission1_location);
+                            missionMarker2.setMapPoint(mission2_location);
+                            missionMarker3.setMapPoint(mission3_location);
 
                         } catch (JSONException e) {
                             e.printStackTrace();
