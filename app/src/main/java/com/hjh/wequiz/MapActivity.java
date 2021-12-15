@@ -283,7 +283,7 @@ public class MapActivity extends AppCompatActivity implements MapView.POIItemEve
             marker.setMarkerType(MapPOIItem.MarkerType.CustomImage); // 기본으로 제공하는 BluePin 마커 모양, customimage는 이미지 넣을 수 있음
             marker.setCustomImageResourceId(R.drawable.badge_yeosu); // 이미지 파일
             marker.setSelectedMarkerType(MapPOIItem.MarkerType.RedPin); // 마커를 클릭했을때, 기본으로 제공하는 RedPin 마커 모양.
-            //mapView.addPOIItem(marker); 이건 없어도 되나???
+
 
         }
 
