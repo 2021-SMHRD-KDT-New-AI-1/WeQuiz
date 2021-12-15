@@ -37,6 +37,8 @@ import java.util.Map;
 
 public class MyMissionActivity extends AppCompatActivity {
 
+    String ip = "http://4603-210-223-239-152.ngrok.io";
+
     RequestQueue requestQueue;
     Context mContext;
 
@@ -168,7 +170,7 @@ public class MyMissionActivity extends AppCompatActivity {
     }
 
     public void getMyMission(String id) {
-        String url = "http://172.30.1.58:3003/Mission/MyMission";
+        String url = ip + "/Mission/MyMission";
         StringRequest request = new StringRequest(
                 Request.Method.POST,
                 url,

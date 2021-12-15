@@ -49,6 +49,8 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
+    String ip = "http://4603-210-223-239-152.ngrok.io";
+
     RequestQueue requestQueue;
     Context mContext;
     ArrayList<RankVO> mData;
@@ -269,7 +271,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void getRankInfo() {
-        String url = "http://172.30.1.58:3003/Badge/RankInfo";
+        String url = ip + "/Badge/RankInfo";
         StringRequest request = new StringRequest(
                 Request.Method.POST,
                 url,
@@ -321,7 +323,7 @@ public class MainActivity extends AppCompatActivity {
 
     // 회원 정보를 서버에 요청하여 받아오는 메소드~
     public void getMemberInfo(String id){
-        String url = "http://172.30.1.58:3003/Member/MemberInfo";
+        String url = ip + "/Member/MemberInfo";
         StringRequest request = new StringRequest(
                 Request.Method.POST,
                 url,
