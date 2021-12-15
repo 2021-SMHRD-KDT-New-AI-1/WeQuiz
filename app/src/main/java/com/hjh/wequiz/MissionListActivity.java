@@ -37,6 +37,8 @@ import java.util.Map;
 
 public class MissionListActivity extends AppCompatActivity {
 
+    String ip = "http://4603-210-223-239-152.ngrok.io";
+
     static boolean click_r;
     // 플로팅버튼 상태
     private boolean fabMain_status = false;
@@ -176,7 +178,7 @@ public class MissionListActivity extends AppCompatActivity {
 
     public void getMissionList(String mem_id, String location_name){
 
-        String url = "http://172.30.1.58:3003/Mission/MissionList";
+        String url = ip + "/Mission/MissionList";
         StringRequest request = new StringRequest(
                 Request.Method.POST,
                 url,

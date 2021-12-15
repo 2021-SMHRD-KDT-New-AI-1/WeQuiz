@@ -79,6 +79,8 @@ import java.util.Map;
 
 public class MapActivity extends AppCompatActivity implements MapView.POIItemEventListener{
 
+    String ip = "http://4603-210-223-239-152.ngrok.io";
+
     ArrayList<MissionMapVO> nearMissionList;
     RequestQueue requestQueue;
     Context mContext;
@@ -411,7 +413,7 @@ public class MapActivity extends AppCompatActivity implements MapView.POIItemEve
 
 
     public void getNearMissionList(double mem_lat, double mem_lon, String location_name) {
-        String url = "http://172.30.1.58:3003/Mission/NearMission";
+        String url = ip + "/Mission/NearMission";
         StringRequest request = new StringRequest(
                 Request.Method.POST,
                 url,

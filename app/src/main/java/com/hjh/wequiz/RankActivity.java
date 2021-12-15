@@ -37,6 +37,8 @@ import java.util.Map;
 
 public class RankActivity extends AppCompatActivity {
 
+    String ip = "http://4603-210-223-239-152.ngrok.io";
+
     RequestQueue requestQueue;
     Context mContext;
     ArrayList<RankVO> mData;
@@ -181,7 +183,7 @@ public class RankActivity extends AppCompatActivity {
     }
 
     public void getRankInfo() {
-        String url = "http://172.30.1.58:3003/Badge/RankInfo";
+        String url = ip + "/Badge/RankInfo";
         StringRequest request = new StringRequest(
                 Request.Method.POST,
                 url,
