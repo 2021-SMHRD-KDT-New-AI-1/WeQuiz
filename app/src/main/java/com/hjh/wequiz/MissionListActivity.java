@@ -37,7 +37,7 @@ import java.util.Map;
 
 public class MissionListActivity extends AppCompatActivity {
 
-    String ip = "http://4603-210-223-239-152.ngrok.io";
+    String ip;
 
     static boolean click_r;
     // 플로팅버튼 상태
@@ -65,6 +65,7 @@ public class MissionListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mission_list);
 
+        ip = ((MyApplication) getApplicationContext()).getIp();
         if (requestQueue == null) {
             requestQueue = Volley.newRequestQueue(getApplicationContext());
         }

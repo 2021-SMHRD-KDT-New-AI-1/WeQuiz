@@ -33,7 +33,7 @@ import java.util.Map;
 
 public class MyMissionAdapter extends RecyclerView.Adapter<MyMissionAdapter.ViewHolder> {
 
-    String ip = "http://4603-210-223-239-152.ngrok.io";
+    String ip;
 
     private ArrayList<MyMissionVO> mdata = null;
     Context mContext;
@@ -97,6 +97,7 @@ public class MyMissionAdapter extends RecyclerView.Adapter<MyMissionAdapter.View
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
+            ip = ((MyApplication) mContext.getApplicationContext()).getIp();
             if (requestQueue == null){
                 requestQueue = Volley.newRequestQueue(mContext);
             }

@@ -39,7 +39,7 @@ import java.util.Map;
 
 public class MemberModifyActivity extends AppCompatActivity {
 
-    String ip = "http://4603-210-223-239-152.ngrok.io";
+    String ip;
 
     RequestQueue requestQueue;
     EditText et_memberModifyNick, et_memberModifyPw, et_memberModifyChangePw,et_memberModifyCheckChangePw;
@@ -56,6 +56,9 @@ public class MemberModifyActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_member_modify);
+
+        ip = ((MyApplication) getApplicationContext()).getIp();
+
         tv_memberModifyBirthDate = findViewById(R.id.tv_memberModifyBirthDate);
         tv_memberModifyNick = findViewById(R.id.tv_memberModifyNick);
         et_memberModifyNick = findViewById(R.id.et_memberModifyNick);

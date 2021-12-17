@@ -79,7 +79,7 @@ import java.util.Map;
 
 public class MapActivity extends AppCompatActivity implements MapView.POIItemEventListener{
 
-    String ip = "http://4603-210-223-239-152.ngrok.io";
+    String ip;
 
     ArrayList<MissionMapVO> nearMissionList;
     RequestQueue requestQueue;
@@ -115,6 +115,7 @@ public class MapActivity extends AppCompatActivity implements MapView.POIItemEve
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
 
+        ip = ((MyApplication) getApplicationContext()).getIp();
         if (requestQueue == null) {
             requestQueue = Volley.newRequestQueue(getApplicationContext());
         }
