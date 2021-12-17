@@ -500,8 +500,8 @@ public class MapActivity extends AppCompatActivity implements MapView.POIItemEve
 
     }
 
-    public void insertMyMission(String mem_id, int mission_id){
-        String url = ip + "/Member/InsertMyMission";
+    public void insertMemMission(String mem_id, int mission_id){
+        String url = ip + "/Member/InsertMemMission";
         StringRequest request = new StringRequest(
                 Request.Method.POST,
                 url,
@@ -538,8 +538,8 @@ public class MapActivity extends AppCompatActivity implements MapView.POIItemEve
         requestQueue.add(request);
     }
 
-    public void deleteMyMission(String mem_id, int mission_id){
-        String url = ip + "/Member/DeleteMyMission";
+    public void deleteMemMission(String mem_id, int mission_id){
+        String url = ip + "/Member/DeleteMemMission";
         StringRequest request = new StringRequest(
                 Request.Method.POST,
                 url,
