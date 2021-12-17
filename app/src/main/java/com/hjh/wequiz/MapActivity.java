@@ -179,7 +179,7 @@ public class MapActivity extends AppCompatActivity implements MapView.POIItemEve
         Log.d(TAG, "현재 위치: " + provider + " / " + lat + " / " + lng + " / " + alti);
         // map_xml 에서 현재위치 표시 텍스트뷰
         tvCurrentPosition = findViewById(R.id.tvCurrentPosition);
-        tvCurrentPosition.setText(getAddress(MapActivity.this, lat,lng));
+//        tvCurrentPosition.setText(getAddress(MapActivity.this, lat,lng));
         //중심점으로 잡을 좌표값 변수
         mapPoint = MapPoint.mapPointWithGeoCoord(lat,lng);
         //중심점 변경 (초기 위치 설정해서 지도 띄우기)
@@ -220,42 +220,39 @@ public class MapActivity extends AppCompatActivity implements MapView.POIItemEve
                 // 추후 위치값 변수로 넣어주기
                 // 35.141998628841115 / 126.912268377757 => 사직공원
                 Log.d("mission", "onClick: fffff");
-                try {
-                    getNearMissionList(lat, lng, "광주광역시");
-                }catch(Exception e){
-                    e.printStackTrace();
-                }
-
-                for(int i = 0; i < nearMissionList.size(); i++) {
-                    Log.d("mmmmmmission ID --- ", String.valueOf(nearMissionList.get(i).getMissionId()));
-                }
 
 //                mission1_location = MapPoint.mapPointWithGeoCoord(35.141998628841115, 126.912268377757); // 사직공원
 //                mission2_location = MapPoint.mapPointWithGeoCoord(35.141998628841115, 126.912268377757); // 국립아시아문화전당
 //                mission3_location = MapPoint.mapPointWithGeoCoord(35.141998628841115, 126.912268377757); // 광주향교
 
                 // 마커생성
-                missionMarker1 = new MapPOIItem(); // 마커 생성
-                missionMarker2 = new MapPOIItem();
-                missionMarker3 = new MapPOIItem();
-                missionMarker1.setItemName("mission1"); // 마커 이름
-                missionMarker2.setItemName("mission2");
-                missionMarker3.setItemName("mission3");
-                missionMarker1.setTag(1); // 마커 생성주기
-                missionMarker2.setTag(2);
-                missionMarker3.setTag(3);
+//                missionMarker1 = new MapPOIItem(); // 마커 생성
+//                missionMarker2 = new MapPOIItem();
+//                missionMarker3 = new MapPOIItem();
+//                missionMarker1.setItemName("mission1"); // 마커 이름
+//                missionMarker2.setItemName("mission2");
+//                missionMarker3.setItemName("mission3");
+//                missionMarker1.setTag(0); // 마커 생성주기
+//                missionMarker2.setTag(0);
+//                missionMarker3.setTag(0);
+
+                try {
+                    getNearMissionList(lat, lng, "광주광역시");
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
 //                missionMarker1.setMapPoint(mission1_location); // 위치값 입력
 //                missionMarker2.setMapPoint(mission2_location);
 //                missionMarker3.setMapPoint(mission3_location);
-                missionMarker1.setMarkerType(MapPOIItem.MarkerType.BluePin); // 마커 디자인, BluePin 기본타입
-                missionMarker2.setMarkerType(MapPOIItem.MarkerType.BluePin);
-                missionMarker3.setMarkerType(MapPOIItem.MarkerType.BluePin);
-                missionMarker1.setSelectedMarkerType(MapPOIItem.MarkerType.RedPin); // 마커를 클릭했을때, 기본으로 제공하는 RedPin 마커 모양.
-                missionMarker2.setSelectedMarkerType(MapPOIItem.MarkerType.RedPin);
-                missionMarker3.setSelectedMarkerType(MapPOIItem.MarkerType.RedPin);
-                mapView.addPOIItem(missionMarker1); // mapView에 마커 add
-                mapView.addPOIItem(missionMarker2);
-                mapView.addPOIItem(missionMarker3);
+//                missionMarker1.setMarkerType(MapPOIItem.MarkerType.BluePin); // 마커 디자인, BluePin 기본타입
+//                missionMarker2.setMarkerType(MapPOIItem.MarkerType.BluePin);
+//                missionMarker3.setMarkerType(MapPOIItem.MarkerType.BluePin);
+//                missionMarker1.setSelectedMarkerType(MapPOIItem.MarkerType.RedPin); // 마커를 클릭했을때, 기본으로 제공하는 RedPin 마커 모양.
+//                missionMarker2.setSelectedMarkerType(MapPOIItem.MarkerType.RedPin);
+//                missionMarker3.setSelectedMarkerType(MapPOIItem.MarkerType.RedPin);
+//                mapView.addPOIItem(missionMarker1); // mapView에 마커 add
+//                mapView.addPOIItem(missionMarker2);
+//                mapView.addPOIItem(missionMarker3);
 
 
             }
@@ -316,6 +313,7 @@ public class MapActivity extends AppCompatActivity implements MapView.POIItemEve
                     // 주소 split
                     nowAddr_list = nowAddr.split("\\s");
                     data = nowAddr_list[1] + " " + nowAddr_list[2] + " " + nowAddr_list[3] + " " + nowAddr_list[4];
+
                 }
             }
         }
@@ -439,12 +437,30 @@ public class MapActivity extends AppCompatActivity implements MapView.POIItemEve
                             for(int i = 0; i < nearMissionList.size(); i++) {
                                 Log.d("mission ID --- ", String.valueOf(nearMissionList.get(i).getMissionId()));
                             }
+                            missionMarker1 = new MapPOIItem(); // 마커 생성
+                            missionMarker2 = new MapPOIItem();
+                            missionMarker3 = new MapPOIItem();
+                            missionMarker1.setItemName("mission1"); // 마커 이름
+                            missionMarker2.setItemName("mission2");
+                            missionMarker3.setItemName("mission3");
+                            missionMarker1.setTag(0); // 마커 생성주기
+                            missionMarker2.setTag(0);
+                            missionMarker3.setTag(0);
                             mission1_location = MapPoint.mapPointWithGeoCoord(nearMissionList.get(0).getLat(), nearMissionList.get(0).getLon());
                             mission2_location = MapPoint.mapPointWithGeoCoord(nearMissionList.get(1).getLat(), nearMissionList.get(1).getLon()); // 국립아시아문화전당
                             mission3_location = MapPoint.mapPointWithGeoCoord(nearMissionList.get(2).getLat(), nearMissionList.get(2).getLon()); // 광주향교
                             missionMarker1.setMapPoint(mission1_location);
                             missionMarker2.setMapPoint(mission2_location);
                             missionMarker3.setMapPoint(mission3_location);
+                            missionMarker1.setMarkerType(MapPOIItem.MarkerType.BluePin); // 마커 디자인, BluePin 기본타입
+                            missionMarker2.setMarkerType(MapPOIItem.MarkerType.BluePin);
+                            missionMarker3.setMarkerType(MapPOIItem.MarkerType.BluePin);
+                            missionMarker1.setSelectedMarkerType(MapPOIItem.MarkerType.RedPin); // 마커를 클릭했을때, 기본으로 제공하는 RedPin 마커 모양.
+                            missionMarker2.setSelectedMarkerType(MapPOIItem.MarkerType.RedPin);
+                            missionMarker3.setSelectedMarkerType(MapPOIItem.MarkerType.RedPin);
+                            mapView.addPOIItem(missionMarker1); // mapView에 마커 add
+                            mapView.addPOIItem(missionMarker2);
+                            mapView.addPOIItem(missionMarker3);
 
                         } catch (JSONException e) {
                             e.printStackTrace();

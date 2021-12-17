@@ -26,20 +26,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.WeQuiz"
         android:usesCleartextTraffic="true">
-        <activity
-            android:name=".savemission"
-            android:exported="true"
-            android:theme="@android:style/Theme.Dialog" />
 
         <meta-data
             android:name="com.kakao.sdk.AppKey"
             android:value="4427e253f430ade00212f26da52ad0ad" /><!-- 네이티브 앱 키 설정 -->
 
-
         <meta-data
             android:name="com.google.android.actions"
             android:resource="@xml/fab_open" />
 
+        <activity
+            android:name=".savemission"
+            android:exported="true"
+            android:theme="@android:style/Theme.Dialog" />
 
         <activity
             android:name=".ShortAnswerActivity"
