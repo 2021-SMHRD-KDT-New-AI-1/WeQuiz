@@ -43,11 +43,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.SlidingDrawer;
+
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBarDrawerToggle;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.ActivityCompat;
@@ -59,6 +59,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import net.daum.mf.map.api.MapPOIItem;
 import net.daum.mf.map.api.MapPoint;
@@ -80,10 +81,11 @@ import java.util.Map;
 public class MapActivity extends AppCompatActivity implements MapView.POIItemEventListener{
 
     String ip = "http://4603-210-223-239-152.ngrok.io";
-
+    int tagnum = 0;
     ArrayList<MissionMapVO> nearMissionList;
     RequestQueue requestQueue;
     Context mContext;
+
 
     private static final String TAG = "MapActivity";
 
@@ -103,8 +105,7 @@ public class MapActivity extends AppCompatActivity implements MapView.POIItemEve
     ImageView handle;
     LinearLayout linear;
     LayoutInflater inflater;
-    SlidingDrawer drawer;
-    ActionBarDrawerToggle drawerToggle;
+
     androidx.appcompat.app.AlertDialog.Builder builder;
     androidx.appcompat.app.AlertDialog ad;
 
@@ -130,23 +131,11 @@ public class MapActivity extends AppCompatActivity implements MapView.POIItemEve
         mapViewContainer = findViewById(R.id.map_view); //지도를 띄울 view
         mapViewContainer.addView(mapView); // view에 지도 추가하여 띄우기기
         mapView.setPOIItemEventListener(poiItemEventListener); // 마커 클릭이벤트, adapter를 set해주기
-        drawer = (SlidingDrawer)findViewById(R.id.slide);
+
 
         handle = findViewById(R.id.handle);
         linear = findViewById(R.id.linear);
         inflater = getLayoutInflater();
-
-        /*drawerToggle=new ActionBarDrawerToggle(this,drawer,R.string.open,R.string.close){
-            @Override
-            public void onDrawerOpened(View drawerView) {
-                super.onDrawerOpened(drawerView);
-            }
-            @Override
-            public void onDrawerClosed(View drawerView) {
-                super.onDrawerClosed(drawerView);
-            }
-        };*/
-        //drawer
 
 
 
@@ -187,13 +176,11 @@ public class MapActivity extends AppCompatActivity implements MapView.POIItemEve
 //        mapViewContainer.addView(mapView); // 이게 문제였음!!!!!!!!!!!! ㅠㅜ 9시간 삽질...
         // 현재위치 마커 표시
         marker = new MapPOIItem();
-        marker.setItemName("quiz");
+        marker.setItemName("wequiz");
         marker.setTag(0);
         marker.setMapPoint(mapPoint);
-//        marker.setMarkerType(MapPOIItem.MarkerType.BluePin); // 기본으로 제공하는 BluePin 마커 모양.
-//        marker.setSelectedMarkerType(MapPOIItem.MarkerType.RedPin); // 마커를 클릭했을때, 기본으로 제공하는 RedPin 마커 모양.
         marker.setMarkerType(MapPOIItem.MarkerType.CustomImage);
-        marker.setCustomImageResourceId(R.drawable.badge_yeosu); // 이미지 파일
+        marker.setCustomImageResourceId(R.drawable.star); // 이미지 파일
         marker.setSelectedMarkerType(MapPOIItem.MarkerType.RedPin); // 마커를 클릭했을때, 기본으로 제공하는 RedPin 마커 모양.
         mapView.addPOIItem(marker);
         // 위치 업데이트를 위한 재요청
@@ -278,13 +265,14 @@ public class MapActivity extends AppCompatActivity implements MapView.POIItemEve
 
             mapPoint = MapPoint.mapPointWithGeoCoord(lat,lng);
             mapView.setMapCenterPoint(mapPoint, true);
-            marker.setItemName(getAddress(MapActivity.this, lat,lng));
+            marker.setItemName("wequiz");
+//            getAddress(MapActivity.this, lat,lng);
             marker.setTag(0);
             marker.setMapPoint(mapPoint);
             marker.setMarkerType(MapPOIItem.MarkerType.CustomImage); // 기본으로 제공하는 BluePin 마커 모양, customimage는 이미지 넣을 수 있음
-            marker.setCustomImageResourceId(R.drawable.badge_yeosu); // 이미지 파일
+            marker.setCustomImageResourceId(R.drawable.star); // 이미지 파일
             marker.setSelectedMarkerType(MapPOIItem.MarkerType.RedPin); // 마커를 클릭했을때, 기본으로 제공하는 RedPin 마커 모양.
-            //mapView.addPOIItem(marker); 이건 없어도 되나???
+
 
         }
 
@@ -344,55 +332,82 @@ public class MapActivity extends AppCompatActivity implements MapView.POIItemEve
         @Override
         public void onPOIItemSelected(MapView mapView, MapPOIItem MarkerListener) {
             Log.d("아이템 이름", MarkerListener.getItemName()); // 마커 클릭 구분 Log.d
+            tagnum = MarkerListener.getTag();
+            if ("mission1" == MarkerListener.getItemName() || "mission2" == MarkerListener.getItemName() || "mission3" == MarkerListener.getItemName())
+            {
 
-            builder = new androidx.appcompat.app.AlertDialog.Builder(MapActivity.this, R.style.CustomDialog);
+                builder = new androidx.appcompat.app.AlertDialog.Builder(MapActivity.this, R.style.CustomDialog);
+                View dialoglayout = getLayoutInflater().inflate(R.layout.activity_savemission, null);
+                builder.setView(dialoglayout);
 
-            View dialoglayout = getLayoutInflater().inflate(R.layout.activity_savemission, null);
-            builder.setView(dialoglayout);
+                ImageView dialogButton1 = dialoglayout.findViewById(R.id.btn_savemis);
+                ImageView dialogButton2 = dialoglayout.findViewById(R.id.btn_changemis);
+                Button dialogButton3 = dialoglayout.findViewById(R.id.btn_exit);
 
-            ImageView dialogButton1 = dialoglayout.findViewById(R.id.btn_savemis);
-            ImageView dialogButton2 = dialoglayout.findViewById(R.id.btn_changemis);
-            Button dialogButton3 = dialoglayout.findViewById(R.id.btn_exit);
-
-            dialogButton1.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    //저장하는 코드
+                dialogButton1.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        //저장하는 코드
 //                    ad.dismiss();
-                    Log.d("저장","ㅇㅇ");
-                }
-            });
+                        Log.d("저장","ㅇㅇ");
+                    }
+                });
 
-            dialogButton2.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    //교체하는 코드
-//                    ad.dismiss();
-                    Log.d("교체","ㅇㅇ");
-                }
-            });
+                dialogButton2.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        //교체하는 코드
+                        int countmis = nearMissionList.size();
+                        Log.d("교체","문제 갯수:" + countmis);
+                        // arraylist[0] 삭제
+                        if(nearMissionList.size() > 3) {
+                                nearMissionList.remove(tagnum);
+                            // 다시 arraylist[0~2] 생성
+//                                missionMarker1.setItemName("mission1"); // 마커 이름
+//                                missionMarker2.setItemName("mission2");
+//                                missionMarker3.setItemName("mission3");
+                                missionMarker1.setTag(0); // 마커 번호 지정
+                                missionMarker2.setTag(1);
+                                missionMarker3.setTag(2);
+                                mission1_location = MapPoint.mapPointWithGeoCoord(nearMissionList.get(0).getLat(), nearMissionList.get(0).getLon());
+                                mission2_location = MapPoint.mapPointWithGeoCoord(nearMissionList.get(1).getLat(), nearMissionList.get(1).getLon());
+                                mission3_location = MapPoint.mapPointWithGeoCoord(nearMissionList.get(2).getLat(), nearMissionList.get(2).getLon());
+                                missionMarker1.setMapPoint(mission1_location);
+                                missionMarker2.setMapPoint(mission2_location);
+                                missionMarker3.setMapPoint(mission3_location);
+//                                missionMarker1.setMarkerType(MapPOIItem.MarkerType.BluePin); // 마커 디자인, BluePin 기본타입
+//                                missionMarker2.setMarkerType(MapPOIItem.MarkerType.BluePin);
+//                                missionMarker3.setMarkerType(MapPOIItem.MarkerType.BluePin);
+//                                missionMarker1.setSelectedMarkerType(MapPOIItem.MarkerType.RedPin); // 마커를 클릭했을때, 기본으로 제공하는 RedPin 마커 모양.
+//                                missionMarker2.setSelectedMarkerType(MapPOIItem.MarkerType.RedPin);
+//                                missionMarker3.setSelectedMarkerType(MapPOIItem.MarkerType.RedPin);
+                                mapView.addPOIItem(missionMarker1); // mapView에 마커 add
+                                mapView.addPOIItem(missionMarker2);
+                                mapView.addPOIItem(missionMarker3);
+
+                        } else{
+                            showDialog();
+                        }
+
+                        ad.dismiss();
+                    }
+                });
 
 
-            dialogButton3.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    ad.dismiss();
-                }
-            });
+                dialogButton3.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        ad.dismiss();
+                    }
+                });
 
-            ad = builder.create();
-            ad.show();
+                ad = builder.create();
+                ad.show();
 
+            } else {
 
-//            changeLayout(R.layout.activity_savemission);
-//
-//            View view = inflater.inflate(R.layout.activity_savemission, linear, true);
-//
-//
-//            //SlidingDrawer drawer = (SlidingDrawer)findViewById(R.id.slide);
-//            drawer.animateClose();
-//            //drawer.setClickable(true);
-//            show();
+            }
+
 
         }
         @Override
@@ -410,6 +425,7 @@ public class MapActivity extends AppCompatActivity implements MapView.POIItemEve
     };
 
 
+    // 서버통신
     public void getNearMissionList(double mem_lat, double mem_lon, String location_name) {
         String url = ip + "/Mission/NearMission";
         StringRequest request = new StringRequest(
@@ -443,11 +459,11 @@ public class MapActivity extends AppCompatActivity implements MapView.POIItemEve
                             missionMarker2.setItemName("mission2");
                             missionMarker3.setItemName("mission3");
                             missionMarker1.setTag(0); // 마커 생성주기
-                            missionMarker2.setTag(0);
-                            missionMarker3.setTag(0);
+                            missionMarker2.setTag(1);
+                            missionMarker3.setTag(2);
                             mission1_location = MapPoint.mapPointWithGeoCoord(nearMissionList.get(0).getLat(), nearMissionList.get(0).getLon());
-                            mission2_location = MapPoint.mapPointWithGeoCoord(nearMissionList.get(1).getLat(), nearMissionList.get(1).getLon()); // 국립아시아문화전당
-                            mission3_location = MapPoint.mapPointWithGeoCoord(nearMissionList.get(2).getLat(), nearMissionList.get(2).getLon()); // 광주향교
+                            mission2_location = MapPoint.mapPointWithGeoCoord(nearMissionList.get(1).getLat(), nearMissionList.get(1).getLon());
+                            mission3_location = MapPoint.mapPointWithGeoCoord(nearMissionList.get(2).getLat(), nearMissionList.get(2).getLon());
                             missionMarker1.setMapPoint(mission1_location);
                             missionMarker2.setMapPoint(mission2_location);
                             missionMarker3.setMapPoint(mission3_location);
@@ -492,15 +508,14 @@ public class MapActivity extends AppCompatActivity implements MapView.POIItemEve
     void show() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("저장");
-
     }
 
-
-
-
-//    private void changeLayout(int savemission) {
-//
-//    }
+    void showDialog() {
+        AlertDialog.Builder msg = new AlertDialog.Builder(this);
+        msg.setTitle("title");
+        msg.setMessage("교체할 문제가 없습니다.");
+        ad.dismiss();
+    }
 
 
 }
