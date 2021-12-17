@@ -37,7 +37,7 @@ import java.util.Map;
 
 public class RankActivity extends AppCompatActivity {
 
-    String ip = "http://4603-210-223-239-152.ngrok.io";
+    String ip;
 
     RequestQueue requestQueue;
     Context mContext;
@@ -65,6 +65,7 @@ public class RankActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rank);
 
+        ip = ((MyApplication) getApplicationContext()).getIp();
         mContext = this;
 
         // 플로팅 버튼 초기화

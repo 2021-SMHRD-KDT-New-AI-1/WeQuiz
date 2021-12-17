@@ -32,8 +32,7 @@ import java.util.Map;
 
 public class LoginActivity extends AppCompatActivity {
 
-    String ip = "http://4603-210-223-239-152.ngrok.io";
-
+    String ip;
     RequestQueue requestQueue;
     EditText et_loginId, et_loginPw;
     Button btn_login, btn_loginSign;
@@ -47,6 +46,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        ip = ((MyApplication) getApplicationContext()).getIp();
         mContext = this;
 
         et_loginId = findViewById(R.id.et_loginId);

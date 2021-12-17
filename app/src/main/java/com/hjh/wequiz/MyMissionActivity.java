@@ -37,7 +37,7 @@ import java.util.Map;
 
 public class MyMissionActivity extends AppCompatActivity {
 
-    String ip = "http://4603-210-223-239-152.ngrok.io";
+    String ip;
 
     RequestQueue requestQueue;
     Context mContext;
@@ -62,6 +62,7 @@ public class MyMissionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_mission);
 
+        ip = ((MyApplication) getApplicationContext()).getIp();
         mData = new ArrayList<>();
 
         mContext = this;

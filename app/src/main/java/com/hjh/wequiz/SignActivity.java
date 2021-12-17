@@ -32,7 +32,7 @@ import java.util.Map;
 
 public class SignActivity extends AppCompatActivity {
 
-    String ip = "http://4603-210-223-239-152.ngrok.io";
+    String ip;
 
     RequestQueue requestQueue;
     RadioGroup rg_signGender;
@@ -49,6 +49,8 @@ public class SignActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign);
+
+        ip = ((MyApplication) getApplicationContext()).getIp();
 
         et_signId = findViewById(R.id.et_signId);
         et_signPw = findViewById(R.id.et_signPw);
