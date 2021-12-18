@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.animation.ObjectAnimator;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MotionEvent;
@@ -16,6 +17,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.Volley;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class ShortAnswerActivity extends AppCompatActivity {
@@ -34,10 +37,18 @@ public class ShortAnswerActivity extends AppCompatActivity {
     EditText et_shortAnswer;
     Button btn_shortSubmit;
 
+    RequestQueue requestQueue;
+    Context mContext;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_short_answer);
+
+        if (requestQueue == null) {
+            requestQueue = Volley.newRequestQueue(getApplicationContext());
+        }
+        mContext = this;
 
         tv_shortLocationName = findViewById(R.id.tv_shortLocationName);
         tv_shortQuiz = findViewById(R.id.tv_shortQuiz);
@@ -55,8 +66,18 @@ public class ShortAnswerActivity extends AppCompatActivity {
         tv_shortQuiz.setText(quiz);
         tv_shortAnswerCnt.setText(String.valueOf(answer.length()));
 
+        btn_shortSubmit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String userAns = et_shortAnswer.getText().toString();
+                if(userAns.equals(answer)) {
+                    Toast.makeText(mContext, "정답입니다!", Toast.LENGTH_SHORT).show();
 
-
+                } else {
+                    Toast.makeText(mContext, "땡!!!!!", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 
 
 
