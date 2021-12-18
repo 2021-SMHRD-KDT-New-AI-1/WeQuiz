@@ -11,258 +11,255 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
 
-   <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@drawable/answer_back"
         tools:context=".MainActivity">
 
-    <ImageView
-        android:id="@+id/imageView12"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:scaleType="centerCrop"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/answer_back" />
+        <TextView
+            android:id="@+id/tv_choiceLocationName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginBottom="20dp"
+            android:fontFamily="@font/dream6"
+            android:text="광주"
+            android:textColor="#FFFFFF"
+            android:textSize="30sp"
+            app:layout_constraintBottom_toTopOf="@+id/scrollView3"
+            app:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
-        android:id="@+id/tv_mainLocation"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="50dp"
-        android:fontFamily="@font/dream6"
-        android:text="광주"
-        android:textColor="#FFFFFF"
-        android:textSize="30sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/textView28"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:fontFamily="@font/dream6"
+            android:text="문제 풀기"
+            android:textColor="#FFFFFF"
+            android:textSize="30sp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_choiceLocationName"
+            app:layout_constraintStart_toEndOf="@+id/tv_choiceLocationName"
+            app:layout_constraintTop_toTopOf="@+id/tv_choiceLocationName" />
 
-    <TextView
-        android:id="@+id/textView28"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:fontFamily="@font/dream6"
-        android:text="관련 문제 풀기"
-        android:textColor="#FFFFFF"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_mainLocation"
-        app:layout_constraintStart_toEndOf="@+id/tv_mainLocation"
-        app:layout_constraintTop_toTopOf="@+id/tv_mainLocation" />
+        <Button
+            android:id="@+id/btn_choice1"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/round_choice_answer"
+            android:fontFamily="@font/dream6"
+            android:padding="20dp"
+            android:text="고래고기"
+            android:textAlignment="viewStart"
+            android:textSize="17sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guideline6" />
 
-       <TextView
-           android:id="@+id/textView11"
-           android:layout_width="340dp"
-           android:layout_height="wrap_content"
-           android:layout_marginTop="20dp"
-           android:fontFamily="@font/dream4"
-           android:text="광주에서 유명한 음식이 아닌 것은?"
-           android:textColor="#FFFFFF"
-           android:textSize="15sp"
-           app:layout_constraintStart_toStartOf="@+id/tv_mainLocation"
-           app:layout_constraintTop_toBottomOf="@+id/tv_mainLocation" />
+        <Button
+            android:id="@+id/btn_choice2"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/round_choice_answer"
+            android:fontFamily="@font/dream6"
+            android:padding="20dp"
+            android:text="오리탕"
+            android:textAlignment="viewStart"
+            android:textSize="17sp"
+            app:layout_constraintEnd_toEndOf="@+id/btn_choice1"
+            app:layout_constraintStart_toStartOf="@+id/btn_choice1"
+            app:layout_constraintTop_toBottomOf="@+id/btn_choice1" />
 
-    <Button
-        android:id="@+id/button8"
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/round_choice_answer"
-        android:fontFamily="@font/dream6"
-        android:padding="20dp"
-        android:text="고래고기"
-        android:textAlignment="viewStart"
-        android:textSize="17sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline6" />
+        <Button
+            android:id="@+id/btn_choice3"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:background="@drawable/round_choice_answer"
+            android:fontFamily="@font/dream6"
+            android:padding="20dp"
+            android:text="상추튀김"
+            android:textAlignment="viewStart"
+            android:textSize="17sp"
+            app:layout_constraintEnd_toEndOf="@+id/btn_choice2"
+            app:layout_constraintStart_toStartOf="@+id/btn_choice2"
+            app:layout_constraintTop_toBottomOf="@+id/btn_choice2" />
 
-    <Button
-        android:id="@+id/button9"
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:background="@drawable/round_choice_answer"
-        android:fontFamily="@font/dream6"
-        android:padding="20dp"
-        android:text="오리탕"
-        android:textAlignment="viewStart"
-        android:textSize="17sp"
-        app:layout_constraintEnd_toEndOf="@+id/button8"
-        app:layout_constraintStart_toStartOf="@+id/button8"
-        app:layout_constraintTop_toBottomOf="@+id/button8" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.5" />
 
-    <Button
-        android:id="@+id/button10"
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="14dp"
-        android:background="@drawable/round_choice_answer"
-        android:fontFamily="@font/dream6"
-        android:padding="20dp"
-        android:text="상추튀김"
-        android:textAlignment="viewStart"
-        android:textSize="17sp"
-        app:layout_constraintEnd_toEndOf="@+id/button9"
-        app:layout_constraintStart_toStartOf="@+id/button9"
-        app:layout_constraintTop_toBottomOf="@+id/button9" />
+        <ScrollView
+            android:id="@+id/scrollView3"
+            android:layout_width="0dp"
+            android:layout_height="160dp"
+            android:layout_marginTop="45dp"
+            app:layout_constraintBottom_toTopOf="@+id/guideline6"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-    <Button
-        android:id="@+id/button11"
-        android:layout_width="130dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="40dp"
-        android:background="@drawable/round_submit"
-        android:fontFamily="@font/dream5"
-        android:text="정답 입력"
-        android:textColor="#FFFFFF"
-        android:textSize="17sp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView12"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.5" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+                <TextView
+                    android:id="@+id/tv_choiceQuiz"
+                    android:layout_width="340dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/dream4"
+                    android:text="ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ"
+                    android:textColor="#FFFFFF"
+                    android:textSize="15sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:layout_editor_absoluteX="2dp"
+            tools:layout_editor_absoluteY="0dp">
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/float_my"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|bottom"
+                android:src="@drawable/float_my"
+                android:tooltipText="내정보수정"
+                app:backgroundTint="#ffffff"
+                app:elevation="6dp"
+                app:layout_constraintBottom_toBottomOf="@+id/float_plus"
+
+                app:layout_constraintEnd_toEndOf="@+id/float_plus"
+                app:layout_constraintHorizontal_bias="@+id/float_plus"
+                app:layout_constraintStart_toStartOf="@+id/float_plus"
+                app:layout_constraintTop_toTopOf="@+id/float_plus"
+                app:layout_constraintVertical_bias="@+id/float_plus"
+                app:pressedTranslationZ="12dp" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/float_mission"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|bottom"
+                android:src="@drawable/float_mission"
+                android:tooltipText="마이미션"
+                app:backgroundTint="#ffffff"
+                app:elevation="6dp"
+                app:layout_constraintBottom_toBottomOf="@+id/float_plus"
+
+                app:layout_constraintEnd_toEndOf="@+id/float_plus"
+                app:layout_constraintHorizontal_bias="@+id/float_plus"
+                app:layout_constraintStart_toStartOf="@+id/float_plus"
+                app:layout_constraintTop_toTopOf="@+id/float_plus"
+                app:layout_constraintVertical_bias="@+id/float_plus"
+                app:pressedTranslationZ="12dp" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/float_map"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|bottom"
+                android:src="@drawable/float_map"
+                app:backgroundTint="#ffffff"
+                app:elevation="6dp"
+                app:layout_constraintBottom_toBottomOf="@+id/float_plus"
+
+                app:layout_constraintEnd_toEndOf="@+id/float_plus"
+                app:layout_constraintHorizontal_bias="@+id/float_plus"
+                app:layout_constraintStart_toStartOf="@+id/float_plus"
+                app:layout_constraintTop_toTopOf="@+id/float_plus"
+                app:layout_constraintVertical_bias="@+id/float_plus"
+                app:pressedTranslationZ="12dp" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/float_badge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|bottom"
+                android:src="@drawable/float_badge"
+                android:tooltipText="전국뱃지지도"
+                app:backgroundTint="#ffffff"
+                app:elevation="6dp"
+                app:layout_constraintBottom_toBottomOf="@+id/float_plus"
+
+                app:layout_constraintEnd_toEndOf="@+id/float_plus"
+                app:layout_constraintHorizontal_bias="@+id/float_plus"
+                app:layout_constraintStart_toStartOf="@+id/float_plus"
+                app:layout_constraintTop_toTopOf="@+id/float_plus"
+                app:layout_constraintVertical_bias="@+id/float_plus"
+                app:pressedTranslationZ="12dp" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/float_home"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|bottom"
+                android:src="@drawable/float_home"
+                app:backgroundTint="#ffffff"
+                app:elevation="6dp"
+
+                app:layout_constraintBottom_toBottomOf="@+id/float_plus"
+                app:layout_constraintEnd_toEndOf="@+id/float_plus"
+                app:layout_constraintHorizontal_bias="@+id/float_plus"
+                app:layout_constraintStart_toStartOf="@+id/float_plus"
+                app:layout_constraintTop_toTopOf="@+id/float_plus"
+                app:layout_constraintVertical_bias="@+id/float_plus" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/float_plus2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|bottom"
+                android:src="@drawable/float_plus2"
+                app:backgroundTint="#ff6d64"
+                app:elevation="6dp"
+
+                app:layout_constraintBottom_toBottomOf="@+id/float_plus"
+                app:layout_constraintEnd_toEndOf="@+id/float_plus"
+                app:layout_constraintHorizontal_bias="@+id/float_plus"
+                app:layout_constraintStart_toStartOf="@+id/float_plus"
+                app:layout_constraintTop_toTopOf="@+id/float_plus"
+                app:layout_constraintVertical_bias="@+id/float_plus" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/float_plus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|bottom"
+                android:layout_marginStart="280dp"
+                android:layout_marginTop="550dp"
+                android:src="@drawable/float_plus"
+                app:backgroundTint="#ff6d64"
+                app:elevation="6dp"
+
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:pressedTranslationZ="12dp" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ImageView
         android:id="@+id/transparent"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="0dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginBottom="0dp"
         android:background="@drawable/transparent" />
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/float_my"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end|bottom"
-            android:src="@drawable/float_my"
-            android:tooltipText="내정보수정"
-            app:backgroundTint="#ffffff"
-            app:elevation="6dp"
-            app:pressedTranslationZ="12dp"
-
-            app:layout_constraintBottom_toBottomOf="@+id/float_plus"
-            app:layout_constraintEnd_toEndOf="@+id/float_plus"
-            app:layout_constraintHorizontal_bias="@+id/float_plus"
-            app:layout_constraintStart_toStartOf="@+id/float_plus"
-            app:layout_constraintTop_toTopOf="@+id/float_plus"
-            app:layout_constraintVertical_bias="@+id/float_plus" />
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/float_mission"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end|bottom"
-            android:src="@drawable/float_mission"
-            android:tooltipText="마이미션"
-            app:backgroundTint="#ffffff"
-            app:elevation="6dp"
-            app:pressedTranslationZ="12dp"
-
-            app:layout_constraintBottom_toBottomOf="@+id/float_plus"
-            app:layout_constraintEnd_toEndOf="@+id/float_plus"
-            app:layout_constraintHorizontal_bias="@+id/float_plus"
-            app:layout_constraintStart_toStartOf="@+id/float_plus"
-            app:layout_constraintTop_toTopOf="@+id/float_plus"
-            app:layout_constraintVertical_bias="@+id/float_plus"/>
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/float_map"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end|bottom"
-            android:src="@drawable/float_map"
-            app:backgroundTint="#ffffff"
-            app:elevation="6dp"
-            app:pressedTranslationZ="12dp"
-
-            app:layout_constraintBottom_toBottomOf="@+id/float_plus"
-            app:layout_constraintEnd_toEndOf="@+id/float_plus"
-            app:layout_constraintHorizontal_bias="@+id/float_plus"
-            app:layout_constraintStart_toStartOf="@+id/float_plus"
-            app:layout_constraintTop_toTopOf="@+id/float_plus"
-            app:layout_constraintVertical_bias="@+id/float_plus"/>
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/float_badge"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end|bottom"
-            android:src="@drawable/float_badge"
-            android:tooltipText="전국뱃지지도"
-            app:backgroundTint="#ffffff"
-            app:elevation="6dp"
-            app:pressedTranslationZ="12dp"
-
-            app:layout_constraintBottom_toBottomOf="@+id/float_plus"
-            app:layout_constraintEnd_toEndOf="@+id/float_plus"
-            app:layout_constraintHorizontal_bias="@+id/float_plus"
-            app:layout_constraintStart_toStartOf="@+id/float_plus"
-            app:layout_constraintTop_toTopOf="@+id/float_plus"
-            app:layout_constraintVertical_bias="@+id/float_plus"/>
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/float_home"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end|bottom"
-            android:src="@drawable/float_home"
-            app:backgroundTint="#ffffff"
-            app:elevation="6dp"
-
-            app:layout_constraintBottom_toBottomOf="@+id/float_plus"
-            app:layout_constraintEnd_toEndOf="@+id/float_plus"
-            app:layout_constraintHorizontal_bias="@+id/float_plus"
-            app:layout_constraintStart_toStartOf="@+id/float_plus"
-            app:layout_constraintTop_toTopOf="@+id/float_plus"
-            app:layout_constraintVertical_bias="@+id/float_plus" />
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/float_plus2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end|bottom"
-            android:src="@drawable/float_plus2"
-            app:backgroundTint="#ff6d64"
-            app:elevation="6dp"
-
-            app:layout_constraintBottom_toBottomOf="@+id/float_plus"
-            app:layout_constraintEnd_toEndOf="@+id/float_plus"
-            app:layout_constraintHorizontal_bias="@+id/float_plus"
-            app:layout_constraintStart_toStartOf="@+id/float_plus"
-            app:layout_constraintTop_toTopOf="@+id/float_plus"
-            app:layout_constraintVertical_bias="@+id/float_plus" />
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/float_plus"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end|bottom"
-            android:layout_marginStart="280dp"
-            android:layout_marginTop="550dp"
-            android:src="@drawable/float_plus"
-            app:backgroundTint="#ff6d64"
-            app:elevation="6dp"
-
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:pressedTranslationZ="12dp" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </RelativeLayout>

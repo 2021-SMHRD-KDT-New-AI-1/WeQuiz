@@ -3,16 +3,37 @@ package com.hjh.wequiz;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.animation.ObjectAnimator;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Random;
+import java.util.Set;
 
 public class ChoiceAnswerActivity extends AppCompatActivity {
 
@@ -26,10 +47,50 @@ public class ChoiceAnswerActivity extends AppCompatActivity {
 
     int num;
 
+    String ip;
+
+    RequestQueue requestQueue;
+    Context mContext;
+
+    TextView tv_choiceLocationName, tv_choiceQuiz;
+    Button[] btn_choices;
+    Button btn_choiceSubmit;
+
+    ArrayList<String> keywords;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choice_answer);
+
+        ip = ((MyApplication) getApplicationContext()).getIp();
+        if (requestQueue == null) {
+            requestQueue = Volley.newRequestQueue(getApplicationContext());
+        }
+        mContext = this;
+
+        keywords = new ArrayList<>();
+
+        tv_choiceLocationName = findViewById(R.id.tv_choiceLocationName);
+        tv_choiceQuiz = findViewById(R.id.tv_choiceQuiz);
+        btn_choices = new Button[3];
+
+        for(int i = 0; i < btn_choices.length; i++) {
+            int resId = getResources().getIdentifier("btn_choice" + (i + 1), "id", getPackageName());
+            btn_choices[i] = findViewById(resId);
+        }
+
+        Intent intent = getIntent();
+        int mission_id = intent.getIntExtra("mission_id", 0);
+        String location_name = intent.getStringExtra("location_name");
+        String quiz = intent.getStringExtra("quiz");
+        String answer = intent.getStringExtra("answer");
+
+        tv_choiceLocationName.setText(location_name);
+        tv_choiceQuiz.setText(quiz);
+        makeChoiceQuiz(answer);
+
+
         // 플로팅 버튼 초기화
         float_plus = findViewById(R.id.float_plus);
         float_plus2 = findViewById(R.id.float_plus2);
@@ -154,4 +215,74 @@ public class ChoiceAnswerActivity extends AppCompatActivity {
         fabMain_status = !fabMain_status;
 
     }
+
+    public void makeChoiceQuiz(String answer){
+
+        String url = ip + "/Mission/KeywordList";
+        StringRequest request = new StringRequest(
+                Request.Method.POST,
+                url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONArray jsonArray = new JSONArray(response);
+                            for(int i = 0; i < jsonArray.length(); i++) {
+                                JSONObject jsonObject = jsonArray.getJSONObject(i);
+
+                                String keyword = jsonObject.getString("keyword");
+                                keywords.add(keyword);
+                            }
+                            Set<Integer> randomSet = new HashSet<>();
+                            Random rand = new Random();
+                            while(randomSet.size() < 2) {
+                                int r = rand.nextInt(keywords.size());
+                                Log.d("랜덤으로 키워드 인덱스 뽑히는 중 --- ", String.valueOf(r));
+                                randomSet.add(r);
+                            }
+                            ArrayList<Integer> randKeywords = new ArrayList<>(randomSet);
+
+                            ArrayList<String> choiceKeywords = new ArrayList<>();
+                            choiceKeywords.add(answer);
+                            for(int i = 0; i < 2; i++) {
+                                choiceKeywords.add(keywords.get(randKeywords.get(i)));
+                            }
+
+                            ArrayList<Integer> randNum = new ArrayList<>();
+                            while(randNum.size() < 3) {
+                                int r = rand.nextInt(3);
+                                Log.d("랜덤으로 뽑히는 중 --- ", String.valueOf(r));
+                                if(!randNum.contains(r)) {
+                                    randNum.add(r);
+                                }
+                            }
+
+                            for(int i = 0; i < 3; i++) {
+                                btn_choices[i].setText(choiceKeywords.get(randNum.get(i)));
+                                Log.d("랜덤수", String.valueOf(randNum.get(i)));
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                    }
+                }
+        ) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+
+                return params;
+            }
+        };
+        requestQueue.add(request);
+    }
+
+
 }
