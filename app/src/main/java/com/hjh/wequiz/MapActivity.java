@@ -83,6 +83,7 @@ public class MapActivity extends AppCompatActivity implements MapView.POIItemEve
     int count = 3;
     int tagnum = 0;
     String ip;
+    int save_cnt;
 
     ArrayList<MissionMapVO> nearMissionList;
     List<Double> address_Lat;
@@ -357,10 +358,17 @@ public class MapActivity extends AppCompatActivity implements MapView.POIItemEve
                         // 저장하는 코드
                         Log.d("저장","mis_id: "+ mis_id.get(tagnum));
                         Log.d("저장","mem_id: "+ mem_id);
-                        // 서버 저장 메소드
 
-                        insertMemMission(mem_id, mis_id.get(tagnum));
-                        ad.dismiss();
+                        save_cnt += 1;
+                        // 서버 저장 메소드
+                        if(save_cnt < 4){
+                            insertMemMission(mem_id, mis_id.get(tagnum));
+                            ad.dismiss();
+                        } else {
+                            //화면 전환
+
+                        }
+
                     }
                 });
 
