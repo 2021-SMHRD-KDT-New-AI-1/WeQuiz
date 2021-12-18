@@ -335,15 +335,10 @@ public class MapActivity extends AppCompatActivity implements MapView.POIItemEve
                 TextView dialogtitle = dialoglayout.findViewById(R.id.mission_title);
                 TextView dialogtype = dialoglayout.findViewById(R.id.mission_type);
 
+                //mission 제목 및 유형 Text
                 dialogtitle.setText(mis_title.get(tagnum));
                 dialogtype.setText(" " + mis_type.get(tagnum));
-//                String map_title = mis_title.get(tagnum);
-//                String map_type = mis_type.get(tagnum);
-//
-//                // mission text 표시
-//                Intent map_intent = new Intent(MapActivity.this, savemission.class);
-//                map_intent.putExtra("제목",mis_title.get(tagnum));
-//                map_intent.putExtra("유형",mis_type.get(tagnum));
+
 
 
                 // 1. 저장버튼
