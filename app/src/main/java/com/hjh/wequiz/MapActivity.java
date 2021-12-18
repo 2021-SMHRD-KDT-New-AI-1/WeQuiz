@@ -80,11 +80,16 @@ import java.util.Map;
 
 public class MapActivity extends AppCompatActivity implements MapView.POIItemEventListener{
 
-
+    int count = 3;
     int tagnum = 0;
     String ip;
 
     ArrayList<MissionMapVO> nearMissionList;
+    List<Double> address_Lat;
+    List<Double> address_Lon;
+    List<String> mis_type;
+    List<String> mis_title;
+
     RequestQueue requestQueue;
     Context mContext;
 
@@ -108,6 +113,7 @@ public class MapActivity extends AppCompatActivity implements MapView.POIItemEve
     LinearLayout linear;
     LayoutInflater inflater;
 
+
     androidx.appcompat.app.AlertDialog.Builder builder;
     androidx.appcompat.app.AlertDialog ad;
 
@@ -125,9 +131,10 @@ public class MapActivity extends AppCompatActivity implements MapView.POIItemEve
         mContext = this;
         nearMissionList = new ArrayList<>();
 
-//        Intent getIntent = getIntent();
-//        String myLocation = getIntent.getStringExtra("myLocation");
-
+        address_Lat = new ArrayList<>();
+        address_Lon = new ArrayList<>();
+        mis_title = new ArrayList<>();
+        mis_type = new ArrayList<>();
 
         // 카카오맵 지도 띄우기
         mapView = new MapView(this); // 지도 담은 변수
@@ -139,6 +146,8 @@ public class MapActivity extends AppCompatActivity implements MapView.POIItemEve
         handle = findViewById(R.id.handle);
         linear = findViewById(R.id.linear);
         inflater = getLayoutInflater();
+
+
 
 
 
@@ -182,7 +191,6 @@ public class MapActivity extends AppCompatActivity implements MapView.POIItemEve
         // 현재위치 마커 표시
         marker = new MapPOIItem();
         marker.setItemName("wequiz");
-        marker.setTag(0);
         marker.setMapPoint(mapPoint);
         marker.setMarkerType(MapPOIItem.MarkerType.CustomImage);
         marker.setCustomImageResourceId(R.drawable.star); // 이미지 파일
@@ -210,47 +218,22 @@ public class MapActivity extends AppCompatActivity implements MapView.POIItemEve
                 // mission 위치 변수
                 // 추후 위치값 변수로 넣어주기
                 // 35.141998628841115 / 126.912268377757 => 사직공원
-                Log.d("mission", "onClick: fffff");
-
-//                mission1_location = MapPoint.mapPointWithGeoCoord(35.141998628841115, 126.912268377757); // 사직공원
-//                mission2_location = MapPoint.mapPointWithGeoCoord(35.141998628841115, 126.912268377757); // 국립아시아문화전당
-//                mission3_location = MapPoint.mapPointWithGeoCoord(35.141998628841115, 126.912268377757); // 광주향교
-
-                // 마커생성
-//                missionMarker1 = new MapPOIItem(); // 마커 생성
-//                missionMarker2 = new MapPOIItem();
-//                missionMarker3 = new MapPOIItem();
-//                missionMarker1.setItemName("mission1"); // 마커 이름
-//                missionMarker2.setItemName("mission2");
-//                missionMarker3.setItemName("mission3");
-//                missionMarker1.setTag(0); // 마커 생성주기
-//                missionMarker2.setTag(0);
-//                missionMarker3.setTag(0);
+                Log.d("mission", "내주변 3가지 문제 생성");
 
                 try {
                     getNearMissionList(lat, lng, "광주광역시");
                 }catch(Exception e){
                     e.printStackTrace();
                 }
-//                missionMarker1.setMapPoint(mission1_location); // 위치값 입력
-//                missionMarker2.setMapPoint(mission2_location);
-//                missionMarker3.setMapPoint(mission3_location);
-//                missionMarker1.setMarkerType(MapPOIItem.MarkerType.BluePin); // 마커 디자인, BluePin 기본타입
-//                missionMarker2.setMarkerType(MapPOIItem.MarkerType.BluePin);
-//                missionMarker3.setMarkerType(MapPOIItem.MarkerType.BluePin);
-//                missionMarker1.setSelectedMarkerType(MapPOIItem.MarkerType.RedPin); // 마커를 클릭했을때, 기본으로 제공하는 RedPin 마커 모양.
-//                missionMarker2.setSelectedMarkerType(MapPOIItem.MarkerType.RedPin);
-//                missionMarker3.setSelectedMarkerType(MapPOIItem.MarkerType.RedPin);
-//                mapView.addPOIItem(missionMarker1); // mapView에 마커 add
-//                mapView.addPOIItem(missionMarker2);
-//                mapView.addPOIItem(missionMarker3);
-
 
             }
         });
 
 
     }
+
+
+
 
 
     // LocationListener 인터페이스 : 위치 정보를 위치 공급자로부터 지속적으로 받아오는 역할
@@ -272,7 +255,7 @@ public class MapActivity extends AppCompatActivity implements MapView.POIItemEve
             mapView.setMapCenterPoint(mapPoint, true);
             marker.setItemName("wequiz");
 //            getAddress(MapActivity.this, lat,lng);
-            marker.setTag(0);
+//            marker.setTag(0);
             marker.setMapPoint(mapPoint);
             marker.setMarkerType(MapPOIItem.MarkerType.CustomImage); // 기본으로 제공하는 BluePin 마커 모양, customimage는 이미지 넣을 수 있음
             marker.setCustomImageResourceId(R.drawable.star); // 이미지 파일
@@ -290,14 +273,12 @@ public class MapActivity extends AppCompatActivity implements MapView.POIItemEve
         List<Address> address;
         String[] nowAddr_list;
         String data = null;
-
         try {
             if (geocoder != null) {
                 // 한좌표에 대해 두개이상의 이름이 존재할수있기에 주소배열을 리턴받고
                 // 세번째 파라메터인 maxResults는 리턴받을 주소의 최대 갯수를 지정함
                 // (여기서는 1개만 받는걸로...)
                 address = geocoder.getFromLocation(lat, lng, 1);
-
                 if (address != null && address.size() > 0)
                 {
                     // 주소 받아오기
@@ -305,7 +286,6 @@ public class MapActivity extends AppCompatActivity implements MapView.POIItemEve
                     // 주소 split
                     nowAddr_list = nowAddr.split("\\s");
                     data = nowAddr_list[1] + " " + nowAddr_list[2] + " " + nowAddr_list[3] + " " + nowAddr_list[4];
-
                 }
             }
         }
@@ -315,6 +295,8 @@ public class MapActivity extends AppCompatActivity implements MapView.POIItemEve
         }
         return data;
     }
+
+
 
 
 
@@ -338,9 +320,11 @@ public class MapActivity extends AppCompatActivity implements MapView.POIItemEve
         public void onPOIItemSelected(MapView mapView, MapPOIItem MarkerListener) {
             Log.d("아이템 이름", MarkerListener.getItemName()); // 마커 클릭 구분 Log.d
             tagnum = MarkerListener.getTag();
-            if ("mission1" == MarkerListener.getItemName() || "mission2" == MarkerListener.getItemName() || "mission3" == MarkerListener.getItemName())
-            {
+            Log.d("map_marker","num:" + tagnum);
 
+            if (MarkerListener.getItemName().equals("mission1") || MarkerListener.getItemName().equals("mission2") || MarkerListener.getItemName().equals("mission3"))
+            {
+                // 팝업창 생성
                 builder = new androidx.appcompat.app.AlertDialog.Builder(MapActivity.this, R.style.CustomDialog);
                 View dialoglayout = getLayoutInflater().inflate(R.layout.activity_savemission, null);
                 builder.setView(dialoglayout);
@@ -348,7 +332,21 @@ public class MapActivity extends AppCompatActivity implements MapView.POIItemEve
                 ImageView dialogButton1 = dialoglayout.findViewById(R.id.btn_savemis);
                 ImageView dialogButton2 = dialoglayout.findViewById(R.id.btn_changemis);
                 Button dialogButton3 = dialoglayout.findViewById(R.id.btn_exit);
+                TextView dialogtitle = dialoglayout.findViewById(R.id.mission_title);
+                TextView dialogtype = dialoglayout.findViewById(R.id.mission_type);
 
+                dialogtitle.setText(mis_title.get(tagnum));
+                dialogtype.setText(" " + mis_type.get(tagnum));
+//                String map_title = mis_title.get(tagnum);
+//                String map_type = mis_type.get(tagnum);
+//
+//                // mission text 표시
+//                Intent map_intent = new Intent(MapActivity.this, savemission.class);
+//                map_intent.putExtra("제목",mis_title.get(tagnum));
+//                map_intent.putExtra("유형",mis_type.get(tagnum));
+
+
+                // 1. 저장버튼
                 dialogButton1.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -358,47 +356,45 @@ public class MapActivity extends AppCompatActivity implements MapView.POIItemEve
                     }
                 });
 
+                // 2. 교체버튼
                 dialogButton2.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         //교체하는 코드
-                        int countmis = nearMissionList.size();
-                        Log.d("교체","문제 갯수:" + countmis);
-                        // arraylist[0] 삭제
-                        if(nearMissionList.size() > 3) {
-                                nearMissionList.remove(tagnum);
-                            // 다시 arraylist[0~2] 생성
-//                                missionMarker1.setItemName("mission1"); // 마커 이름
-//                                missionMarker2.setItemName("mission2");
-//                                missionMarker3.setItemName("mission3");
-                                missionMarker1.setTag(0); // 마커 번호 지정
-                                missionMarker2.setTag(1);
-                                missionMarker3.setTag(2);
-                                mission1_location = MapPoint.mapPointWithGeoCoord(nearMissionList.get(0).getLat(), nearMissionList.get(0).getLon());
-                                mission2_location = MapPoint.mapPointWithGeoCoord(nearMissionList.get(1).getLat(), nearMissionList.get(1).getLon());
-                                mission3_location = MapPoint.mapPointWithGeoCoord(nearMissionList.get(2).getLat(), nearMissionList.get(2).getLon());
-                                missionMarker1.setMapPoint(mission1_location);
-                                missionMarker2.setMapPoint(mission2_location);
-                                missionMarker3.setMapPoint(mission3_location);
-//                                missionMarker1.setMarkerType(MapPOIItem.MarkerType.BluePin); // 마커 디자인, BluePin 기본타입
-//                                missionMarker2.setMarkerType(MapPOIItem.MarkerType.BluePin);
-//                                missionMarker3.setMarkerType(MapPOIItem.MarkerType.BluePin);
-//                                missionMarker1.setSelectedMarkerType(MapPOIItem.MarkerType.RedPin); // 마커를 클릭했을때, 기본으로 제공하는 RedPin 마커 모양.
-//                                missionMarker2.setSelectedMarkerType(MapPOIItem.MarkerType.RedPin);
-//                                missionMarker3.setSelectedMarkerType(MapPOIItem.MarkerType.RedPin);
-                                mapView.addPOIItem(missionMarker1); // mapView에 마커 add
-                                mapView.addPOIItem(missionMarker2);
-                                mapView.addPOIItem(missionMarker3);
+                        Log.d("address","개수" + address_Lon.size());
+                        Log.d("title","텍스트" + mis_title.get(tagnum));
+                        address_Lat.remove(tagnum);
+                        address_Lon.remove(tagnum);
+                        mis_title.remove(tagnum);
+                        mis_type.remove(tagnum);
 
-                        } else{
+                        if(count < nearMissionList.size()){
+
+                            address_Lat.add(nearMissionList.get(count).getLat());
+                            address_Lon.add(nearMissionList.get(count).getLon());
+                            mis_title.add(nearMissionList.get(count).getKeyword());
+                            mis_type.add(nearMissionList.get(count).getMissionType());
+
+
+                            mission1_location = MapPoint.mapPointWithGeoCoord(address_Lat.get(0), address_Lon.get(0));
+                            mission2_location = MapPoint.mapPointWithGeoCoord(address_Lat.get(1), address_Lon.get(1));
+                            mission3_location = MapPoint.mapPointWithGeoCoord(address_Lat.get(2), address_Lon.get(2));
+
+                            missionMarker1.setMapPoint(mission1_location);
+                            missionMarker2.setMapPoint(mission2_location);
+                            missionMarker3.setMapPoint(mission3_location); //위치할 위도경도
+
+                            ad.dismiss();
+                            count+=1;
+
+                        } else {
                             showDialog();
                         }
 
-                        ad.dismiss();
                     }
                 });
 
-
+                // 3. Exit 버튼
                 dialogButton3.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -406,14 +402,12 @@ public class MapActivity extends AppCompatActivity implements MapView.POIItemEve
                     }
                 });
 
+                //팝업실행
                 ad = builder.create();
                 ad.show();
-
+                
             } else {
-
             }
-
-
         }
         @Override
         public void onCalloutBalloonOfPOIItemTouched(MapView mapView, MapPOIItem mapPOIItem) {
@@ -428,6 +422,8 @@ public class MapActivity extends AppCompatActivity implements MapView.POIItemEve
             Log.i("1144444411","진입");
         }
     };
+
+
 
 
     // 서버통신
@@ -452,6 +448,12 @@ public class MapActivity extends AppCompatActivity implements MapView.POIItemEve
 
                                 MissionMapVO mission = new MissionMapVO(Integer.parseInt(mission_id), mission_type, keyword, Double.parseDouble(lat), Double.parseDouble(lon));
                                 nearMissionList.add(mission);
+                                if(address_Lat.size() < 3){
+                                    address_Lon.add(Double.parseDouble(lon));
+                                    address_Lat.add(Double.parseDouble(lat));
+                                    mis_title.add(keyword);
+                                    mis_type.add(mission_type);
+                                }
 
                             }
                             for(int i = 0; i < nearMissionList.size(); i++) {
@@ -463,12 +465,12 @@ public class MapActivity extends AppCompatActivity implements MapView.POIItemEve
                             missionMarker1.setItemName("mission1"); // 마커 이름
                             missionMarker2.setItemName("mission2");
                             missionMarker3.setItemName("mission3");
-                            missionMarker1.setTag(0); // 마커 생성주기
+                            missionMarker1.setTag(0); // 마커 번호
                             missionMarker2.setTag(1);
                             missionMarker3.setTag(2);
-                            mission1_location = MapPoint.mapPointWithGeoCoord(nearMissionList.get(0).getLat(), nearMissionList.get(0).getLon());
-                            mission2_location = MapPoint.mapPointWithGeoCoord(nearMissionList.get(1).getLat(), nearMissionList.get(1).getLon());
-                            mission3_location = MapPoint.mapPointWithGeoCoord(nearMissionList.get(2).getLat(), nearMissionList.get(2).getLon());
+                            mission1_location = MapPoint.mapPointWithGeoCoord(address_Lat.get(0), address_Lon.get(0));
+                            mission2_location = MapPoint.mapPointWithGeoCoord(address_Lat.get(1), address_Lon.get(1));
+                            mission3_location = MapPoint.mapPointWithGeoCoord(address_Lat.get(2), address_Lon.get(2));
                             missionMarker1.setMapPoint(mission1_location);
                             missionMarker2.setMapPoint(mission2_location);
                             missionMarker3.setMapPoint(mission3_location);
@@ -519,8 +521,10 @@ public class MapActivity extends AppCompatActivity implements MapView.POIItemEve
         AlertDialog.Builder msg = new AlertDialog.Builder(this);
         msg.setTitle("title");
         msg.setMessage("교체할 문제가 없습니다.");
-        ad.dismiss();
     }
+
+
+
 
 
 }
