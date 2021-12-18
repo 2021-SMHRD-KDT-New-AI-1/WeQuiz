@@ -1,13 +1,16 @@
 package com.hjh.wequiz;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -41,7 +44,6 @@ public class MissionListAdapter extends RecyclerView.Adapter<MissionListAdapter.
 
 
         int mission_id = mdata.get(position).getMission_id();
-
         String location_name = mdata.get(position).getLocation_name();
         String keyword = mdata.get(position).getKeyword();
         String quiz = mdata.get(position).getQuiz();
@@ -78,6 +80,42 @@ public class MissionListAdapter extends RecyclerView.Adapter<MissionListAdapter.
             img_missionList_box = itemView.findViewById(R.id.img_missionList_box);
             img_missionListType = itemView.findViewById(R.id.img_missionListType);
             tv_missionListKeyword = itemView.findViewById(R.id.tv_missionListKeyword);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int pos = getAdapterPosition();
+                    if (pos != RecyclerView.NO_POSITION) {
+                        MissionListVO item = mdata.get(pos);
+
+                        int mission_id = item.getMission_id();
+                        String location_name = item.getLocation_name();
+                        String quiz = item.getQuiz();
+                        String answer = item.getAnswer();
+                        String type = item.getMission_type();
+
+                        Intent intent = null;
+
+                        if(type.equals("주관식")) {
+                            intent = new Intent(mContext, ShortAnswerActivity.class);
+
+                        } else if (type.equals("객관식")) {
+                            intent = new Intent(mContext, ChoiceAnswerActivity.class);
+
+                        } else {
+
+                        }
+
+                        intent.putExtra("mission_id", mission_id);
+                        intent.putExtra("location_name", location_name);
+                        intent.putExtra("quiz", quiz);
+                        intent.putExtra("answer", answer);
+                        mContext.startActivity(intent);
+
+
+                    }
+                }
+            });
 
         }
 

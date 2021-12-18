@@ -119,6 +119,8 @@ public class MapActivity extends AppCompatActivity implements MapView.POIItemEve
 
     Button btn_mission;
 
+    String mem_id;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -130,6 +132,8 @@ public class MapActivity extends AppCompatActivity implements MapView.POIItemEve
         }
         mContext = this;
         nearMissionList = new ArrayList<>();
+
+        mem_id = PreferenceManager.getString(mContext, "mem_id");
 
         address_Lat = new ArrayList<>();
         address_Lon = new ArrayList<>();
@@ -517,6 +521,85 @@ public class MapActivity extends AppCompatActivity implements MapView.POIItemEve
         msg.setTitle("title");
         msg.setMessage("교체할 문제가 없습니다.");
     }
+
+    public void insertMemMission(String mem_id, int mission_id){
+        String url = ip + "/Member/InsertMemMission";
+        StringRequest request = new StringRequest(
+                Request.Method.POST,
+                url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        // 응답 성공
+                        try {
+                            JSONObject jsonObject = (JSONObject) (new JSONArray(response).get(0));
+                            Log.d("status : ", jsonObject.getString("status"));
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                    }
+                }
+        ){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError{
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("mem_id", mem_id);
+                params.put("mission_id", String.valueOf(mission_id));
+
+                return params;
+            }
+        };
+        requestQueue.add(request);
+    }
+
+    public void deleteMemMission(String mem_id, int mission_id){
+        String url = ip + "/Member/DeleteMemMission";
+        StringRequest request = new StringRequest(
+                Request.Method.POST,
+                url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        // 응답 성공
+                        try {
+                            JSONObject jsonObject = (JSONObject) (new JSONArray(response).get(0));
+                            Log.d("status : ", jsonObject.getString("status"));
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                    }
+                }
+        ){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError{
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("mem_id", mem_id);
+                params.put("mission_id", String.valueOf(mission_id));
+
+                return params;
+            }
+        };
+        requestQueue.add(request);
+    }
+
+
+
 
 
 
