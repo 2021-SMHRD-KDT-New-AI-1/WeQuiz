@@ -90,6 +90,41 @@ public class ChoiceAnswerActivity extends AppCompatActivity {
         tv_choiceQuiz.setText(quiz);
         makeChoiceQuiz(answer);
 
+        // 객관식 선택
+        btn_choices[0].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String userAns = btn_choices[0].getText().toString();
+                if(userAns.equals(answer)) {
+                    Toast.makeText(mContext,"정답입니다!", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(mContext,"땡!!!!!!!", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        btn_choices[1].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String userAns = btn_choices[1].getText().toString();
+                if(userAns.equals(answer)) {
+                    Toast.makeText(mContext,"정답입니다!", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(mContext,"땡!!!!!!!", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        btn_choices[2].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String userAns = btn_choices[2].getText().toString();
+                if(userAns.equals(answer)) {
+                    Toast.makeText(mContext,"정답입니다!", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(mContext,"땡!!!!!!!", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
 
         // 플로팅 버튼 초기화
         float_plus = findViewById(R.id.float_plus);
@@ -233,14 +268,17 @@ public class ChoiceAnswerActivity extends AppCompatActivity {
                                 String keyword = jsonObject.getString("keyword");
                                 keywords.add(keyword);
                             }
-                            Set<Integer> randomSet = new HashSet<>();
+
                             Random rand = new Random();
-                            while(randomSet.size() < 2) {
+
+                            ArrayList<Integer> randKeywords = new ArrayList<>();
+                            while(randKeywords.size() < 2) {
                                 int r = rand.nextInt(keywords.size());
                                 Log.d("랜덤으로 키워드 인덱스 뽑히는 중 --- ", String.valueOf(r));
-                                randomSet.add(r);
+                                if(!randKeywords.contains(r) && r != keywords.indexOf(answer)) {
+                                    randKeywords.add(r);
+                                }
                             }
-                            ArrayList<Integer> randKeywords = new ArrayList<>(randomSet);
 
                             ArrayList<String> choiceKeywords = new ArrayList<>();
                             choiceKeywords.add(answer);
@@ -257,6 +295,7 @@ public class ChoiceAnswerActivity extends AppCompatActivity {
                                 }
                             }
 
+                            // 객관식 버튼에 지정하기
                             for(int i = 0; i < 3; i++) {
                                 btn_choices[i].setText(choiceKeywords.get(randNum.get(i)));
                                 Log.d("랜덤수", String.valueOf(randNum.get(i)));
