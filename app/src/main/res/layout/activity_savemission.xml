@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
     tools:context=".savemission">
 
     <ImageView
@@ -35,12 +36,13 @@
         android:layout_marginTop="30dp"
         android:layout_marginEnd="100dp"
         android:fontFamily="@font/dream7"
-        android:text="펭귄마을에서사진찍기"
+        android:text="펭귄마을에서 사진찍기"
         android:textColor="@color/black"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/imageView5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
