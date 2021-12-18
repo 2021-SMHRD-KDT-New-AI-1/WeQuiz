@@ -37,6 +37,8 @@ import java.util.Map;
 
 public class MissionListActivity extends AppCompatActivity {
 
+    String ip;
+
     static boolean click_r;
     // 플로팅버튼 상태
     private boolean fabMain_status = false;
@@ -63,6 +65,7 @@ public class MissionListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mission_list);
 
+        ip = ((MyApplication) getApplicationContext()).getIp();
         if (requestQueue == null) {
             requestQueue = Volley.newRequestQueue(getApplicationContext());
         }
@@ -176,7 +179,7 @@ public class MissionListActivity extends AppCompatActivity {
 
     public void getMissionList(String mem_id, String location_name){
 
-        String url = "http://172.30.1.34:3003/Mission/MissionList";
+        String url = ip + "/Mission/MissionList";
         StringRequest request = new StringRequest(
                 Request.Method.POST,
                 url,

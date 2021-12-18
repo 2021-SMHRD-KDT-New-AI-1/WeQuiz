@@ -39,6 +39,8 @@ import java.util.Map;
 
 public class MemberModifyActivity extends AppCompatActivity {
 
+    String ip;
+
     RequestQueue requestQueue;
     EditText et_memberModifyNick, et_memberModifyPw, et_memberModifyChangePw,et_memberModifyCheckChangePw;
     Button btn_memberModify;
@@ -54,6 +56,9 @@ public class MemberModifyActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_member_modify);
+
+        ip = ((MyApplication) getApplicationContext()).getIp();
+
         tv_memberModifyBirthDate = findViewById(R.id.tv_memberModifyBirthDate);
         tv_memberModifyNick = findViewById(R.id.tv_memberModifyNick);
         et_memberModifyNick = findViewById(R.id.et_memberModifyNick);
@@ -177,7 +182,7 @@ public class MemberModifyActivity extends AppCompatActivity {
 
     // Json 파일을 만들어 웹 서버로 보내기~!
     public void postModify(String id, String nick, String pw, String birth, Bitmap image){
-        String url = "http://172.30.1.34:3003/Member/Modify";
+        String url = ip + "/Member/Modify";
         StringRequest request = new StringRequest(
                 Request.Method.POST,
                 url,
@@ -222,7 +227,7 @@ public class MemberModifyActivity extends AppCompatActivity {
 
     public void modify(String id, String currentPw, String changePw, String nick, String birth){
         // 입력한 현재 비밀번호가 일치하는지 확인, id와 매치되는 비밀번호인지 로그인 요청으로 확인가능하다.
-        String url = "http://172.30.1.34:3003/Member/Login"; //(로그인 요청! - 회원테이블에서 확인)
+        String url = ip + "/Member/Login"; //(로그인 요청! - 회원테이블에서 확인)
         // 로그인 요청 후 -> 로그인 여부에 따라 status에 success 혹은 fail을 담아서 전달
         StringRequest request = new StringRequest(
                 Request.Method.POST,
@@ -272,7 +277,7 @@ public class MemberModifyActivity extends AppCompatActivity {
 
     // 회원 정보를 서버에 요청하여 받아오는 메소드~
     public void getMemberInfo(String id){
-        String url = "http://172.30.1.34:3003/Member/MemberInfo";
+        String url = ip + "/Member/MemberInfo";
         StringRequest request = new StringRequest(
                 Request.Method.POST,
                 url,

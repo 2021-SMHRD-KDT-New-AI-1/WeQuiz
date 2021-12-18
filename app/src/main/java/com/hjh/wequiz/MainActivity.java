@@ -49,6 +49,8 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
+    String ip;
+
     RequestQueue requestQueue;
     Context mContext;
     ArrayList<RankVO> mData;
@@ -73,11 +75,14 @@ public class MainActivity extends AppCompatActivity {
     Location location;
     private static final String TAG = "MainActivity";
 
+    String myLocation;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        ip = ((MyApplication) getApplicationContext()).getIp();
         mContext = this;
 
         if (requestQueue == null) {
@@ -126,8 +131,8 @@ public class MainActivity extends AppCompatActivity {
                 double lng = location.getLongitude(); //경도
                 double alti = location.getAltitude(); //고도
                 Log.d(TAG, "현재 위치: " + provider + " / " + lat + " / " + lng + " / " + alti);
-                tv_mainLocation.setText(getAddress(MainActivity.this, lat,lng));
-
+                myLocation = getAddress(MainActivity.this, lat,lng);
+                tv_mainLocation.setText(myLocation);
             }
         });
 
@@ -226,8 +231,15 @@ public class MainActivity extends AppCompatActivity {
 
         // 회원 정보 가져와서 상단의 환영 문구에 반영하는 코드
         String mem_id = PreferenceManager.getString(this, "mem_id");
-        getMemberInfo(mem_id);
         // 여기까지 환영 문구 변경 코드
+
+        // 로그인인 상태일 때 버튼 이벤트 변화
+        if(mem_id.equals("")) {
+            btn_mainLogin.setText("로그인");
+        } else {
+            getMemberInfo(mem_id);
+            btn_mainLogin.setText("로그아웃");
+        }
 
 
         // 버튼 이벤트
@@ -252,21 +264,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, QuizLoadingActivity.class);
+//                intent.putExtra("myLocation", myLocation);
                 startActivity(intent);
             }
         });
 
-        // 로그인인 상태일 때 버튼 이벤트 변화
-        if(mem_id.equals("")) {
-            btn_mainLogin.setText("로그인");
-        } else {
-            btn_mainLogin.setText("로그아웃");
-        }
-
     }
 
     public void getRankInfo() {
-        String url = "http://172.30.1.34:3003/Badge/RankInfo";
+        String url = ip + "/Badge/RankInfo";
         StringRequest request = new StringRequest(
                 Request.Method.POST,
                 url,
@@ -318,7 +324,7 @@ public class MainActivity extends AppCompatActivity {
 
     // 회원 정보를 서버에 요청하여 받아오는 메소드~
     public void getMemberInfo(String id){
-        String url = "http://172.30.1.34:3003/Member/MemberInfo";
+        String url = ip + "/Member/MemberInfo";
         StringRequest request = new StringRequest(
                 Request.Method.POST,
                 url,

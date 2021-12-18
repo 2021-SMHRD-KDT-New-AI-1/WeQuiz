@@ -32,6 +32,7 @@ import java.util.Map;
 
 public class LoginActivity extends AppCompatActivity {
 
+    String ip;
     RequestQueue requestQueue;
     EditText et_loginId, et_loginPw;
     Button btn_login, btn_loginSign;
@@ -45,6 +46,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        ip = ((MyApplication) getApplicationContext()).getIp();
         mContext = this;
 
         et_loginId = findViewById(R.id.et_loginId);
@@ -81,7 +83,7 @@ public class LoginActivity extends AppCompatActivity {
 
     // Json파일을 만들어 웹 서버로 보내기
     public void postLogin(String id, String pw) {
-        String url = "http://172.30.1.34:3003/Member/Login";
+        String url = ip + "/Member/Login";
         StringRequest request = new StringRequest(
                 Request.Method.POST,
                 url,

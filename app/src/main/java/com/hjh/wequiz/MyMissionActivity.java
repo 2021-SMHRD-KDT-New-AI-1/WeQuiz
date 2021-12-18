@@ -37,6 +37,8 @@ import java.util.Map;
 
 public class MyMissionActivity extends AppCompatActivity {
 
+    String ip;
+
     RequestQueue requestQueue;
     Context mContext;
 
@@ -60,6 +62,7 @@ public class MyMissionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_mission);
 
+        ip = ((MyApplication) getApplicationContext()).getIp();
         mData = new ArrayList<>();
 
         mContext = this;
@@ -168,7 +171,7 @@ public class MyMissionActivity extends AppCompatActivity {
     }
 
     public void getMyMission(String id) {
-        String url = "http://172.30.1.34:3003/Mission/MyMission";
+        String url = ip + "/Mission/MyMission";
         StringRequest request = new StringRequest(
                 Request.Method.POST,
                 url,

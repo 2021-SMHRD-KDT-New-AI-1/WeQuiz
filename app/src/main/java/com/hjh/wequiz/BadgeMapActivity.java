@@ -39,6 +39,8 @@ import java.util.Map;
 
 public class BadgeMapActivity extends AppCompatActivity {
 
+    String ip;
+
     RequestQueue requestQueue;
     Context mContext;
 
@@ -66,6 +68,7 @@ public class BadgeMapActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_badge_map);
 
+        ip = ((MyApplication) getApplicationContext()).getIp();
         mContext = this;
 
         if (requestQueue == null) {
@@ -238,7 +241,7 @@ public class BadgeMapActivity extends AppCompatActivity {
     }
 
     public void getMyBadge(String id) {
-        String url = "http://172.30.1.34:3003/Badge/MyBadge";
+        String url = ip + "/Badge/MyBadge";
         StringRequest request = new StringRequest(
                 Request.Method.POST,
                 url,
@@ -246,6 +249,7 @@ public class BadgeMapActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         try {
+                            System.out.println(response);
                             JSONArray jsonArray = new JSONArray(response);
                             for(int i = 0; i < jsonArray.length(); i++) {
                                 JSONObject jsonObject = jsonArray.getJSONObject(i);

@@ -33,6 +33,8 @@ import java.util.Map;
 
 public class MyMissionAdapter extends RecyclerView.Adapter<MyMissionAdapter.ViewHolder> {
 
+    String ip;
+
     private ArrayList<MyMissionVO> mdata = null;
     Context mContext;
     RequestQueue requestQueue;
@@ -95,6 +97,7 @@ public class MyMissionAdapter extends RecyclerView.Adapter<MyMissionAdapter.View
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
+            ip = ((MyApplication) mContext.getApplicationContext()).getIp();
             if (requestQueue == null){
                 requestQueue = Volley.newRequestQueue(mContext);
             }
@@ -138,7 +141,7 @@ public class MyMissionAdapter extends RecyclerView.Adapter<MyMissionAdapter.View
 
     public void postBadgeGet(String mem_id, String location_name, MyMissionVO item) {
 
-        String url = "http://172.30.1.34:3003/Badge/Insert";
+        String url = ip + "/Badge/Insert";
         StringRequest request = new StringRequest(
                 Request.Method.POST,
                 url,
@@ -201,7 +204,7 @@ public class MyMissionAdapter extends RecyclerView.Adapter<MyMissionAdapter.View
         mdata.remove(pos);
         notifyDataSetChanged();
 
-        String url = "http://172.30.1.34:3003/Mission/Delete";
+        String url = ip + "/Mission/Delete";
         StringRequest request = new StringRequest(
                 Request.Method.POST,
                 url,

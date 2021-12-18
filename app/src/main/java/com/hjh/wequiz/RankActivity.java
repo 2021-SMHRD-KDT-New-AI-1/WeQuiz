@@ -37,6 +37,8 @@ import java.util.Map;
 
 public class RankActivity extends AppCompatActivity {
 
+    String ip;
+
     RequestQueue requestQueue;
     Context mContext;
     ArrayList<RankVO> mData;
@@ -63,6 +65,7 @@ public class RankActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rank);
 
+        ip = ((MyApplication) getApplicationContext()).getIp();
         mContext = this;
 
         // 플로팅 버튼 초기화
@@ -181,7 +184,7 @@ public class RankActivity extends AppCompatActivity {
     }
 
     public void getRankInfo() {
-        String url = "http://172.30.1.34:3003/Badge/RankInfo";
+        String url = ip + "/Badge/RankInfo";
         StringRequest request = new StringRequest(
                 Request.Method.POST,
                 url,
