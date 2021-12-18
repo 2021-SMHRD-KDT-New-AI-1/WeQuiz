@@ -1,5 +1,6 @@
 package com.hjh.wequiz;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
@@ -8,6 +9,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.Animation;
@@ -54,6 +56,10 @@ public class ShortAnswerActivity extends AppCompatActivity {
     RequestQueue requestQueue;
     Context mContext;
 
+    // 팝업창
+    AlertDialog.Builder builder;
+    AlertDialog ad;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -89,8 +95,7 @@ public class ShortAnswerActivity extends AppCompatActivity {
                 if(userAns.equals(answer)) {
                     Toast.makeText(mContext, "정답입니다!", Toast.LENGTH_SHORT).show();
                     updateSucc(mem_id, mission_id);
-                    Intent intent = new Intent(mContext, MyMissionActivity.class);
-                    mContext.startActivity(intent);
+                    succPop();
                 } else {
                     Toast.makeText(mContext, "땡!!!!!", Toast.LENGTH_SHORT).show();
                 }
@@ -258,5 +263,26 @@ public class ShortAnswerActivity extends AppCompatActivity {
             }
         };
         requestQueue.add(request);
+    }
+
+    public void succPop() {
+        builder = new AlertDialog.Builder(mContext, R.style.CustomDialog);
+
+        LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View dialoglayout = inflater.inflate(R.layout.badge_popup, null);
+        builder.setView(dialoglayout);
+
+        Button dialogButton = dialoglayout.findViewById(R.id.btn_close_badgepopup);
+
+        dialogButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ad.dismiss();
+                Intent intent = new Intent(mContext, MyMissionActivity.class);
+                mContext.startActivity(intent);
+            }
+        });
+        ad = builder.create();
+        ad.show();
     }
 }
