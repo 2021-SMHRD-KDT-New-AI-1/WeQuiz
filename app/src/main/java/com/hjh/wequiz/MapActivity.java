@@ -89,6 +89,7 @@ public class MapActivity extends AppCompatActivity implements MapView.POIItemEve
     List<Double> address_Lon;
     List<String> mis_type;
     List<String> mis_title;
+    List<Integer> mis_id;
 
     RequestQueue requestQueue;
     Context mContext;
@@ -118,13 +119,16 @@ public class MapActivity extends AppCompatActivity implements MapView.POIItemEve
     androidx.appcompat.app.AlertDialog ad;
 
     Button btn_mission;
-
     String mem_id;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
+
+        mem_id = PreferenceManager.getString(this, "mem_id");
 
         ip = ((MyApplication) getApplicationContext()).getIp();
         if (requestQueue == null) {
@@ -133,12 +137,13 @@ public class MapActivity extends AppCompatActivity implements MapView.POIItemEve
         mContext = this;
         nearMissionList = new ArrayList<>();
 
-        mem_id = PreferenceManager.getString(mContext, "mem_id");
+
 
         address_Lat = new ArrayList<>();
         address_Lon = new ArrayList<>();
         mis_title = new ArrayList<>();
         mis_type = new ArrayList<>();
+        mis_id = new ArrayList<>();
 
         // 카카오맵 지도 띄우기
         mapView = new MapView(this); // 지도 담은 변수
@@ -349,9 +354,13 @@ public class MapActivity extends AppCompatActivity implements MapView.POIItemEve
                 dialogButton1.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        //저장하는 코드
-//                    ad.dismiss();
-                        Log.d("저장","ㅇㅇ");
+                        // 저장하는 코드
+                        Log.d("저장","mis_id: "+ mis_id.get(tagnum));
+                        Log.d("저장","mem_id: "+ mem_id);
+                        // 서버 저장 메소드
+
+                        insertMemMission(mem_id, mis_id.get(tagnum));
+                        ad.dismiss();
                     }
                 });
 
@@ -366,6 +375,7 @@ public class MapActivity extends AppCompatActivity implements MapView.POIItemEve
                         address_Lon.remove(tagnum);
                         mis_title.remove(tagnum);
                         mis_type.remove(tagnum);
+                        mis_id.remove(tagnum);
 
                         if(count < nearMissionList.size()){
 
@@ -373,6 +383,7 @@ public class MapActivity extends AppCompatActivity implements MapView.POIItemEve
                             address_Lon.add(nearMissionList.get(count).getLon());
                             mis_title.add(nearMissionList.get(count).getKeyword());
                             mis_type.add(nearMissionList.get(count).getMissionType());
+                            mis_id.add(nearMissionList.get(count).getMissionId());
 
 
                             mission1_location = MapPoint.mapPointWithGeoCoord(address_Lat.get(0), address_Lon.get(0));
@@ -452,6 +463,7 @@ public class MapActivity extends AppCompatActivity implements MapView.POIItemEve
                                     address_Lat.add(Double.parseDouble(lat));
                                     mis_title.add(keyword);
                                     mis_type.add(mission_type);
+                                    mis_id.add(Integer.parseInt(mission_id));
                                 }
 
                             }
@@ -510,11 +522,13 @@ public class MapActivity extends AppCompatActivity implements MapView.POIItemEve
     }
 
 
+
     // 마커클릭시 팝업 메소드
     void show() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("저장");
     }
+
 
     void showDialog() {
         AlertDialog.Builder msg = new AlertDialog.Builder(this);
@@ -522,8 +536,11 @@ public class MapActivity extends AppCompatActivity implements MapView.POIItemEve
         msg.setMessage("교체할 문제가 없습니다.");
     }
 
+
     public void insertMemMission(String mem_id, int mission_id){
-        String url = ip + "/Member/InsertMemMission";
+        Log.d("멤버","id"+mem_id);
+        Log.d("미션","id"+mis_id.get(tagnum));
+        String url = ip + "/Mission/InsertMemMission";
         StringRequest request = new StringRequest(
                 Request.Method.POST,
                 url,
@@ -560,8 +577,10 @@ public class MapActivity extends AppCompatActivity implements MapView.POIItemEve
         requestQueue.add(request);
     }
 
+
+
     public void deleteMemMission(String mem_id, int mission_id){
-        String url = ip + "/Member/DeleteMemMission";
+        String url = ip + "/Mission/DeleteMemMission";
         StringRequest request = new StringRequest(
                 Request.Method.POST,
                 url,
