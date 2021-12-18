@@ -28,19 +28,19 @@
         app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/star_back" />
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="50dp"
-        android:fontFamily="@font/dream6"
-        android:letterSpacing="-0.03"
-        android:text="런닝머신"
-        android:textColor="#FFFFFF"
-        android:textSize="27sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="80dp"
+            android:fontFamily="@font/dream6"
+            android:letterSpacing="-0.03"
+            android:text="런닝머신"
+            android:textColor="#FFFFFF"
+            android:textSize="27sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView3"
@@ -190,7 +190,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="end|bottom"
                 android:layout_marginStart="280dp"
-                android:layout_marginTop="550dp"
+                android:layout_marginTop="710dp"
                 android:src="@drawable/float_plus"
                 app:backgroundTint="#ff6d64"
                 app:elevation="6dp"

@@ -295,7 +295,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="end|bottom"
             android:layout_marginStart="280dp"
-            android:layout_marginTop="550dp"
+            android:layout_marginTop="710dp"
             android:src="@drawable/float_plus"
             app:backgroundTint="#ff6d64"
             app:elevation="6dp"
