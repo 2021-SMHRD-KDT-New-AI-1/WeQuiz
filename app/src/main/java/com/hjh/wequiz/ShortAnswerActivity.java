@@ -1,13 +1,17 @@
 package com.hjh.wequiz;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,10 +30,35 @@ public class ShortAnswerActivity extends AppCompatActivity {
 
     int num;
 
+    TextView tv_shortLocationName, tv_shortQuiz, tv_shortAnswerCnt;
+    EditText et_shortAnswer;
+    Button btn_shortSubmit;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_short_answer);
+
+        tv_shortLocationName = findViewById(R.id.tv_shortLocationName);
+        tv_shortQuiz = findViewById(R.id.tv_shortQuiz);
+        tv_shortAnswerCnt = findViewById(R.id.tv_shortAnswerCnt);
+        et_shortAnswer = findViewById(R.id.et_shortAnswer);
+        btn_shortSubmit = findViewById(R.id.btn_shortSubmit);
+
+        Intent intent = getIntent();
+        int mission_id = intent.getIntExtra("mission_id", 0);
+        String location_name = intent.getStringExtra("location_name");
+        String quiz = intent.getStringExtra("quiz");
+        String answer = intent.getStringExtra("answer");
+
+        tv_shortLocationName.setText(location_name);
+        tv_shortQuiz.setText(quiz);
+        tv_shortAnswerCnt.setText(String.valueOf(answer.length()));
+
+
+
+
+
 
         // 플로팅 버튼 초기화
         float_plus = findViewById(R.id.float_plus);
