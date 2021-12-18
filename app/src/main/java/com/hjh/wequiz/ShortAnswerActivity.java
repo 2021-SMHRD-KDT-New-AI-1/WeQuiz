@@ -269,10 +269,10 @@ public class ShortAnswerActivity extends AppCompatActivity {
         builder = new AlertDialog.Builder(mContext, R.style.CustomDialog);
 
         LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View dialoglayout = inflater.inflate(R.layout.badge_popup, null);
+        View dialoglayout = inflater.inflate(R.layout.star_popup, null);
         builder.setView(dialoglayout);
 
-        Button dialogButton = dialoglayout.findViewById(R.id.btn_close_badgepopup);
+        Button dialogButton = dialoglayout.findViewById(R.id.btn_close_starpopup);
 
         dialogButton.setOnClickListener(new View.OnClickListener() {
             @Override
