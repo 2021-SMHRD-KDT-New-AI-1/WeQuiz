@@ -358,15 +358,13 @@ public class MapActivity extends AppCompatActivity implements MapView.POIItemEve
                         // 저장하는 코드
                         Log.d("저장","mis_id: "+ mis_id.get(tagnum));
                         Log.d("저장","mem_id: "+ mem_id);
-
+                        insertMemMission(mem_id, mis_id.get(tagnum));
                         save_cnt += 1;
+                        ad.dismiss();
                         // 서버 저장 메소드
-                        if(save_cnt < 4){
-                            insertMemMission(mem_id, mis_id.get(tagnum));
-                            ad.dismiss();
-                        } else {
-                            //화면 전환
-
+                        if(save_cnt == 3){
+                            Intent intent = new Intent(getApplicationContext(), MyMissionActivity.class);
+                            startActivity(intent);
                         }
 
                     }
