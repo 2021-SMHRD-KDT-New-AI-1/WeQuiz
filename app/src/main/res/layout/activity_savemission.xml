@@ -19,7 +19,7 @@
         app:srcCompat="@drawable/badge_round" />
 
     <TextView
-        android:id="@+id/textView8"
+        android:id="@+id/mission_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
@@ -27,33 +27,33 @@
         android:text="국립아시아문화전당"
         android:textColor="#000000"
         android:textSize="20sp"
-        app:layout_constraintEnd_toStartOf="@+id/missiontit"
+        app:layout_constraintEnd_toStartOf="@+id/mission_type"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/imageView8"
         app:layout_constraintTop_toTopOf="@+id/imageView8" />
 
     <TextView
-        android:id="@+id/missiontit"
+        android:id="@+id/mission_type"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/dream7"
         android:text="사진찍기"
         android:textColor="@color/black"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView8"
+        app:layout_constraintBottom_toBottomOf="@+id/mission_title"
         app:layout_constraintEnd_toStartOf="@+id/imageView8"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/textView8"
-        app:layout_constraintTop_toTopOf="@+id/textView8" />
+        app:layout_constraintStart_toEndOf="@+id/mission_title"
+        app:layout_constraintTop_toTopOf="@+id/mission_title" />
 
     <ImageView
         android:id="@+id/btn_savemis"
         android:layout_width="252dp"
         android:layout_height="56dp"
         android:layout_marginTop="10dp"
-        app:layout_constraintEnd_toEndOf="@+id/missiontit"
-        app:layout_constraintStart_toStartOf="@+id/textView8"
-        app:layout_constraintTop_toBottomOf="@+id/missiontit"
+        app:layout_constraintEnd_toEndOf="@+id/mission_type"
+        app:layout_constraintStart_toStartOf="@+id/mission_title"
+        app:layout_constraintTop_toBottomOf="@+id/mission_type"
         app:srcCompat="@drawable/savemission" />
 
     <ImageView
