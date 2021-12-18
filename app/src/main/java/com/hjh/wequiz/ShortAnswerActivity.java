@@ -7,6 +7,7 @@ import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.Animation;
@@ -17,11 +18,24 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
 import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
+
 public class ShortAnswerActivity extends AppCompatActivity {
+    String ip;
 
     static boolean click_r;
     // 플로팅버튼 상태
@@ -49,6 +63,8 @@ public class ShortAnswerActivity extends AppCompatActivity {
             requestQueue = Volley.newRequestQueue(getApplicationContext());
         }
         mContext = this;
+        String mem_id = PreferenceManager.getString(this, "mem_id");
+        ip = ((MyApplication) getApplicationContext()).getIp();
 
         tv_shortLocationName = findViewById(R.id.tv_shortLocationName);
         tv_shortQuiz = findViewById(R.id.tv_shortQuiz);
@@ -72,7 +88,9 @@ public class ShortAnswerActivity extends AppCompatActivity {
                 String userAns = et_shortAnswer.getText().toString();
                 if(userAns.equals(answer)) {
                     Toast.makeText(mContext, "정답입니다!", Toast.LENGTH_SHORT).show();
-
+                    updateSucc(mem_id, mission_id);
+                    Intent intent = new Intent(mContext, MyMissionActivity.class);
+                    mContext.startActivity(intent);
                 } else {
                     Toast.makeText(mContext, "땡!!!!!", Toast.LENGTH_SHORT).show();
                 }
@@ -203,5 +221,42 @@ public class ShortAnswerActivity extends AppCompatActivity {
         // 플로팅 버튼 상태 변경
         fabMain_status = !fabMain_status;
 
+    }
+
+    public void updateSucc(String mem_id, int mission_id){
+        String url = ip + "/Mission/UpdateSucc";
+        StringRequest request = new StringRequest(
+                Request.Method.POST,
+                url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        // 응답 성공
+                        try {
+                            JSONObject jsonObject = (JSONObject) (new JSONArray(response).get(0));
+                            Log.d("status : ", jsonObject.getString("status"));
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                    }
+                }
+        ){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("mem_id", mem_id);
+                params.put("mission_id", String.valueOf(mission_id));
+
+                return params;
+            }
+        };
+        requestQueue.add(request);
     }
 }

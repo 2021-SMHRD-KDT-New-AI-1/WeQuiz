@@ -68,6 +68,7 @@ public class ChoiceAnswerActivity extends AppCompatActivity {
             requestQueue = Volley.newRequestQueue(getApplicationContext());
         }
         mContext = this;
+        String mem_id = PreferenceManager.getString(mContext, "mem_id");
 
         keywords = new ArrayList<>();
 
@@ -97,6 +98,9 @@ public class ChoiceAnswerActivity extends AppCompatActivity {
                 String userAns = btn_choices[0].getText().toString();
                 if(userAns.equals(answer)) {
                     Toast.makeText(mContext,"정답입니다!", Toast.LENGTH_SHORT).show();
+                    updateSucc(mem_id, mission_id);
+                    Intent intent = new Intent(mContext, MyMissionActivity.class);
+                    mContext.startActivity(intent);
                 } else {
                     Toast.makeText(mContext,"땡!!!!!!!", Toast.LENGTH_SHORT).show();
                 }
@@ -108,6 +112,9 @@ public class ChoiceAnswerActivity extends AppCompatActivity {
                 String userAns = btn_choices[1].getText().toString();
                 if(userAns.equals(answer)) {
                     Toast.makeText(mContext,"정답입니다!", Toast.LENGTH_SHORT).show();
+                    updateSucc(mem_id, mission_id);
+                    Intent intent = new Intent(mContext, MyMissionActivity.class);
+                    mContext.startActivity(intent);
                 } else {
                     Toast.makeText(mContext,"땡!!!!!!!", Toast.LENGTH_SHORT).show();
                 }
@@ -119,6 +126,9 @@ public class ChoiceAnswerActivity extends AppCompatActivity {
                 String userAns = btn_choices[2].getText().toString();
                 if(userAns.equals(answer)) {
                     Toast.makeText(mContext,"정답입니다!", Toast.LENGTH_SHORT).show();
+                    updateSucc(mem_id, mission_id);
+                    Intent intent = new Intent(mContext, MyMissionActivity.class);
+                    mContext.startActivity(intent);
                 } else {
                     Toast.makeText(mContext,"땡!!!!!!!", Toast.LENGTH_SHORT).show();
                 }
@@ -316,6 +326,43 @@ public class ChoiceAnswerActivity extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
+
+                return params;
+            }
+        };
+        requestQueue.add(request);
+    }
+
+    public void updateSucc(String mem_id, int mission_id){
+        String url = ip + "/Mission/UpdateSucc";
+        StringRequest request = new StringRequest(
+                Request.Method.POST,
+                url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        // 응답 성공
+                        try {
+                            JSONObject jsonObject = (JSONObject) (new JSONArray(response).get(0));
+                            Log.d("status : ", jsonObject.getString("status"));
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                    }
+                }
+        ){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("mem_id", mem_id);
+                params.put("mission_id", String.valueOf(mission_id));
 
                 return params;
             }
